@@ -3,12 +3,31 @@
 }
 
 <div class="text-center">
-    
-     @{
-                PokemonCard card = await PokeApi.GetSingleCard("pl1-1");
-         <img src="@card.data.images.large"/>
-            }
 
-    @*<h1 class="display-4">Welcome</h1>
+    @{
+      PokemonCard card = await PokeApi.GetSingleCard("pl1-1");
+       // <img src="@card.data.images.small" />
+    }
+
+    <div class="kortti">
+        <div class="fill" draggable="true"><img src="@card.data.images.small" style=" height: 185px; width: 150px; position: inherit; " /> </div>
+    </div>
+
+    <div class="kortti">
+    </div>
+
+    <div class="kortti">
+    </div>
+
+    <div class="kortti">
+    </div>
+
+    <div class="kortti">
+    </div>
+    <script src="~/js/korttiliike.js"></script>
+
+</div>
+
+@*<h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
