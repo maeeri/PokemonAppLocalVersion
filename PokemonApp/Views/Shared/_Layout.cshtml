@@ -9,22 +9,30 @@
     <script src="~/js/Navbar.js" defer></script>
 </head>
 <body>
-
-    <div class="nav">
-        <nav>
-            <ul>
-                <img src="~/Images/Pokemon.png" />
-                <div class="listItems">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index" class="navText">Home</a></li>
-                    <li><a asp-area="" asp-controller="Topics" asp-action="Create" class="navText">Battle</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Search" class="navText">Marketplace</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="EditTopic" class="navText signIn">Edit Topic</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Delete" class="navText logIn">Delete Topic</a></li>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PokemonApp</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CardTest">Card Test</a>
+                        </li>
+                    </ul>
                 </div>
-            </ul>
+            </div>
         </nav>
-    </div>
-
+    </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

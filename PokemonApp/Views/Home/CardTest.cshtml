@@ -1,0 +1,18 @@
+﻿@using PokemonTcgSdk
+
+@{
+    ViewData["Title"] = "CardTest";
+}
+
+<h1>CardTest</h1>
+<ul>
+    @{
+        var cards = await PokemonTcgSdk.Card.AllAsync();
+
+        foreach (var card in cards)
+        {
+            <li>@card.Name</li>
+        }
+
+    }
+</ul>
