@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using PokemonApp.Models.Testi;
 
 namespace PokemonApp.Controllers
 {
@@ -26,6 +27,12 @@ namespace PokemonApp.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public async Task<IActionResult> CardTest()
+        {
+            PokemonCard2[] pokemonList = await PokeApi.GetCollection();
+            return View(pokemonList);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

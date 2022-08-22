@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using APIHelpers;
+using PokemonApp.Models.Testi;
 
 namespace PokemonApp.Models
 {
@@ -15,6 +16,15 @@ namespace PokemonApp.Models
             string urlParams = "cards/" + cardId;
 
             PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
+
+            return response;
+        }
+
+        public static async Task<PokemonCard2[]> GetCollection()
+        {
+            string urlParams = "cards";
+
+            PokemonCard2[] response = await ApiHelper.RunAsync<PokemonCard2[]>(url, urlParams);
 
             return response;
         }
