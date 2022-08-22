@@ -29,10 +29,16 @@ namespace PokemonApp.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         public async Task<IActionResult> CardTest()
         {
             PokemonCard2[] pokemonList = await PokeApi.GetCollection();
             return View(pokemonList);
+=======
+        public IActionResult CardTest()
+        {
+            return View();
+>>>>>>> main
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
