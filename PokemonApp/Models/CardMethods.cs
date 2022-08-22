@@ -10,6 +10,7 @@ namespace PokemonApp.Models
 {
     public class CardMethods
     {
+        //read data from json file containing all pokemon
         public static PokemonCards GetPokemonCards()
         {
             string json = File.ReadAllText("./wwwroot/js/pokemons.json");
