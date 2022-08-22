@@ -18,5 +18,11 @@ namespace PokemonApp.Models
 
             return response;
         }
+        public static async Task<PokemonCard> GetRandomCard(string nationalPokedexNumbers)
+        {
+            string urlParams = "cards/?nationalPokedexNumbers:";
+            PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
+            return response;
+        }
     }
 }
