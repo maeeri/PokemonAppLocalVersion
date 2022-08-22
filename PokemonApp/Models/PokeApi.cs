@@ -29,4 +29,9 @@ namespace PokemonApp.Models
     //        return response;
     //    }
     //}
+
+    class SuperType
+    {
+       public string Name { get; set; }
+    }
 }

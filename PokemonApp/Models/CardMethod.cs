@@ -10,10 +10,9 @@ namespace PokemonApp.Models
 {
     public class CardMethod
     {
-        public static async Task<PokemonCard> GetByRarity(string rarity)
+        public static string GetName()
         {
-            var list = Card.Get<Pokemon>();
-            return list.Card;
+            return SuperTypes.All().ToString();
         }
     }
 }
