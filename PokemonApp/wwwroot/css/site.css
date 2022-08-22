@@ -24,9 +24,9 @@ for details on configuring this project to bundle and minify static web assets. 
         margin-left: 300px;
     }
 
-    .nav li {
-        margin-right: 40px;
-    }
+.nav li {
+     margin-right: 40px;
+}
 
 .listItems {
     float: right;
