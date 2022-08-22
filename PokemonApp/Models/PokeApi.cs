@@ -11,22 +11,22 @@ namespace PokemonApp.Models
 {
     public class PokeApi
     {
-        const string url = "https://api.pokemontcg.io/v2/";
+        //const string url = "https://api.pokemontcg.io/v2/";
 
-        public static async Task<PokemonCard> GetSingleCard(string cardId)
-        {
-            string urlParams = "cards/" + cardId;
+        //public static async Task<PokemonCard> GetSingleCard(string cardId)
+        //{
+        //    string urlParams = "cards/" + cardId;
 
-            PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
+        //    PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
 
-            return response;
-        }
+        //    return response;
+        //}
 
-        public static async Task<List<PokemonCard>> GetAllCards()
-        {
-            string urlParams = "cards/";
-            var response = await ApiHelper.RunAsync<List<PokemonCard>>(url, urlParams);
-            return response;
-        }
+        //public static async Task<List<PokemonCard>> GetAllCards()
+        //{
+        //    string urlParams = "cards/";
+        //    var response = await ApiHelper.RunAsync<List<PokemonCard>>(url, urlParams);
+        //    return response;
+        //}
     }
 }
