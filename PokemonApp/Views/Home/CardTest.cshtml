@@ -1,31 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Pokemon</title>
 
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/Navbar.js" defer></script>
+</head>
 
-}
+<body>
+ 
+    <div class="textbox">
+        <h1>CardTest</h1>
+        <div class="row">
+            <div class="column"><p>Pokem ipsum dolor sit amet Exeggutor Kecleon Wing Attack Doduo Red Unown. Sunt in culpa Drilbur Calcium Hoenn Shieldon Wynaut Charizard. Growl Venonat Scolipede Espeon Charizard Barboach Hidden Machine. Duis aute irure dolor in reprehenderit in voluptate they're comfy and easy to wear Onix what kind of Pokemon are you Fog Badge Ampharos Noctowl. Pewter City Marill Slakoth Bronzong Rattata Treecko Cottonee.</p></div>
+            <div class="column"><p>Pokem ipsum dolor sit amet Exeggutor Kecleon Wing Attack Doduo Red Unown. Sunt in culpa Drilbur Calcium Hoenn Shieldon Wynaut Charizard. Growl Venonat Scolipede Espeon Charizard Barboach Hidden Machine. Duis aute irure dolor in reprehenderit in voluptate they're comfy and easy to wear Onix what kind of Pokemon are you Fog Badge Ampharos Noctowl. Pewter City Marill Slakoth Bronzong Rattata Treecko Cottonee.</p></div>
+        </div>
+    </div>
+    @*<ul>
+            @{
+                var cards = await PokemonTcgSdk.Card.AllAsync();
+
+                foreach (var card in cards)
+                {
+                    <li>@card.Name</li>
+                }
+            }
+
+        </ul>
 
 
-<h1>CardTest</h1>
-@*<ul>
+ 
+        </ul>*@
+
     @{
-        var cards = await PokemonTcgSdk.Card.AllAsync();
 
-        foreach (var card in cards)
-        {
-            <li>@card.Name</li>
-        }
     }
-<<<<<<< HEAD
-</ul>
+</body>
 
-
-=======
-</ul>*@
-
-@{
-
-}
->>>>>>> b2db8c049592d78c9d77ce74a6c5564f8e5b09e2
