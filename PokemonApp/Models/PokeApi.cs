@@ -9,29 +9,24 @@ using PokemonTcgSdk;
 
 namespace PokemonApp.Models
 {
-    //public class PokeApi
-    //{
-    //    const string url = "https://api.pokemontcg.io/v2/";
-
-    //    public static async Task<PokemonCard> GetSingleCard(string cardId)
-    //    {
-    //        string urlParams = "cards/" + cardId;
-
-    //        PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
-
-    //        return response;
-    //    }
-
-    //    public static async Task<List<PokemonCard>> GetAllCards()
-    //    {
-    //        string urlParams = "cards/";
-    //        var response = await ApiHelper.RunAsync<List<PokemonCard>>(url, urlParams);
-    //        return response;
-    //    }
-    //}
-
-    class SuperType
+    public class PokeApi
     {
-       public string Name { get; set; }
+        //const string url = "https://api.pokemontcg.io/v2/";
+
+        //public static async Task<PokemonCard> GetSingleCard(string cardId)
+        //{
+        //    string urlParams = "cards/" + cardId;
+
+        //    PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
+
+        //    return response;
+        //}
+
+        //public static async Task<List<PokemonCard>> GetAllCards()
+        //{
+        //    string urlParams = "cards/";
+        //    var response = await ApiHelper.RunAsync<List<PokemonCard>>(url, urlParams);
+        //    return response;
+        //}
     }
 }
