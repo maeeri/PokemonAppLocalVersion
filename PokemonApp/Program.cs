@@ -14,9 +14,7 @@ namespace PokemonApp
     {
         public static void Main(string[] args)
         {
-            PokeApi.GetSingleCard("pl1-1");
             CreateHostBuilder(args).Build().Run();
-
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
