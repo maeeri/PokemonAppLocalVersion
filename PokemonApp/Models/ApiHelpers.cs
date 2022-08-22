@@ -26,6 +26,7 @@ namespace APIHelpers
                 {
                     // send GET request
                     HttpResponseMessage response = await client.GetAsync(urlParams);
+                    response.Headers.Add("api_key", "738f9c16-f4b3-489a-ba0a-2fb811bbfd32");
 
                     if (response.StatusCode == HttpStatusCode.OK)
                     {

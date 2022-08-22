@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using APIHelpers;
+using Microsoft.AspNetCore.Mvc;
+using PokemonTcgSdk;
 
 namespace PokemonApp.Models
 {
@@ -16,6 +19,13 @@ namespace PokemonApp.Models
 
             PokemonCard response = await ApiHelper.RunAsync<PokemonCard>(url, urlParams);
 
+            return response;
+        }
+
+        public static async Task<List<PokemonCard>> GetAllCards()
+        {
+            string urlParams = "cards/";
+            var response = await ApiHelper.RunAsync<List<PokemonCard>>(url, urlParams);
             return response;
         }
     }
