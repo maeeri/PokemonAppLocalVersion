@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "MarketPlace";
+}
+<link rel="stylesheet" href="~/css/market.css" />
+
+
+
+<br />
+<h1>
+    These rewards are waiting for you.
+</h1>
+<body>
+    <div class="rulla">
+        <div class="slideri">
+            @{
+                Random rnd = new Random();
+                var pokemons = CardMethods.GetPokemonCards().data;
+                var randomi = pokemons.OrderBy(x => rnd.Next()).Take(23);
+
+                foreach (var card in randomi)
+                {
+                    <img class="esitys" src=@card.images.small width="130" height="170" />
+
+
+                }
+            }
+        </div>
+    </div>
+</body>

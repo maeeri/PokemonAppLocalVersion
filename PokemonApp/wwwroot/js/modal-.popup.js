@@ -44,3 +44,8 @@ function closeModal(modal) {
     overlay2.classList.remove('active')
 }
 
+
+function flipCard(card) {
+    if (card == null) return
+    card.classList.add('active')
+}
