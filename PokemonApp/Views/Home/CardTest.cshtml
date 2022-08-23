@@ -22,8 +22,9 @@
 
 <div>
     @{
-        var cards = CardMethods.GetCardsByRarity("common");
-        <p>@cards[0].name</p>
+        var card = CardMethods.FindCards("Pokémon");
+        
+        @card.Count
             }
 </div>
 </body>
