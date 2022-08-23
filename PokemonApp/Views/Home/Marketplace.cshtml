@@ -2,14 +2,3 @@
 @{
     ViewData["Title"] = "Markeplace";
 }
-
-<h1>Marketplace</h1>
-<div>
-    @{
-        PokemonCard card = await PokeApi.GetSingleCard("");
-        PokemonCard card2 = await PokeApi.GetRandomCard("[3]");
-
-    }
-    <img class="kuva" src="@card2.data.images.small"  />
-
-</div>

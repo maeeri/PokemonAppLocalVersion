@@ -19,5 +19,6 @@ namespace PokemonApp.Models
 
             return separateCards;
         }
+
     }
 }
