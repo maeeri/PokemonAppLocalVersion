@@ -15,6 +15,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -37,18 +38,26 @@ namespace PokemonApp
         // <Configure_service_ref_for_docs_ms>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"));
-
-            services.AddControllersWithViews(options =>
+            services.Configure<CookiePolicyOptions>(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.Unspecified;
+                // Handling SameSite cookie according to https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-3.1
+                options.HandleSameSiteCookieCompatibility();
             });
-            services.AddRazorPages()
+
+            // Configuration to sign-in users with Azure AD B2C
+            services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C");
+
+            services.AddControllersWithViews()
                 .AddMicrosoftIdentityUI();
+
+            services.AddRazorPages();
+
+            //Configuring appsettings section AzureAdB2C, into IOptions
+            services.AddOptions();
+            services.Configure<OpenIdConnectOptions>(Configuration.GetSection("AzureAdB2C"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,11 +73,15 @@ namespace PokemonApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Add the Microsoft Identity Web cookie policy
+            app.UseCookiePolicy();
             app.UseRouting();
-
+            // Add the ASP.NET Core authentication service
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -76,7 +89,11 @@ namespace PokemonApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                // Add endpoints for Razor pages
+                endpoints.MapRazorPages();
             });
         }
+
     }
 }
