@@ -117,7 +117,7 @@
     background-position: center center;
     background-size: 100%;
     backface-visibility: hidden;
-    background-image: url('pokemonkorttiplaceholder.png');
+    background-image: url('../Images/pokemonkorttiplaceholder.png');
 }
 
 
@@ -146,7 +146,32 @@
     align-items: center;
 }
 
+.pokepallot img{
+    width: 200px;
+    margin-left: 80px;
+}
 
+.pokepallot{
+    
+}
+
+.liila {
+    background-color: white;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
+}
+
+.pinkki {
+    background-color: white;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
+}
 
 .ball {
     height: 200px;
