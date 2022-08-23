@@ -20,5 +20,30 @@ namespace PokemonApp.Models
             return separateCards;
         }
 
+        //find certain types of cards (Energy/Pokémon/Trainer)
+        public static List<Datum> FindCards(string supertype)
+        {
+            var allCards = GetPokemonCards();
+            var theseCards = allCards.Where(x => x.supertype.Equals(supertype, StringComparison.OrdinalIgnoreCase)).ToList();
+            return theseCards;
+        }
+
+        //find cards by rarity(Amazing Rare/Classic Collection/Common/LEGEND/Promo/Radiant Rare/Rare/Rare ACE/
+        //Rare BREAK/Rare Holo/Rare Holo EX/Rare Holo GX/Rare Holo LV.X/Rare Holo Star/Rare Holo V/Rare Holo VMAX/,
+        //Rare Holo VSTAR/Rare Prime/Rare Prism Star/Rare Rainbow/Rare Secret/Rare Shining/Rare Shiny/Rare Shiny GX/Rare Ultra/Uncommon/V/VM)
+        public static List<Datum> GetCardsByRarity(string rarity)
+        {
+            var valivaihe = GetPokemonCards().Where(x => x.rarity.Contains("common", StringComparison.OrdinalIgnoreCase));
+            var theseCards = valivaihe.ToList();
+            return theseCards;
+        }
+
+        //search cards by name
+        public static List<Datum> GetCardsByName(string searchString)
+        {
+            var allCards = GetPokemonCards();
+            var theseCards = allCards.Where(x => x.name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            return theseCards;
+        }
     }
 }
