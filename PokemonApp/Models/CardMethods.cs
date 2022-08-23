@@ -19,11 +19,12 @@ namespace PokemonApp.Models
 
             return separateCards;
         }
+    
         public static List<Datum> GetCardsByRarity(string supertype)
         {
             var allCards = GetPokemonCards();
-            var theseCards = from x in allCards where x.rarity.Equals(supertype) select x;
-            return theseCards.ToList();
+            var theseCards = from x in allCards where x.rarity == supertype select x;
+            return theseCards.ToList() ;
         }
     }
 }
