@@ -2,3 +2,79 @@
 @{
     ViewData["Title"] = "Markeplace";
 }
+<head>
+    <link href="~/css/modal-style.css" rel="stylesheet" />
+</head>
+<h1>Marketplace</h1>
+<body>
+    <div>
+        @{
+            // PokemonCard card = await PokeApi.GetSingleCard("");
+            //PokemonCard card2 = await PokeApi.GetRandomCard("[3]");
+
+        }
+    </div>
+
+
+
+    <button data-modal-target="#modal" class="startpoint">Arvo viisi korttia</button>
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">GOTTA CATCH'EM ALL!</div>
+
+        </div>
+        <div class="modal-body">
+            <table>
+                <tr>
+                    <td>
+                        <div class="card" id="card1">
+                            <figure class="front">
+                            </figure>
+                            <figure class="back">
+                            </figure>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" id="card2">
+                            <figure class="front">
+                            </figure>
+                            <figure class="back">
+                            </figure>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" id="card3">
+                            <figure class="front">
+                            </figure>
+                            <figure class="back">
+                            </figure>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" id="card4">
+                            <figure class="front">
+                            </figure>
+                            <figure class="back">
+                            </figure>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="card" id="card5">
+                            <figure class="front">
+                            </figure>
+                            <figure class="back">
+                            </figure>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button data-close-button class="close-button">Continue</button>
+        </div>
+    </div>
+    <div id="overlay2"></div>
+    <div id="overlay"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="~/js/modal-.popup.js"></script>
+</body>

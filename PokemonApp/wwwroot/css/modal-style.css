@@ -1,0 +1,102 @@
+﻿.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 10;
+    max-width: 80%;
+}
+
+    .modal.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+    .modal-header .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: white;
+        text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    }
+
+
+
+.modal-body {
+    padding: 10px 15px;
+    display: inline-block;
+}
+
+.front {
+    height: 300px;
+    width: 200px;
+    margin: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    background-image: url('pokemonkorttiplaceholder.png');
+}
+
+.back {
+    background: #333;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.close-button {
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    margin-bottom: 20px;
+    font-size: large;
+    text-align: center;
+    color: white;
+    background-color: greenyellow;
+    border-color: greenyellow;
+    border-radius: 10px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    top: 30%;
+    left: 0;
+    right: 0;
+    bottom: 30%;
+    background-color: rgb(64, 109, 233);
+    pointer-events: none;
+}
+
+    #overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+#overlay2 {
+    position: fixed;
+    opacity: 0;
+    transition: 1s ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+    #overlay2.active {
+        opacity: 1;
+        pointer-events: all;
+    }
