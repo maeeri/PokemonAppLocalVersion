@@ -1,18 +1,15 @@
-﻿.body{
-    background-color: yellow;
-}
+﻿
     .slideri {
         background-color: grey;
         height: 200px;
         width: 5076px;
         animation: slide 10s linear infinite;
-        display: flex;
-        background-repeat: repeat-x;
+      
         
        
     }
     .esitys{
-        margin-left: 100px;
+     
         padding-top: 18px;
 
     }

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace PokemonApp.Controllers
 {
     public class HomeController : Controller
@@ -27,6 +28,7 @@ namespace PokemonApp.Controllers
         {
             return View();
         }
+
         public IActionResult Marketplace()
         {
             return View();
@@ -35,11 +37,9 @@ namespace PokemonApp.Controllers
         public IActionResult CardTest()
         {
             return View();
+
         }
-        public IActionResult MarketPlace()
-        {
-            return View();
-        }
+      
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

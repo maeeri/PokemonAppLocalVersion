@@ -11,11 +11,11 @@
     These rewards are waiting for you.
 </h1>
 <body>
-    <div class="rulla">
+    <div class="rulla">s
         <div class="slideri">
             @{
                 Random rnd = new Random();
-                var pokemons = CardMethods.GetPokemonCards().data;
+                var pokemons = CardMethods.GetPokemonCards();
                 var randomi = pokemons.OrderBy(x => rnd.Next()).Take(23);
 
                 foreach (var card in randomi)
