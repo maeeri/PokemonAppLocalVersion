@@ -14,10 +14,11 @@ namespace PokemonApp.Models
         public static List<Datum> GetPokemonCards()
         {
             string json = File.ReadAllText("./wwwroot/js/pokemons.json");
-            var pokemons = JsonSerializer.Deserialize<PokemonCards>(json);
-            var cards = pokemons.data.ToList();
+            var pokemonCards = JsonSerializer.Deserialize<PokemonCards>(json);
+            var separateCards = pokemonCards.data.ToList();
 
-            return cards;
+            return separateCards;
         }
+
     }
 }
