@@ -1,12 +1,9 @@
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Pokemon</title>
-
-
+  
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/js/Navbar.js" defer></script>
 </head>
@@ -18,6 +15,18 @@
         <div class="row">
             <div class="column"><p>Pokem ipsum dolor sit amet Exeggutor Kecleon Wing Attack Doduo Red Unown. Sunt in culpa Drilbur Calcium Hoenn Shieldon Wynaut Charizard. Growl Venonat Scolipede Espeon Charizard Barboach Hidden Machine. Duis aute irure dolor in reprehenderit in voluptate they're comfy and easy to wear Onix what kind of Pokemon are you Fog Badge Ampharos Noctowl. Pewter City Marill Slakoth Bronzong Rattata Treecko Cottonee.</p></div>
             <div class="column"><p>Pokem ipsum dolor sit amet Exeggutor Kecleon Wing Attack Doduo Red Unown. Sunt in culpa Drilbur Calcium Hoenn Shieldon Wynaut Charizard. Growl Venonat Scolipede Espeon Charizard Barboach Hidden Machine. Duis aute irure dolor in reprehenderit in voluptate they're comfy and easy to wear Onix what kind of Pokemon are you Fog Badge Ampharos Noctowl. Pewter City Marill Slakoth Bronzong Rattata Treecko Cottonee.</p></div>
+            <div>
+                @{ var cards = CardMethods.GetCardsByRarity("common");
+                
+                    foreach (var i in cards)
+                    {
+                        <p>@i.name</p>
+                        <p>@i.rarity</p>
+
+                    }
+                     }
+            </div>
         </div>
+
     </div>
 </body>
