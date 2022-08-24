@@ -1,0 +1,29 @@
+﻿.fill {
+  
+    background-size: 150px 150px;
+    position: relative;
+    height: 185px;
+    width: 150px;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+}
+
+.hold {
+    border: solid 5px #ccc;
+}
+
+.kortti {
+    display: inline-block;
+    height: 200px;
+    width: 160px;
+    margin: 10px;
+    border: solid 4px blue;
+    border-radius: 2%;
+    background: white;
+}
+
+.hovered {
+    background: #f4f4f4;
+    border-style: dashed;
+}
