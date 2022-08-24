@@ -32,7 +32,17 @@ namespace PokemonApp.Controllers
             return View();
         }
 
+        public IActionResult Marketplace()
+        {
+            return View();
+        }
+
         public IActionResult CardTest()
+        {
+            return View();
+
+        }
+        public IActionResult Profile()
         {
             return View();
         }
