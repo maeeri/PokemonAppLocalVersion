@@ -26,5 +26,12 @@ namespace PokemonApp.Models
             var theseCards = from x in allCards where x.rarity == supertype select x;
             return theseCards.ToList() ;
         }
+
+        public static List<Datum> GetCardsByName(string searchString)
+        {
+            var allCards = GetPokemonCards();
+            var theseCards = allCards.Where(x => x.name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+            return theseCards;
+        }
     }
 }
