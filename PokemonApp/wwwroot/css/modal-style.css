@@ -150,15 +150,24 @@
     align-items: center;
 }
 
-.pokepallot img{
+.pokepallot img {
     width: 200px;
     margin-left: 80px;
+    float: right;
 }
 
-.pokepallot{
-    
+.pokepallot {
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 280px;
 }
 
+.pokepallot div {
+    float: right;
+    margin-right: 130px;
+    margin-left: 130px;
+}
+   
 .liila {
     background-color: white;
     padding-top: 80px;
@@ -166,6 +175,7 @@
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 8px;
+    
 }
 
 .pinkki {
@@ -175,6 +185,7 @@
     padding-left: 30px;
     padding-right: 30px;
     border-radius: 8px;
+    
 }
 
 .ball {

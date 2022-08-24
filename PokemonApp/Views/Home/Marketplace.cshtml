@@ -62,25 +62,36 @@
 
 
     <div class="wrapper">
-        <div class="ball">
-            <div class="red-half"></div>
-            <div class="white-half"></div>
-            <div class="black-band"></div>
-            <div class="outer-button">
-                <div class="inner-button">
-                    <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton"></button>
-                </div>
-            </div>
-        </div>
-
+       
 
         <div class="pokepallot">
-            <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                <img src="~/Images/PokepalloLiila.png" class="liila" />
-            </button>
             
-            <img src="~/Images/PokepalloPinkki.png" class="pinkki" />
-        </div>
+                <div>
+                    <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                        <img src="~/Images/OrangeBall.png" class="liila" />
+                    </button>
+                </div>
+
+                <div>
+                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/YellowBall.png" class="liila" />
+                    </button>
+                </div>
+
+                <div>
+                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/BlueBall.png" class="pinkki" />
+                    </button>
+                </div>
+
+                <div>
+                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/OrangeBall.png" class="pinkki" />
+                    </button>
+                </div>
+
+            </div>
+
 
     </div>
 
@@ -96,7 +107,7 @@
             <table>
                 <tr>
                     <td>
-                        <div class="card" id="card1" onclick="flipCard(this)">
+                        <div class="card" id="card1" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -110,7 +121,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card2" onclick="flipCard(this)">
+                        <div class="card" id="card2" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -124,7 +135,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card3" onclick="flipCard(this)">
+                        <div class="card" id="card3" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -138,7 +149,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card4" onclick="flipCard(this)">
+                        <div class="card" id="card4" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -152,7 +163,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card5" onclick="flipCard(this)">
+                        <div class="card" id="card5" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -167,7 +178,7 @@
                     </td>
 
                     <td>
-                        <div class="card rareCard" id="rareCard" onclick="flipCard(this)">
+                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
