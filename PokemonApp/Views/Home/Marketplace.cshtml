@@ -68,7 +68,7 @@
             <div class="black-band"></div>
             <div class="outer-button">
                 <div class="inner-button">
-                    <button data-modal-target="#modal" class="startpoint" id="raffleButton"></button>
+                    <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton"></button>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
 
 
 
-    <div class="modal" id="modal">
+    <div class="modal rare" id="modal">
         <div class="modal-header">
             <div class="title">GOTTA CATCH'EM ALL!</div>
 
@@ -167,7 +167,7 @@
                     </td>
 
                     <td>
-                        <div class="card" id="rareCard" onclick="flipCard(this)">
+                        <div class="card rareCard" id="rareCard" onclick="flipCard(this)">
                             <div class="content">
                                 <div class="front">
                                 </div>

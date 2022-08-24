@@ -8,22 +8,13 @@
     max-width: 80%;
 }
 
-.rarePaketti {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 200ms ease-in-out;
-    z-index: 10;
-    max-width: 80%;
-}
+/*.rareCard{
+    display: none;
+}*/
 
-    .rarePaketti.active {
-        transform: translate(-50%, -50%) scale(1);
-    }
-    .modal.active {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
 .modal-header {
     padding: 10px 15px;
@@ -33,7 +24,7 @@
     text-align: center;
 }
 
-    .modal-header .title {
+.modal-header .title {
         font-size: 1.25rem;
         font-weight: bold;
         color: white;
@@ -81,10 +72,10 @@
     pointer-events: none;
 }
 
-    #overlay.active {
-        opacity: 1;
-        pointer-events: all;
-    }
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
 
 #overlay2 {
     position: fixed;
@@ -98,10 +89,10 @@
     pointer-events: none;
 }
 
-    #overlay2.active {
-        opacity: 1;
-        pointer-events: all;
-    }
+#overlay2.active {
+    opacity: 1;
+    pointer-events: all;
+}
 
 .card {
     height: 300px;

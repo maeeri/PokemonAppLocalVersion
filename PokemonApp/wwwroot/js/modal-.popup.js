@@ -3,7 +3,13 @@ const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
 
 
-const openRarePack = document.querySelectorAll('.rarePakka')
+
+const rareLuokka = document.querySelectorAll(".rareCard");
+
+const openRarePack = document.querySelectorAll('[data-modal-target]').rareLuokka;
+
+/*openRarePack.addEventListener('click', RareCardShow);*/
+
 const rarePack = document.getElementById("#rareCard");
 
 openModalButtons.forEach(button => {
@@ -17,9 +23,6 @@ openModalButtons.forEach(button => {
         gsap.from("#rareCard", { x: -10000, delay: 2 });
         gsap.from("#card5", { x: -10000, delay: 2 });
         
-        
-        
-
 
     })
 })
@@ -37,8 +40,8 @@ openRarePack.forEach(button => {
         gsap.from("#card5", { x: -10000, delay: 2 });
     })
 })
-
 */
+
 
 /*overlay.addEventListener('click', () => {
   const modals = document.querySelectorAll('.modal.active')
@@ -81,12 +84,24 @@ erikoisPakka.addEventListener("click", RareCardShow)
 
 
 function RareCardShow(card) {
-    const testi = document.getElementById("#rareCard");
+    const testi = document.querySelectorAll(".rareCard");
     document.getElementById("card5").style.display = "none";
-    testi.classList.add("rareCard");
+    testi.classList.add(".rareCard");
     if (card == null) return
     card.classList.add('active');
     document.getElementById("rareCard").style.display = "block";
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+    })
+}
+
+function HideRareCard() {
+
+    document.getElementById("rareCard").style.display = "none";
 
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
