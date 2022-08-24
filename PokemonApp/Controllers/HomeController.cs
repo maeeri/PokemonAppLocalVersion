@@ -26,22 +26,23 @@ namespace PokemonApp.Controllers
         {
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult Marketplace()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult CardTest()
         {
             return View();
 
         }
+        [AllowAnonymous]
         public IActionResult Profile()
         {
             return View();
