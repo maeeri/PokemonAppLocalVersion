@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PokemonApp.Models
 {
+    [NotMapped]
     public class PokemonCards
     {
         public Datum[] data { get; set; }
@@ -14,6 +16,7 @@ namespace PokemonApp.Models
         public int totalCount { get; set; }
     }
 
+    [NotMapped]
     public class Datum
     {
         public string id { get; set; }
@@ -45,6 +48,7 @@ namespace PokemonApp.Models
         public string regulationMark { get; set; }
     }
 
+    [NotMapped]
     public class Set
     {
         public string id { get; set; }
@@ -59,6 +63,7 @@ namespace PokemonApp.Models
         public Images images { get; set; }
     }
 
+    [NotMapped]
     public class Legalities
     {
         public string unlimited { get; set; }
@@ -66,12 +71,14 @@ namespace PokemonApp.Models
         public string standard { get; set; }
     }
 
+    [NotMapped]
     public class Images
     {
         public string symbol { get; set; }
         public string logo { get; set; }
     }
 
+    [NotMapped]
     public class Legalities1
     {
         public string unlimited { get; set; }
@@ -79,12 +86,14 @@ namespace PokemonApp.Models
         public string standard { get; set; }
     }
 
+    [NotMapped]
     public class Images1
     {
         public string small { get; set; }
         public string large { get; set; }
     }
 
+    [NotMapped]
     public class Tcgplayer
     {
         public string url { get; set; }
@@ -92,6 +101,7 @@ namespace PokemonApp.Models
         public Prices prices { get; set; }
     }
 
+    [NotMapped]
     public class Prices
     {
         public Holofoil holofoil { get; set; }
@@ -101,6 +111,7 @@ namespace PokemonApp.Models
         public Unlimitedholofoil unlimitedHolofoil { get; set; }
     }
 
+    [NotMapped]
     public class Holofoil
     {
         public float low { get; set; }
@@ -110,6 +121,7 @@ namespace PokemonApp.Models
         public float directLow { get; set; }
     }
 
+    [NotMapped]
     public class Reverseholofoil
     {
         public float low { get; set; }
@@ -119,6 +131,7 @@ namespace PokemonApp.Models
         public float directLow { get; set; }
     }
 
+    [NotMapped]
     public class Normal
     {
         public float low { get; set; }
@@ -128,6 +141,7 @@ namespace PokemonApp.Models
         public float directLow { get; set; }
     }
 
+    [NotMapped]
     public class _1Steditionholofoil
     {
         public float low { get; set; }
@@ -137,6 +151,7 @@ namespace PokemonApp.Models
         public float directLow { get; set; }
     }
 
+    [NotMapped]
     public class Unlimitedholofoil
     {
         public float low { get; set; }
@@ -146,6 +161,7 @@ namespace PokemonApp.Models
         public float directLow { get; set; }
     }
 
+    [NotMapped]
     public class Cardmarket
     {
         public string url { get; set; }
@@ -153,6 +169,7 @@ namespace PokemonApp.Models
         public Prices1 prices { get; set; }
     }
 
+    [NotMapped]
     public class Prices1
     {
         public float averageSellPrice { get; set; }
@@ -170,6 +187,7 @@ namespace PokemonApp.Models
         public float reverseHoloAvg30 { get; set; }
     }
 
+    [NotMapped]
     public class Ability
     {
         public string name { get; set; }
@@ -177,6 +195,7 @@ namespace PokemonApp.Models
         public string type { get; set; }
     }
 
+    [NotMapped]
     public class Attack
     {
         public string name { get; set; }
@@ -186,12 +205,14 @@ namespace PokemonApp.Models
         public string text { get; set; }
     }
 
+    [NotMapped]
     public class Weakness
     {
         public string type { get; set; }
         public string value { get; set; }
     }
 
+    [NotMapped]
     public class Resistance
     {
         public string type { get; set; }
