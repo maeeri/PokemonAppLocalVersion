@@ -4,10 +4,14 @@
     Random rnd = new Random();
     var pokemons = CardMethods.GetPokemonCards();
     var randomi = pokemons.OrderBy(x => rnd.Next()).Take(1);
-    
+
+    var randomSlider = pokemons.OrderBy(x => rnd.Next()).Take(2);
+
 }
 
 <link rel="stylesheet" href="~/css/market.css" /><link rel="stylesheet" href="~/css/modal-style.css" />
+
+
 
 <br />
 <h1 style="text-align: center">
@@ -18,73 +22,92 @@
     <div class="slider">
         <div class="slider-wrap">
             <div class="slide">
-                @{foreach (var card in randomi)
-                {
-                <img src=@card.images.small class="slide-image"  width="120" height="170" />
-                }}
+                @{foreach (var card in randomSlider)
+                    {
+                        <img src=@card.images.small class="slide-image" width="120" height="170" />
+                    }}
             </div>
             <div class="slide">
-                @{foreach (var card in randomi)
-                {
-                <img src=@card.images.small class="slide-image"width="120" height="170" />
-                }}
+                @{foreach (var card in randomSlider)
+                    {
+                        <img src=@card.images.small class="slide-image" width="120" height="170" />
+                    }}
             </div>
             <div class="slide">
-                @{foreach (var card in randomi)
-                {
-                <img src=@card.images.small class="slide-image" width="120" height="170" />
-                }}
+                @{foreach (var card in randomSlider)
+                    {
+                        <img src=@card.images.small class="slide-image" width="120" height="170" />
+                    }}
             </div>
             <div class="slide">
-                @{foreach (var card in randomi)
-                {
-                <img src=@card.images.small class="slide-image" width="120" height="170" />
-                }}
+                @{foreach (var card in randomSlider)
+                    {
+                        <img src=@card.images.small class="slide-image" width="120" height="170" />
+                    }}
             </div>
             <div class="slide">
-                @{foreach (var card in randomi)
-                {
-                <img src=@card.images.small class="slide-image" width="120" height="170" />
-                }}
+                @{foreach (var card in randomSlider)
+                    {
+                        <img src=@card.images.small class="slide-image" width="120" height="170" />
+                    }}
             </div>
             <div class="slide">
-                @{foreach (var card in randomi)
-                {
-                <img src=@card.images.small class="slide-image"width="120" height="170" />
-                }}
+                @{foreach (var card in randomSlider)
+                    {
+                        <img src=@card.images.small class="slide-image" width="120" height="170" />
+                    }}
             </div>
         </div>
     </div>
 
 
     <div class="wrapper">
-        <div class="ball">
-            <div class="red-half"></div>
-            <div class="white-half"></div>
-            <div class="black-band"></div>
-            <div class="outer-button">
-                <div class="inner-button">
-                    <button data-modal-target="#modal" class="startpoint" id="raffleButton"></button>
+       
+
+        <div class="pokepallot">
+            
+                <div>
+                    <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                        <img src="~/Images/OrangeBall.png" class="liila" />
+                    </button>
                 </div>
+
+                <div>
+                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/YellowBall.png" class="liila" />
+                    </button>
+                </div>
+
+                <div>
+                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/BlueBall.png" class="pinkki" />
+                    </button>
+                </div>
+
+                <div>
+                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/OrangeBall.png" class="pinkki" />
+                    </button>
+                </div>
+
             </div>
-        </div>
+
+
     </div>
 
 
 
-    <div class="modal" id="modal">
+    <div class="modal rare" id="modal">
         <div class="modal-header">
             <div class="title">GOTTA CATCH'EM ALL!</div>
-           
+
 
         </div>
         <div class="modal-body">
             <table>
-           
-
                 <tr>
                     <td>
-                        <div class="card" id="card1" onclick="flipCard(this)">
+                        <div class="card" id="card1" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -98,7 +121,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card2" onclick="flipCard(this)">
+                        <div class="card" id="card2" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -112,7 +135,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card3" onclick="flipCard(this)">
+                        <div class="card" id="card3" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -126,7 +149,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card4" onclick="flipCard(this)">
+                        <div class="card" id="card4" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -140,7 +163,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="card" id="card5" onclick="flipCard(this)">
+                        <div class="card" id="card5" onclick="flipCard(this); this.onclick=null">
                             <div class="content">
                                 <div class="front">
                                 </div>
@@ -148,6 +171,21 @@
                                     @{foreach (var card in randomi)
                                         {
                                             <img src=@card.images.small width="200" height="300" />
+                                        }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
+                            <div class="content">
+                                <div class="front">
+                                </div>
+                                <div class="back">
+                                    @{foreach (var card in randomi)
+                                        {
+                                            <img src=@card.images.small width="400" height="500" />
                                         }}
                                 </div>
                             </div>
@@ -160,6 +198,13 @@
             <button data-close-button class="close-button">Continue</button>
         </div>
     </div>
+
+
+
+
+
+
+   
     <div id="overlay2"></div>
     <div id="overlay"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
