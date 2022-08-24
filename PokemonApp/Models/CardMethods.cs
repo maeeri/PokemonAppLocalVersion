@@ -32,11 +32,34 @@ namespace PokemonApp.Models
             return theseCards;
         }
 
-        public static List<Datum> GetCardsByName(string searchString)
+       public static List<Datum> GetCardsByNam(string searchString)
         {
             var allCards = GetPokemonCards();
             var theseCards = allCards.Where(x => x.name.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
             return theseCards;
+        }
+
+        public static List<Datum> RarePack()
+        {
+            var allCards = GetPokemonCards();
+            var theseCards = (from x in allCards where x.rarity != null select x).ToList();
+            var finalCards = (from x in theseCards
+                             where x.rarity.ToLower() == "legend" ||
+                                   x.rarity.ToLower() == "amazing rare" ||
+                                   x.rarity.ToLower() == "rare"
+                            select x).ToList();
+
+            return finalCards;
+        }
+        public static List<Datum> LegendaryPack()
+        {
+            var allCards = GetPokemonCards();
+            var theseCards = (from x in allCards where x.rarity != null select x).ToList();
+            var finalCards = (from x in theseCards
+                              where x.rarity.ToLower() == "rare holo"
+                              select x).ToList();
+
+            return finalCards;
         }
     }
 }
