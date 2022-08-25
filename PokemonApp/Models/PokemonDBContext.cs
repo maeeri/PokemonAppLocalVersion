@@ -37,9 +37,7 @@ namespace PokemonApp.Models
 
             modelBuilder.Entity<Connection>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.OtherUser).HasColumnName("other_user");
 
@@ -60,9 +58,7 @@ namespace PokemonApp.Models
 
             modelBuilder.Entity<Highscore>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Losses).HasColumnName("losses");
 
@@ -79,9 +75,7 @@ namespace PokemonApp.Models
 
             modelBuilder.Entity<PokemonCard>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -108,9 +102,7 @@ namespace PokemonApp.Models
             {
                 entity.ToTable("User");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Cash).HasColumnName("cash");
 
