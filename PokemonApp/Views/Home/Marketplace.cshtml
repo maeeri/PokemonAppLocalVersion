@@ -6,6 +6,11 @@
     var randomi = pokemons.OrderBy(x => rnd.Next()).Take(1);
 
     var randomSlider = pokemons.OrderBy(x => rnd.Next()).Take(2);
+    var randomRare = CardMethods.RarePack();
+    var raRe = randomRare.OrderBy(x => rnd.Next()).Take(1);
+    var randomLegendary = CardMethods.LegendaryPack();
+    var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
+
 
 }
 
@@ -51,14 +56,10 @@
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
                     }}
             </div>
-            <div class="slide">
-                @{foreach (var card in randomSlider)
-                    {
-                        <img src=@card.images.small class="slide-image" width="120" height="170" />
-                    }}
-            </div>
+
         </div>
-    </div>
+        </div>
+  
 
 
     <div class="wrapper">
@@ -159,7 +160,7 @@
                                             <img src=@card.images.small width="200" height="300" />
                                         }}
                                 </div>
-                            </div>
+                            </div>ggg
                         </div>
                     </td>
                     <td>
@@ -183,7 +184,7 @@
                                 <div class="front">
                                 </div>
                                 <div class="back">
-                                    @{foreach (var card in randomi)
+                                    @{foreach (var card in legendary)
                                         {
                                             <img src=@card.images.small width="400" height="500" />
                                         }}
