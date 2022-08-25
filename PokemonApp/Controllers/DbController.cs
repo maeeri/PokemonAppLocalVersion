@@ -9,19 +9,20 @@ namespace PokemonApp.Controllers
 {
     public class DbController : Controller
     {
-        private readonly PokemonDBContext _context = new PokemonDBContext();
+        private static readonly PokemonDBContext _context = new PokemonDBContext();
 
-        public IActionResult SaveUser()
+        public static void SaveUser(string username)
         {
-            User uusi = new User();
-            uusi.Username = "testi32";
-            uusi.Cash = 0;
-            uusi.Xp = 0;
+            if (_context.Users.FirstOrDefault(x => x.Username == username) == null)
+            {
+                User uusi = new User();
+                uusi.Username = username;
 
-            _context.Add(uusi);
-            _context.SaveChanges();
-
-            return RedirectToAction(controllerName:"Home", actionName:"Index");
+                _context.Add(uusi);
+                _context.SaveChanges();
+            }
+            
         }
     }
+
 }
