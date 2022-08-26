@@ -1,4 +1,5 @@
-﻿
+﻿@using PokemonApp.Controllers
+@model ViewModel
 @{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
@@ -9,9 +10,10 @@
     var randomRare = CardMethods.RarePack();
     var raRe = randomRare.OrderBy(x => rnd.Next()).Take(1);
     var randomLegendary = CardMethods.LegendaryPack();
+    
     var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
 
-
+    
 }
 
 <link rel="stylesheet" href="~/css/market.css" /><link rel="stylesheet" href="~/css/modal-style.css" />
@@ -104,100 +106,128 @@
 
 
         </div>
-        <div class="modal-body">
-            <table>
-                <tr>
-                    <td>
-                        <div class="card" id="card1" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                        }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card2" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                        }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card3" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                        }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card4" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                        }}
-                                </div>
-                            </div>ggg
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card5" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                        }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
 
-                    <td>
-                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in legendary)
-                                        {
-                                            <img src=@card.images.small width="400" height="500" />
-                                        }}
+        <form>
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="card" id="card1" onclick="flipCard(this);this.onclick = null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{
+                                            foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+
+                                                <input type="hidden" name="PCards[0].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[0].PokemonId" value=@card.id />
+                                                @*<input type="hidden" name="PCards[0].User" value="User.Id" />*@
+
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="modal-footer">
-            <button data-close-button class="close-button">Continue</button>
-        </div>
+                        </td>
+                        <td>
+                            <div class="card" id="card2" onclick="flipCard(this);this.onclick = null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+
+                                                <input type="hidden" name="PCards[1].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[1].PokemonId" value=@card.id />
+                                                @*<input type="hidden" name="PCards[1].User" value="User.Id" />*@
+                                            }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" id="card3" onclick="flipCard(this);this.onclick = null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+
+                                                <input type="hidden" name="PCards[2].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[2].PokemonId" value=@card.id />
+                                                @*<input type="hidden" name="PCards[2].User" value="User.Id" />*@
+                                            }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" id="card4" onclick="flipCard(this);this.onclick = null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+
+                                                <input type="hidden" name="PCards[3].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[3].PokemonId" value=@card.id />
+                                                @*<input type="hidden" name="PCards[3].User" value="User.Id" />*@
+                                            }}
+                                    </div>
+                                </div>ggg
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" id="card5" onclick="flipCard(this);this.onclick = null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+
+                                                <input type="hidden" name="PCards[4].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[4].PokemonId" value=@card.id />
+                                                @*<input type="hidden" name="PCards[4].User" value="User.Id" />*@
+
+                                            }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="card rareCard" id="rareCard" onclick="flipCard(this);this.onclick = null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in legendary)
+                                            {
+                                                <img src=@card.images.small width="400" height="500" />
+                                            }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <input class="close-button" type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" />
+                @*<button data-close-button >Continue</button>*@
+            </div>
+        </form>
     </div>
 
 
