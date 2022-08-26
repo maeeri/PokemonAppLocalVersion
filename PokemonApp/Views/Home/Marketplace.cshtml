@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-﻿﻿
-=======
+
 ﻿@using PokemonApp.Controllers
 @model ViewModel
->>>>>>> b7fb0061e67f467c33fd320a22ca05bd087de477
+
 @{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
@@ -118,22 +116,20 @@
                                 <div class="front">
                                 </div>
                                 <div class="back">
-<<<<<<< HEAD
-                                     @{foreach (var card in randomi)
-                                        {
-                                        <img src=@card.images.small width="200" height="300" />
-=======
-                                    @{ 
-                                        foreach (var card in randomi)
-                                    {
-                                        <img src=@card.images.small width="200" height="300"/>
-                                        Model.PokemonCard.PokemonId = card.id;
-                                        Model.PokemonCard.Name = card.name;
-                                        Model.PCards.Add(Model.PokemonCard);
 
->>>>>>> b7fb0061e67f467c33fd320a22ca05bd087de477
-                                    }}
-                                </div>
+             
+
+                                            @{
+                                                foreach (var card in randomi)
+                                                {
+                                                    <img src=@card.images.small width="200" height="300" />
+                                                    Model.PokemonCard.PokemonId = card.id;
+                                                    Model.PokemonCard.Name = card.name;
+                                                    Model.PCards.Add(Model.PokemonCard);
+
+
+                                                }}
+                                        </div>
                             </div>
                         </div>
                     </td>
@@ -145,16 +141,13 @@
                                 <div class="back">
                                      @{foreach (var card in randomi)
                                         {
-<<<<<<< HEAD
-                                        <img src=@card.images.small width="200" height="300" />
-                                    }}
-=======
+
                                             <img src=@card.images.small width="200" height="300" />
                                             Model.PokemonCard.PokemonId = card.id;
                                             Model.PokemonCard.Name = card.name;
                                             Model.PCards.Add(Model.PokemonCard);
                                         }}
->>>>>>> b7fb0061e67f467c33fd320a22ca05bd087de477
+
                                 </div>
                             </div>
                         </div>
@@ -167,16 +160,12 @@
                                 <div class="back">
                                      @{foreach (var card in randomi)
                                         {
-<<<<<<< HEAD
-                                        <img src=@card.images.small width="200" height="300" />
-                                    }}
-=======
-                                            <img src=@card.images.small width="200" height="300" />
+                                             <img src=@card.images.small width="200" height="300" />
                                             Model.PokemonCard.PokemonId = card.id;
                                             Model.PokemonCard.Name = card.name;
                                             Model.PCards.Add(Model.PokemonCard);
                                         }}
->>>>>>> b7fb0061e67f467c33fd320a22ca05bd087de477
+
                                 </div>
                             </div>
                         </div>
@@ -189,18 +178,16 @@
                                 <div class="back">
                                      @{foreach (var card in randomi)
                                         {
-<<<<<<< HEAD
-                                        <img src=@card.images.small width="200" height="300" />
-                                    }}
-=======
+
                                             <img src=@card.images.small width="200" height="300" />
                                             Model.PokemonCard.PokemonId = card.id;
                                             Model.PokemonCard.Name = card.name;
                                             Model.PCards.Add(Model.PokemonCard);
+                                           
                                         }}
->>>>>>> b7fb0061e67f467c33fd320a22ca05bd087de477
+                                    
                                 </div>
-                            </div>ggg
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -211,16 +198,13 @@
                                 <div class="back">
                                      @{foreach (var card in randomi)
                                         {
-<<<<<<< HEAD
-                                        <img src=@card.images.small width="200" height="300" />
-                                    }}
-=======
+
                                             <img src=@card.images.small width="200" height="300" />
                                             Model.PokemonCard.PokemonId = card.id;
                                             Model.PokemonCard.Name = card.name;
                                             Model.PCards.Add(Model.PokemonCard);
                                         }}
->>>>>>> b7fb0061e67f467c33fd320a22ca05bd087de477
+
                                 </div>
                             </div>
                         </div>
