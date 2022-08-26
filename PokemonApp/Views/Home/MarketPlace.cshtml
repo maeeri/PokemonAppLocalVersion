@@ -10,7 +10,8 @@
     var randomRare = CardMethods.RarePack();
     var raRe = randomRare.OrderBy(x => rnd.Next()).Take(1);
     var randomLegendary = CardMethods.LegendaryPack();
-    var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
+    
+   var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
 
 }
 
@@ -104,119 +105,125 @@
 
 
         </div>
-        <div class="modal-body">
-            <table>
-                <tr>
-                    <td>
-                        <div class="card" id="card1" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{ 
-                                        foreach (var card in randomi)
-                                    {
-                                        <img src=@card.images.small width="200" height="300"/>
-                                        Model.PokemonCard.PokemonId = card.id;
-                                        Model.PokemonCard.Name = card.name;
-                                        Model.PCards.Add(Model.PokemonCard);
+        <form>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="card" id="card1" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{
+                                            foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+                                                //Model.PokemonCard.PokemonId = card.id;
+                                                //Model.PokemonCard.Name = card.name;
+                                                //Model.PCards.Add(Model.PokemonCard);
+                                                <input type="hidden" name="PCards[0].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[0].PokemonId" value=@card.id />
+                                                <input type="hidden" name="PCards[0].User" value="@Model.User.Id" />
 
-                                    }}
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card2" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                            Model.PokemonCard.PokemonId = card.id;
-                                            Model.PokemonCard.Name = card.name;
-                                            Model.PCards.Add(Model.PokemonCard);
-                                        }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card3" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                            Model.PokemonCard.PokemonId = card.id;
-                                            Model.PokemonCard.Name = card.name;
-                                            Model.PCards.Add(Model.PokemonCard);
-                                        }}
+                        </td>
+                        <td>
+                            <div class="card" id="card2" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+                                                //Model.PokemonCard.PokemonId = card.id;
+                                                //Model.PokemonCard.Name = card.name;
+                                                //Model.PCards.Add(Model.PokemonCard);
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card4" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                            Model.PokemonCard.PokemonId = card.id;
-                                            Model.PokemonCard.Name = card.name;
-                                            Model.PCards.Add(Model.PokemonCard);
-                                        }}
-                                </div>
-                            </div>ggg
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" id="card5" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                            Model.PokemonCard.PokemonId = card.id;
-                                            Model.PokemonCard.Name = card.name;
-                                            Model.PCards.Add(Model.PokemonCard);
-                                        }}
+                        </td>
+                        <td>
+                            <div class="card" id="card3" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+                                                //Model.PokemonCard.PokemonId = card.id;
+                                                //Model.PokemonCard.Name = card.name;
+                                                //Model.PCards.Add(Model.PokemonCard);
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
+                        <td>
+                            <div class="card" id="card4" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+                                                //Model.PokemonCard.PokemonId = card.id;
+                                                //Model.PokemonCard.Name = card.name;
+                                                //Model.PCards.Add(Model.PokemonCard);
+                                            }}
+                                    </div>
+                                </div>ggg
+                            </div>
+                        </td>
+                        <td>
+                            <div class="card" id="card5" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="200" height="300" />
+                                                //Model.PokemonCard.PokemonId = card.id;
+                                                //Model.PokemonCard.Name = card.name;
+                                                //Model.PCards.Add(Model.PokemonCard);
+                                            }}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
 
-                    <td>
-                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in legendary)
-                                        {
-                                            <img src=@card.images.small width="400" height="500" />
-                                        }}
+                        <td>
+                            <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in legendary)
+                                            {
+                                                <img src=@card.images.small width="400" height="500" />
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="modal-footer">
-            <input type="hidden" />
-            <input data-close-button class="close-button" type="submit" value="Collect" asp-controller="Db"/>
-            @*<button data-close-button class="close-button">Continue</button>*@
-        </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+
+                <input type="hidden" name="User" value="@Model.User"/>
+                <input type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-id="@Model" />
+                @*<button data-close-button class="close-button">Continue</button>*@
+            </div>
+        </form>
     </div>
 
 
