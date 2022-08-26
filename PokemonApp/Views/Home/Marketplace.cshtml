@@ -124,7 +124,7 @@
                                                 //Model.PCards.Add(Model.PokemonCard);
                                                 <input type="hidden" name="PCards[0].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[0].PokemonId" value=@card.id />
-                                                <input type="hidden" name="PCards[0].User" value="@Model.User.Id" />
+                                                //<input type="hidden" name="PCards[0].User" value="@Model.User.Id" />
 
                                             }}
                                     </div>
@@ -220,7 +220,7 @@
             <div class="modal-footer">
 
                 <input type="hidden" name="User" value="@Model.User"/>
-                <input type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-id="@Model" />
+                <input type="submit" value="Collect" asp-controller="Db" asp-action="DbSave"  />
                 @*<button data-close-button class="close-button">Continue</button>*@
             </div>
         </form>
