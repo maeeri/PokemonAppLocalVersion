@@ -19,7 +19,7 @@ namespace PokemonApp.Models
 
             return separateCards;
         }
-
+    
         //find cards by rarity(Amazing Rare/Classic Collection/Common/LEGEND/Promo/Radiant Rare/Rare/Rare ACE/
         //Rare BREAK/Rare Holo/Rare Holo EX/Rare Holo GX/Rare Holo LV.X/Rare Holo Star/Rare Holo V/Rare Holo VMAX/,
         //Rare Holo VSTAR/Rare Prime/Rare Prism Star/Rare Rainbow/Rare Secret/Rare Shining/Rare Shiny/Rare Shiny GX/Rare Ultra/Uncommon/V/VM)
@@ -44,8 +44,8 @@ namespace PokemonApp.Models
             var allCards = GetPokemonCards();
             var theseCards = (from x in allCards where x.rarity != null select x).ToList();
             var finalCards = (from x in theseCards
-                             where x.rarity.ToLower() == "legend" ||
-                                   x.rarity.ToLower() == "amazing rare" ||
+                             where x.rarity.ToLower() == "rare holo star" ||
+                                   x.rarity.ToLower() == "rare holo ex" ||
                                    x.rarity.ToLower() == "rare"
                             select x).ToList();
 
@@ -56,7 +56,7 @@ namespace PokemonApp.Models
             var allCards = GetPokemonCards();
             var theseCards = (from x in allCards where x.rarity != null select x).ToList();
             var finalCards = (from x in theseCards
-                              where x.rarity.ToLower() == "rare holo"
+                              where x.rarity.ToLower() == "rare holo ex"
                               select x).ToList();
 
             return finalCards;
