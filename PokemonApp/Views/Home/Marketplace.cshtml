@@ -1,4 +1,5 @@
-﻿
+﻿@using PokemonApp.Controllers
+@model ViewModel
 @{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
@@ -10,7 +11,6 @@
     var raRe = randomRare.OrderBy(x => rnd.Next()).Take(1);
     var randomLegendary = CardMethods.LegendaryPack();
     var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
-
 
 }
 
@@ -111,10 +111,15 @@
                                 <div class="front">
                                 </div>
                                 <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="200" height="300" />
-                                        }}
+                                    @{ 
+                                        foreach (var card in randomi)
+                                    {
+                                        <img src=@card.images.small width="200" height="300"/>
+                                        Model.PokemonCard.PokemonId = card.id;
+                                        Model.PokemonCard.Name = card.name;
+                                        Model.PCards.Add(Model.PokemonCard);
+
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -128,6 +133,9 @@
                                     @{foreach (var card in randomi)
                                         {
                                             <img src=@card.images.small width="200" height="300" />
+                                            Model.PokemonCard.PokemonId = card.id;
+                                            Model.PokemonCard.Name = card.name;
+                                            Model.PCards.Add(Model.PokemonCard);
                                         }}
                                 </div>
                             </div>
@@ -142,6 +150,9 @@
                                     @{foreach (var card in randomi)
                                         {
                                             <img src=@card.images.small width="200" height="300" />
+                                            Model.PokemonCard.PokemonId = card.id;
+                                            Model.PokemonCard.Name = card.name;
+                                            Model.PCards.Add(Model.PokemonCard);
                                         }}
                                 </div>
                             </div>
@@ -156,6 +167,9 @@
                                     @{foreach (var card in randomi)
                                         {
                                             <img src=@card.images.small width="200" height="300" />
+                                            Model.PokemonCard.PokemonId = card.id;
+                                            Model.PokemonCard.Name = card.name;
+                                            Model.PCards.Add(Model.PokemonCard);
                                         }}
                                 </div>
                             </div>ggg
@@ -170,6 +184,9 @@
                                     @{foreach (var card in randomi)
                                         {
                                             <img src=@card.images.small width="200" height="300" />
+                                            Model.PokemonCard.PokemonId = card.id;
+                                            Model.PokemonCard.Name = card.name;
+                                            Model.PCards.Add(Model.PokemonCard);
                                         }}
                                 </div>
                             </div>
@@ -194,7 +211,9 @@
             </table>
         </div>
         <div class="modal-footer">
-            <button data-close-button class="close-button">Continue</button>
+            <input type="hidden" />
+            <input data-close-button class="close-button" type="submit" value="Collect" asp-controller="Db"/>
+            @*<button data-close-button class="close-button">Continue</button>*@
         </div>
     </div>
 

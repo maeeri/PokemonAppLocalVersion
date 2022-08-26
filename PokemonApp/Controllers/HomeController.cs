@@ -31,11 +31,17 @@ namespace PokemonApp.Controllers
         {
             return View();
         }
+
         [AllowAnonymous]
-        public IActionResult Marketplace()
+        public IActionResult Marketplace(string username)
         {
-            return View();
+            ViewModel viewModel = new ViewModel();
+            viewModel.User = DbController.GetUser(username);
+            viewModel.PCards = new List<PokemonCard>();
+            viewModel.PokemonCard = new PokemonCard();
+            return View(viewModel);
         }
+
         [AllowAnonymous]
         public IActionResult CardTest()
         {
