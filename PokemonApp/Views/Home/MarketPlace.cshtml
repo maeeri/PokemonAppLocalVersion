@@ -224,10 +224,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-
-                <input type="hidden" name="User" value="@Model.User"/>
-                <input type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-id="@Model" />
-                @*<button data-close-button class="close-button">Continue</button>*@
+                <input class="close-button" type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" />
+                @*<button data-close-button >Continue</button>*@
             </div>
         </form>
     </div>
