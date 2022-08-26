@@ -23,6 +23,24 @@ namespace PokemonApp.Controllers
             }
             
         }
+
+        public static User GetUser(string username)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Username == username);
+            return user;
+        }
+
+        public IActionResult DbSave(ViewModel viewModel)
+        {
+            foreach (var card in viewModel.PCards)
+            {
+                card.User = viewModel.User.Id;
+            }
+            _context.PokemonCards.AddRange(viewModel.PCards);
+            _context.SaveChanges();
+
+            return RedirectToAction("Marketplace", "Home");
+        }
     }
 
 }
