@@ -200,26 +200,30 @@
                             </div>
                         </td>
 
-                    <td>
-                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in legendary)
-                                        {
-                                            <img src=@card.images.small width="400" height="500" />
-                                        }}
+                        <td>
+                            <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in legendary)
+                                            {
+                                                <img src=@card.images.small width="400" height="500" />
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="modal-footer">
-            <button data-close-button class="close-button">Continue</button>
-        </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+
+                <input type="hidden" name="User" value="@Model.User"/>
+                <input type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-id="@Model" />
+                @*<button data-close-button class="close-button">Continue</button>*@
+            </div>
+        </form>
     </div>
 
 
