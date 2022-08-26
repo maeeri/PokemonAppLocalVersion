@@ -14,12 +14,10 @@
 
 .slider {
 	width: 60%;
-	background-color: ThreeDDarkShadow;
 	height: 200px;
 	margin: auto;
 	overflow: hidden;
 	position: relative;
-	border: 3px solid orange;
 	text-align : center;
 }
 
