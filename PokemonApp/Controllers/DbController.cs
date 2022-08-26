@@ -32,10 +32,10 @@ namespace PokemonApp.Controllers
 
         public IActionResult DbSave(ViewModel viewModel)
         {
-            foreach (var card in viewModel.PCards)
-            {
-                card.User = viewModel.User.Id;
-            }
+            //foreach (var card in viewModel.PCards)
+            //{
+            //    card.User = viewModel.User.Id;
+            //}
             _context.PokemonCards.AddRange(viewModel.PCards);
             _context.SaveChanges();
 
