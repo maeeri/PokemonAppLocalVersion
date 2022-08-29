@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Principal;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 
 namespace PokemonApp.Controllers
@@ -51,9 +52,15 @@ namespace PokemonApp.Controllers
 
         }
         [AllowAnonymous]
-        public IActionResult Profile()
+        public IActionResult Profile(ViewModel viewModel)
         {
-            return View();
+            if (viewModel.Users == null)
+            {
+                var viewModelEmpty = new ViewModel();
+                viewModelEmpty.User = DbController.GetUser(User.Identity.Name);
+                return View(viewModelEmpty);
+            }
+            return View(viewModel);
         }
 
         [Authorize]

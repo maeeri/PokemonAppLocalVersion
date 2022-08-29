@@ -1,3 +1,5 @@
+@using PokemonApp.Controllers
+@model ViewModel;
 @{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
@@ -63,13 +65,24 @@
     </div>
 <h1>Friends</h1>
 <div>
-    <form asp-controller="Db" asp-action="">
-        
-        <input type="text" name="SearchString"/>
+    <!-- <form asp-controller="Db" asp-action="SearchFriend">
+
+        <input type="text" name="searchString"/>
         <input type="submit" value="Add friend"/>
     </form>
+    -->
+    <button type="button"  onclick="FriendSearch()"> Search for friends</button>
+    <table>
+        <tr>
+            <td>
 
+                <p id="Friendsearch">
+                </p>
+
+            </td>
+        </tr>
+    </table>
 </div>
 <script src="~/js/korttiliike.js"></script>
-
+<script src="~/js/FriendSearch.js"></script>
 </body>

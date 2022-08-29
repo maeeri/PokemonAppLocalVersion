@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using PokemonApp.Models;
 
@@ -45,10 +46,19 @@ namespace PokemonApp.Controllers
             return RedirectToAction("Marketplace", "Home", viewModel);
         }
 
-        public IActionResult SearchFriend(string string)
+        /* public IActionResult SearchFriend(string searchString)
         {
+            var viewModel = new ViewModel();
+            viewModel.User = DbController.GetUser(User.Identity.Name);
+            viewModel.Users =
+                _context.Users.Where(x => x.Username.ToLower() == searchString.ToLower()).ToList();
+            return RedirectToAction("Profile", "Home", viewModel);
+        } */
 
-            return RedirectToAction("Profile", "Home");
+        public static List<User> SearchFriend(string searchString)
+        {
+            var userList = _context.Users.Where(x => x.Username.ToLower() == searchString.ToLower()).ToList();
+            return userList;
         }
     }
 
