@@ -41,6 +41,12 @@ namespace PokemonApp.Controllers
 
             return RedirectToAction("Marketplace", "Home");
         }
+
+        public IActionResult SearchFriend(string string)
+        {
+
+            return RedirectToAction("Profile", "Home");
+        }
     }
 
 }
