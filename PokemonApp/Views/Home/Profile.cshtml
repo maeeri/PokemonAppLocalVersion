@@ -1,17 +1,19 @@
-@using System.Security.Principal; 
+@using System.Security.Claims;
+@using System.Security.Principal;
 @using PokemonApp.Controllers;
+@{ 
 
-@{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
     var pokemons = CardMethods.GetPokemonCards();
     var randomi = pokemons.OrderBy(x => rnd.Next()).Take(1);
-    var omistuskortit = new PokemonCard();
-    var kortteja = new PokemonDBContext();
+    PokemonDBContext tyyppi = new PokemonDBContext();
+
+
+
 }
 ﻿
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -77,5 +79,47 @@
 
     </div>
     <script src="~/js/korttiliike.js"></script>
+
+    <div class="omistuskortit">
+
+        @{
+            @*var henkilo = User.Claims.ToList();
+
+            foreach(var i in henkilo)
+            {
+
+                var tietty = from x in henkilo where x.Type. select x;
+
+                //<h1>@claim.Type</h1>
+                <h1>@claim.</h1>*@
+
+
+            var keijo = DbController.GetUser(User.Identity.Name);
+
+            // var keijo69 = from x in keijo.PokemonCards
+            //             where x.PokemonId == pokemons.
+
+            foreach (var i in pokemons)
+            {
+
+                foreach (var k in keijo.PokemonCards)
+                {
+                    var keijo69 = from x in pokemons where i.id == k.PokemonId select x;
+
+                    foreach (var o in keijo69)
+                    {
+                        <img src=@o.images.small class="fill" draggable="true" width="150" height="185" />
+                    }
+                    
+                }
+
+
+
+            }
+        }
+    </div>
+
+
+
 
 </body>
