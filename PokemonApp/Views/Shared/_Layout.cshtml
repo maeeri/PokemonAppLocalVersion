@@ -1,7 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-@using System.Security.Principal
+
+
 @using PokemonApp.Controllers
+@model ViewModel
+@*@{
+    if (User.Identity.IsAuthenticated && Model.User == null)
+    {
+        Model.User = DbController.GetUser(User.Identity.Name);
+    }
+}*@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,7 +28,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CardTest">Card Test</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MarketPlace" asp-route-username="@User.Identity.Name">MarketPlace</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MarketPlace" asp-route-viewModel="@DbController.GetUser(User.Identity.Name)">MarketPlace</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -33,6 +41,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Claims">Claims</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile">Profile</a>
                         </li>
 
                         <li class="nav-item">
