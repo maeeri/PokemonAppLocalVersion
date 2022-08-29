@@ -72,37 +72,43 @@
     <div class="omistuskortit">
 
         @{
-
             var keijo = DbController.GetUser(User.Identity.Name);
-            var pokke = keijo.PokemonCards.ToList();
-
-            @*foreach (var i in pokke)
+            //var pokke = keijo.PokemonCards;
+            var simo69 = (from x in tyyppi.PokemonCards where x.User == keijo.Id select x.PokemonId).ToList();
+            List<Datum> miika = new List<Datum>();
+            foreach(var i in simo69)
             {
-                var uusikeijo = from x in pokemons where x.id == i.PokemonId select x.images.small;
-                <img src=@uusikeijo class="fill" draggable="true" width="150" height="185" />
-
-            }*@
-       //var vertaaId = keijo.PokemonCards.Select(x => x.PokemonId);
-        var simo69 = from x in tyyppi.PokemonCards where x.User == keijo.Id select x;
-        if (simo69 != null)
-        {
-            foreach (var i in pokemons.Where(x => x.id == simo69.ToString()))
-            {
-                    <img src=@i.images.small class="fill" draggable="true" width="150" height="185" />
-                    }
-                }
-                //var simo69 = from x in tyyppi.PokemonCards where x.User == keijo.Id select x;
-                //foreach (var i in simo69)
-                //{
-
-                //    foreach (var o in pokemons)
-                //    {
-                //       var z = (from x in o.id )
-                //            <img src=; class="fill" draggable="true" width="150" height="185" />
-                //        }
-
-
+                miika.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
             }
+
+            foreach (var o in miika) //JSON POKEMONKORTIT 
+            {
+                    string url = o.images.small;
+                        <img src=@url class="fill" draggable="true" width="150" height="185" />
+                
+        }
+            @*//var vertaaId = ke
+             }
+            ijo.PokemonCards.Select(x => x.PokemonId);
+             var simo69 = from x in tyyppi.PokemonCards where x.User == keijo.Id select x;
+             if (simo69 != null)
+             {
+                 foreach (var i in pokemons.Where(x => x.id == simo69.ToString()))
+                 {
+                         <img src=@i.images.small class="fill" draggable="true" width="150" height="185" />
+                         }
+                     }*@
+            //var simo69=from x in tyyppi.PokemonCards where x.User= =keijo.Id select x;
+            //foreach (var i in simo69)
+            //{
+            // foreach (var o in pokemons)
+            // {
+            // var z=(from x in o.id )
+            //            <img src=; class="fill" draggable="true" width="150" height="185" />
+            //        }
+
+
+        }
 
 
 
