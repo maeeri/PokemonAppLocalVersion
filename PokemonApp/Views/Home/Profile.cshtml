@@ -72,42 +72,46 @@
     <div class="omistuskortit">
 
         @{
-            @*var henkilo = User.Claims.ToList();
-
-            foreach(var i in henkilo)
-            {
-
-                var tietty = from x in henkilo where x.Type. select x;
-
-                //<h1>@claim.Type</h1>
-                <h1>@claim.</h1>*@
-
 
             var keijo = DbController.GetUser(User.Identity.Name);
+            var pokke = keijo.PokemonCards.ToList();
 
-            // var keijo69 = from x in keijo.PokemonCards
-            //             where x.PokemonId == pokemons.
-
-            foreach (var i in pokemons)
+            @*foreach (var i in pokke)
             {
+                var uusikeijo = from x in pokemons where x.id == i.PokemonId select x.images.small;
+                <img src=@uusikeijo class="fill" draggable="true" width="150" height="185" />
 
-                foreach (var k in keijo.PokemonCards)
-                {
-                    var keijo69 = from x in pokemons where i.id == k.PokemonId select x;
-
-                    foreach (var o in keijo69)
-                    {
-                        <img src=@o.images.small class="fill" draggable="true" width="150" height="185" />
+            }*@
+       //var vertaaId = keijo.PokemonCards.Select(x => x.PokemonId);
+        var simo69 = from x in tyyppi.PokemonCards where x.User == keijo.Id select x;
+        if (simo69 != null)
+        {
+            foreach (var i in pokemons.Where(x => x.id == simo69.ToString()))
+            {
+                    <img src=@i.images.small class="fill" draggable="true" width="150" height="185" />
                     }
-                    
                 }
+                //var simo69 = from x in tyyppi.PokemonCards where x.User == keijo.Id select x;
+                //foreach (var i in simo69)
+                //{
 
+                //    foreach (var o in pokemons)
+                //    {
+                //       var z = (from x in o.id )
+                //            <img src=; class="fill" draggable="true" width="150" height="185" />
+                //        }
 
 
             }
-        }
-    </div>
 
+
+
+
+        }
+        }
+
+
+    </div>
 
 
 
