@@ -14,10 +14,13 @@ namespace PokemonApp.Models
         public static List<Datum> GetPokemonCards()
         {
             string json = File.ReadAllText("./wwwroot/js/pokemons.json");
+            string json2 = File.ReadAllText("./wwwroot/js/pokemon2.json");
             var pokemonCards = JsonSerializer.Deserialize<PokemonCards>(json);
-            var separateCards = pokemonCards.data.ToList();
-
-            return separateCards;
+            var pokemonCards2 = JsonSerializer.Deserialize<PokemonCards>(json2);
+            var separateCards = pokemonCards.data.ToList() ;
+            var sepa = pokemonCards2.data.ToList();
+            var result = separateCards.Concat(sepa);
+            return result.ToList();
         }
     
         //find cards by rarity(Amazing Rare/Classic Collection/Common/LEGEND/Promo/Radiant Rare/Rare/Rare ACE/

@@ -1,9 +1,12 @@
+@using System.Security.Principal; 
+
 @{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
     var pokemons = CardMethods.GetPokemonCards();
     var randomi = pokemons.OrderBy(x => rnd.Next()).Take(1);
-
+    var omistuskortit = new PokemonCard();
+    var kortteja = new PokemonDBContext();
 }
 ﻿
 <!DOCTYPE html>
@@ -17,14 +20,16 @@
     <link rel="stylesheet" href="~/css/profiili.css" />
     <script src="~/js/Navbar.js" defer></script>
 </head>
+
 <body>
+
     <h1>Profile</h1>
 
     <div class="taistelu">
         <div class="kortti">
             @foreach (var card in randomi)
             {
-                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" /> 
+                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
 
         </div>
