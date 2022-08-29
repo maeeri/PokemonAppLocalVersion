@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Principal;
 
 
 namespace PokemonApp.Controllers
@@ -33,13 +35,13 @@ namespace PokemonApp.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Marketplace(string username)
+        public IActionResult Marketplace(ViewModel viewModel)
         {
-            ViewModel viewModel = new ViewModel();
-            viewModel.User = DbController.GetUser(username);
+            //ViewModel viewModel = new ViewModel();
+            viewModel.User = DbController.GetUser(User.Identity.Name);
             viewModel.PCards = new List<PokemonCard>();
-            viewModel.PokemonCard = new PokemonCard();
             return View(viewModel);
+            
         }
 
         [AllowAnonymous]
