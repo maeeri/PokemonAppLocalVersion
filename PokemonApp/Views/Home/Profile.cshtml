@@ -74,7 +74,11 @@
     {
         foreach (var item in @Model.Users)
         {
-            <p>@item.Username</p>
+            <p>@item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id" >
+                <span title="follow friend">
+                    <i class="fa-solid fa-plus" aria-label="follow friend"></i>
+                </span>
+            </a></p>
         }
     }
 

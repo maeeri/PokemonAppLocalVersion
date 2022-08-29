@@ -55,11 +55,38 @@ namespace PokemonApp.Controllers
         //    return RedirectToAction("Profile", "Home", viewModel);
         //} 
 
+        [HttpGet]
         public static List<User> SearchFriend(string searchString)
         {
             var userQ = _context.Users.Where(x => x.Username.ToLower().Contains(searchString.ToLower()));
             var userList = userQ.ToList();
             return userList;
+        }
+
+        [HttpPost]
+        public void FollowFriend(int userId, int followId)
+        {
+            var viewModel = new ViewModel();
+            viewModel.Connection = new Connection();
+            viewModel.Connections = _context.Connections.Where(x => x.User == userId).ToList();
+            var notFound = true;
+
+            foreach (var connection in viewModel.Connections)
+            {
+                if (connection.OtherUser == followId)
+                {
+                    notFound = false;
+                }
+            }
+
+            if (notFound)
+            {
+                viewModel.Connection.User = userId;
+                viewModel.Connection.OtherUser = followId;
+                _context.Add(viewModel.Connection);
+                _context.SaveChanges();
+            }
+            
         }
     }
 
