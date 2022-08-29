@@ -24,14 +24,17 @@ namespace PokemonApp.Controllers
             
         }
 
+        //finds user by username
         public static User GetUser(string username)
         {
             var user = _context.Users.FirstOrDefault(x => x.Username == username);
             return user;
         }
 
+        //saves cards to database
         public IActionResult DbSave(ViewModel viewModel)
         {
+            viewModel.User = GetUser(User.Identity.Name);
             foreach (var card in viewModel.PCards)
             {
                 card.User = viewModel.User.Id;
@@ -39,7 +42,7 @@ namespace PokemonApp.Controllers
             _context.PokemonCards.AddRange(viewModel.PCards);
             _context.SaveChanges();
 
-            return RedirectToAction("Marketplace", "Home");
+            return RedirectToAction("Marketplace", "Home", viewModel);
         }
     }
 
