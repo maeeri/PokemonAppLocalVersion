@@ -1,7 +1,5 @@
-
-﻿@using PokemonApp.Controllers
+@using PokemonApp.Controllers
 @model ViewModel
-
 @{
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
@@ -116,20 +114,16 @@
                                 <div class="front">
                                 </div>
                                 <div class="back">
+                                    @{ 
+                                        foreach (var card in randomi)
+                                    {
+                                        <img src=@card.images.small width="200" height="300"/>
+                                        Model.PokemonCard.PokemonId = card.id;
+                                        Model.PokemonCard.Name = card.name;
+                                        Model.PCards.Add(Model.PokemonCard);
 
-             
-
-                                            @{
-                                                foreach (var card in randomi)
-                                                {
-                                                    <img src=@card.images.small width="200" height="300" />
-                                                    Model.PokemonCard.PokemonId = card.id;
-                                                    Model.PokemonCard.Name = card.name;
-                                                    Model.PCards.Add(Model.PokemonCard);
-
-
-                                                }}
-                                        </div>
+                                    }}
+                                </div>
                             </div>
                         </div>
                     </td>
@@ -160,7 +154,7 @@
                                 <div class="back">
                                      @{foreach (var card in randomi)
                                         {
-                                             <img src=@card.images.small width="200" height="300" />
+                                            <img src=@card.images.small width="200" height="300" />
                                             Model.PokemonCard.PokemonId = card.id;
                                             Model.PokemonCard.Name = card.name;
                                             Model.PCards.Add(Model.PokemonCard);
@@ -183,7 +177,6 @@
                                             Model.PokemonCard.PokemonId = card.id;
                                             Model.PokemonCard.Name = card.name;
                                             Model.PCards.Add(Model.PokemonCard);
-                                           
                                         }}
                                     
                                 </div>
