@@ -46,18 +46,19 @@ namespace PokemonApp.Controllers
             return RedirectToAction("Marketplace", "Home", viewModel);
         }
 
-        /* public IActionResult SearchFriend(string searchString)
-        {
-            var viewModel = new ViewModel();
-            viewModel.User = DbController.GetUser(User.Identity.Name);
-            viewModel.Users =
-                _context.Users.Where(x => x.Username.ToLower() == searchString.ToLower()).ToList();
-            return RedirectToAction("Profile", "Home", viewModel);
-        } */
+        //public IActionResult SearchFriend(string searchString)
+        //{
+        //    var viewModel = new ViewModel();
+        //    viewModel.User = GetUser(User.Identity.Name);
+        //    viewModel.Users =
+        //        _context.Users.Where(x => x.Username.ToLower() == searchString.ToLower()).ToList();
+        //    return RedirectToAction("Profile", "Home", viewModel);
+        //} 
 
         public static List<User> SearchFriend(string searchString)
         {
-            var userList = _context.Users.Where(x => x.Username.ToLower() == searchString.ToLower()).ToList();
+            var userQ = _context.Users.Where(x => x.Username.ToLower().Contains(searchString.ToLower()));
+            var userList = userQ.ToList();
             return userList;
         }
     }

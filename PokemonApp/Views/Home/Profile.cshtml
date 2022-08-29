@@ -65,23 +65,30 @@
     </div>
 <h1>Friends</h1>
 <div>
-    <!-- <form asp-controller="Db" asp-action="SearchFriend">
+    <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
-        <input type="text" name="searchString"/>
-        <input type="submit" value="Add friend"/>
+        <input type="text" name="searchString" asp-route-searchString="searchString" />
+        <input type="submit" value="Add friend" />
     </form>
-    -->
-    <button type="button"  onclick="FriendSearch()"> Search for friends</button>
-    <table>
-        <tr>
-            <td>
+    @if (@Model.Users != null)
+    {
+        foreach (var item in @Model.Users)
+        {
+            <p>@item.Username</p>
+        }
+    }
 
-                <p id="Friendsearch">
-                </p>
+    @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+        <table>
+            <tr>
+                <td>
 
-            </td>
-        </tr>
-    </table>
+                    <p id="Friendsearch">
+                    </p>
+
+                </td>
+            </tr>
+        </table>*@
 </div>
 <script src="~/js/korttiliike.js"></script>
 <script src="~/js/FriendSearch.js"></script>
