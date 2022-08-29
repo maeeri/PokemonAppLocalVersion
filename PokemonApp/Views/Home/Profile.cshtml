@@ -25,9 +25,9 @@
 
 <body>
 
-    <h1>Profile</h1>
 
-    <div class="taistelu">
+
+   <div class="taistelu">
         <div class="kortti">
             @foreach (var card in random)
             {
@@ -61,36 +61,57 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in random)
-            {
-                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
-            }
+
 
         </div>
+        <script src="~/js/korttiliike.js"></script>
+   
+   </div>
+   <div class="battleCards">
+       
 
+       <button class="button"><span>START BATTLE!</span></button>
 
-        @{
-            var getUser = DbController.GetUser(User.Identity.Name);
-            //var pokke = keijo.PokemonCards;
-            var pokemonIDs = (from x in userDB.PokemonCards where x.User == getUser.Id select x.PokemonId).ToList();
-            List<Datum> pokemonList = new List<Datum>();
-            foreach(var i in pokemonIDs)
-            {
-                pokemonList.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
-            }
+   </div>
 
-            foreach (var o in pokemonList) //JSON POKEMONKORTIT 
-            {
-                    string url = o.images.small;
-                        <img src=@url class="fill" draggable="true" width="150" height="185" />
-                
-            }
-  
+<div class="ownedCards" >
+
+    @{
+        var getUser = DbController.GetUser(User.Identity.Name);
+        //var pokke = keijo.PokemonCards;
+        var pokemonIDs = (from x in userDB.PokemonCards where x.User == getUser.Id select x.PokemonId).ToList();
+        List<Datum> pokemonList = new List<Datum>();
+        foreach (var i in pokemonIDs)
+        {
+            pokemonList.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
         }
 
+        foreach (var o in pokemonList) //JSON POKEMONKORTIT
+        {
+            string url = o.images.small;
+            <img src=@url class="fill" draggable="true" width="160" height="195"/>
+
+        }
+
+    }
+
+</div>
+
+    
+<footer class="profileFooter">
+    
+    <p>KAVERIHAKU TÄHÄN</p>
+
+    <div class="profile">
+        <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+        <p>@User.Identity.Name</p>
+
+        <p>Coins: 15</p>
+        <p>XP</p>
 
     </div>
 
 
+</footer>
 
 </body>
