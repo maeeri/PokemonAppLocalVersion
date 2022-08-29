@@ -11,6 +11,7 @@
 
 
 
+
 }
 ﻿
 
@@ -69,54 +70,21 @@
 
         </div>
 
-        <h1>@User.Identity.Name</h1>
 
-
-
-
-
-
-
+        </div>
+        
+    <div class="userInformation">
+     <img id="profilePic"src="~/Images/Charmander.png" width="100" />
+     <p>@User.Identity.Name</p>
+     <p>Coins: xx</p>
+     <p>XP</p>
     </div>
+
+
     <script src="~/js/korttiliike.js"></script>
 
     <div class="omistuskortit">
 
-        @{
-            @*var henkilo = User.Claims.ToList();
-
-            foreach(var i in henkilo)
-            {
-
-                var tietty = from x in henkilo where x.Type. select x;
-
-                //<h1>@claim.Type</h1>
-                <h1>@claim.</h1>*@
-
-
-            var keijo = DbController.GetUser(User.Identity.Name);
-
-            // var keijo69 = from x in keijo.PokemonCards
-            //             where x.PokemonId == pokemons.
-
-            foreach (var i in pokemons)
-            {
-
-                foreach (var k in keijo.PokemonCards)
-                {
-                    var keijo69 = from x in pokemons where i.id == k.PokemonId select x;
-
-                    foreach (var o in keijo69)
-                    {
-                        <img src=@o.images.small class="fill" draggable="true" width="150" height="185" />
-                    }
-                    
-                }
-
-
-
-            }
-        }
     </div>
 
 
