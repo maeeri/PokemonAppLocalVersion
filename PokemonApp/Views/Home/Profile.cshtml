@@ -1,13 +1,18 @@
-@{
+@using System.Security.Claims;
+@using System.Security.Principal;
+@using PokemonApp.Controllers;
+@{ 
+
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
     var pokemons = CardMethods.GetPokemonCards();
-    var randomi = pokemons.OrderBy(x => rnd.Next()).Take(1);
+    var random = pokemons.OrderBy(x => rnd.Next()).Take(1);
+    PokemonDBContext userDB = new PokemonDBContext();
+
 
 }
 ﻿
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,20 +22,14 @@
     <link rel="stylesheet" href="~/css/profiili.css" />
     <script src="~/js/Navbar.js" defer></script>
 </head>
+
 <body>
+
     <h1>Profile</h1>
 
     <div class="taistelu">
         <div class="kortti">
-            @foreach (var card in randomi)
-            {
-                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" /> 
-            }
-
-        </div>
-
-        <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
@@ -38,7 +37,7 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
@@ -46,7 +45,7 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
@@ -54,13 +53,44 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
 
         </div>
+
+        <div class="kortti">
+            @foreach (var card in random)
+            {
+                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
+            }
+
+        </div>
+
+
+        @{
+            var getUser = DbController.GetUser(User.Identity.Name);
+            //var pokke = keijo.PokemonCards;
+            var pokemonIDs = (from x in userDB.PokemonCards where x.User == getUser.Id select x.PokemonId).ToList();
+            List<Datum> pokemonList = new List<Datum>();
+            foreach(var i in pokemonIDs)
+            {
+                pokemonList.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
+            }
+
+            foreach (var o in pokemonList) //JSON POKEMONKORTIT 
+            {
+                    string url = o.images.small;
+                        <img src=@url class="fill" draggable="true" width="150" height="185" />
+                
+            }
+  
+        }
+
+
     </div>
-    <script src="~/js/korttiliike.js"></script>
+
+
 
 </body>
