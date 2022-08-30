@@ -1,14 +1,14 @@
 @using System.Security.Claims;
 @using System.Security.Principal;
 @using PokemonApp.Controllers;
+@model ViewModel;
 @{ 
 
     ViewData["Title"] = "MarketPlace";
     Random rnd = new Random();
     var pokemons = CardMethods.GetPokemonCards();
-    var randomi = pokemons.OrderBy(x => rnd.Next()).Take(1);
-    PokemonDBContext tyyppi = new PokemonDBContext();
-
+    var random = pokemons.OrderBy(x => rnd.Next()).Take(1);
+    PokemonDBContext userDB = new PokemonDBContext();
 
 
 }
@@ -23,20 +23,14 @@
     <link rel="stylesheet" href="~/css/profiili.css" />
     <script src="~/js/Navbar.js" defer></script>
 </head>
+
 <body>
+
     <h1>Profile</h1>
 
     <div class="taistelu">
         <div class="kortti">
-            @foreach (var card in randomi)
-            {
-                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" /> 
-            }
-
-        </div>
-
-        <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
@@ -44,7 +38,7 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
@@ -52,7 +46,7 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
@@ -60,65 +54,97 @@
         </div>
 
         <div class="kortti">
-            @foreach (var card in randomi)
+            @foreach (var card in random)
             {
                 <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
             }
 
         </div>
-    </div>
-    <script src="~/js/korttiliike.js"></script>
 
-    <div class="omistuskortit">
+        <div class="kortti">
+            @foreach (var card in random)
+            {
+                <img src=@card.images.small class="fill" draggable="true" width="150" height="185" />
+            }
+
+        </div>
+
 
         @{
-            var keijo = DbController.GetUser(User.Identity.Name);
+            var getUser = DbController.GetUser(User.Identity.Name);
             //var pokke = keijo.PokemonCards;
-            var simo = (from x in tyyppi.PokemonCards where x.User == keijo.Id select x.PokemonId).ToList();
-            List<Datum> miika = new List<Datum>();
-            foreach(var i in simo)
+            var pokemonIDs = (from x in userDB.PokemonCards where x.User == getUser.Id select x.PokemonId).ToList();
+            List<Datum> pokemonList = new List<Datum>();
+            foreach(var i in pokemonIDs)
             {
-                miika.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
+                pokemonList.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
             }
 
-            foreach (var o in miika) //JSON POKEMONKORTIT 
+            foreach (var o in pokemonList) //JSON POKEMONKORTIT 
             {
                     string url = o.images.small;
                         <img src=@url class="fill" draggable="true" width="150" height="185" />
                 
-        }
-            @*//var vertaaId = ke
-             }
-            ijo.PokemonCards.Select(x => x.PokemonId);
-             var simo69 = from x in tyyppi.PokemonCards where x.User == keijo.Id select x;
-             if (simo69 != null)
-             {
-                 foreach (var i in pokemons.Where(x => x.id == simo69.ToString()))
-                 {
-                         <img src=@i.images.small class="fill" draggable="true" width="150" height="185" />
-                         }
-                     }*@
-            //var simo69=from x in tyyppi.PokemonCards where x.User= =keijo.Id select x;
-            //foreach (var i in simo69)
-            //{
-            // foreach (var o in pokemons)
-            // {
-            // var z=(from x in o.id )
-            //            <img src=; class="fill" draggable="true" width="150" height="185" />
-            //        }
-
-            
-        }
-
-
-
-
-        }
+            }
+  
         }
 
 
     </div>
+<h1>Friends</h1>
+<div>
+    <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
+
+        <input type="text" name="searchString" asp-route-searchString="searchString" />
+        <input type="submit" value="Add friend" />
+    </form>
+
+
+                               
 
 
 
+    @if (@Model.Users != null)
+    {
+
+        foreach (var item in @Model.Users)
+        {
+            
+            <p>
+                @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
+                <span title="follow friend">
+                    <i class="fa-solid fa-plus" aria-label="follow friend"></i>
+                   
+                </span>
+            </a>
+        </p>
+   }
+}
+
+    <h1>Your friends:</h1>
+    @{
+        var connections = Model.Connections;
+        foreach (var item in connections)
+        {
+
+            <p>
+               @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
+                <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id">Stop following </a>
+            </p>
+        }
+    }
+    @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+        <table>
+            <tr>
+                <td>
+
+                    <p id="Friendsearch">
+                    </p>
+
+                </td>
+            </tr>
+        </table>*@
+</div>
+<script src="~/js/korttiliike.js"></script>
+<script src="~/js/FriendSearch.js"></script>
 </body>

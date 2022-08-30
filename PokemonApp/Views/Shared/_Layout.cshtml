@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-@using System.Security.Principal
+
+
 @using PokemonApp.Controllers
 @model ViewModel
 @*@{
@@ -13,7 +14,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Pokemon</title>
-
+    <script src="https://kit.fontawesome.com/aea8f7eccc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/js/Navbar.js" defer></script>
 </head>
@@ -40,6 +41,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Claims">Claims</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile">Profile</a>
                         </li>
 
                         <li class="nav-item">
