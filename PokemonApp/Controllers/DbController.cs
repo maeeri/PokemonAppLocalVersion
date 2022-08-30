@@ -144,6 +144,16 @@ namespace PokemonApp.Controllers
             }
             Response.Redirect("/Home/Profile");
         }
+
+        public static void SaveXP(string username, int xp)
+        {
+            var user = _context.Users.Where(x => x.Username == username).Single();
+            user.Xp += xp;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+
+        }
         
     }
 
