@@ -74,9 +74,9 @@
         @{
             var keijo = DbController.GetUser(User.Identity.Name);
             //var pokke = keijo.PokemonCards;
-            var simo69 = (from x in tyyppi.PokemonCards where x.User == keijo.Id select x.PokemonId).ToList();
+            var simo = (from x in tyyppi.PokemonCards where x.User == keijo.Id select x.PokemonId).ToList();
             List<Datum> miika = new List<Datum>();
-            foreach(var i in simo69)
+            foreach(var i in simo)
             {
                 miika.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
             }
@@ -107,7 +107,7 @@
             //            <img src=; class="fill" draggable="true" width="150" height="185" />
             //        }
 
-
+            
         }
 
 
