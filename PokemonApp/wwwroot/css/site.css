@@ -128,3 +128,7 @@ header {
     width: 140px;
     margin-left: 60px;
 }
+
+.redtext{
+    color: red;
+}
