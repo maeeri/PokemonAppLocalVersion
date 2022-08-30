@@ -240,6 +240,10 @@ header {
 
 
 
+#selected {
+    overflow: hidden;
+}
 #selected img {
     margin-left: 20px;
 }
+

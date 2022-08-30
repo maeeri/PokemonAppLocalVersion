@@ -28,7 +28,7 @@
 <body>
 
     <div class="battleCards">
-                <div id="selected">
+        <div id="selected">
         </div>
 
         <button onclick="battleComigSoon()"class="button"><span>START BATTLE!</span></button>
@@ -67,10 +67,8 @@
                 @foreach (var o in pokemonList) //JSON POKEMONKORTIT
                 {
 
-
-                    string url = o.images.small;
-
-                    <img src=@url id="btnDefault" onclick="moveButton(this)" draggable="true" width="160" height="195" />
+                        string url = o.images.small;
+                        <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
 
                 }
 
