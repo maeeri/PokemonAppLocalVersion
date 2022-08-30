@@ -19,6 +19,7 @@ namespace PokemonApp.Models
         public string Username { get; set; }
         public int? Xp { get; set; }
         public int? Cash { get; set; }
+        public DateTime? Freeclick { get; set; }
 
         public virtual ICollection<Connection> ConnectionOtherUserNavigations { get; set; }
         public virtual ICollection<Connection> ConnectionUserNavigations { get; set; }
