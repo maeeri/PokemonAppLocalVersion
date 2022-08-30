@@ -140,6 +140,8 @@ header {
 }
 .ownedCards {
     width: 65%;
+    margin-bottom:130px;
+    margin-left: 10px;
 }
 
 .ownedCards img {
@@ -150,8 +152,11 @@ header {
     width: 65%;
     height: 200px;
     flex-direction: row;
-    display:flex;
-    
+    display: flex;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    background-image: linear-gradient(to left, #FFE600, #FFAB00);
+    padding: 20px;
 }
 
     .battleCards button {
@@ -166,7 +171,6 @@ header {
         font-size:18px;
     }
 
-    
 
 .profileFooter {
     position: fixed;
@@ -233,3 +237,9 @@ header {
         opacity: 1;
         right: 0;
     }
+
+
+
+#selected img {
+    margin-left: 20px;
+}
