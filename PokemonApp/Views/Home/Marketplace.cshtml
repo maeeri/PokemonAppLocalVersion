@@ -216,27 +216,26 @@
                             </div>
                         </td>
 
-                        <td>
-                            <div class="card rareCard" id="rareCard" onclick="flipCard(this);this.onclick = null">
-                                <div class="content">
-                                    <div class="front">
-                                    </div>
-                                    <div class="back">
-                                        @{foreach (var card in legendary)
-                                            {
-                                                <img src=@card.images.small width="400" height="500" />
-                                            }}
-                                    </div>
+                    <td>
+                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
+                            <div class="content">
+                                <div class="front">
+                                </div>
+                                <div class="back">
+                                    @{foreach (var card in randomi)
+                                        {
+                                            <img src=@card.images.small width="400" height="500" />
+                                        }}
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <input class="close-button" type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" />
-                @*<button data-close-button >Continue</button>*@
-            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button data-close-button class="close-button" id="activeButton">Continue</button>
+        </div>
         </form>
     </div>
 
