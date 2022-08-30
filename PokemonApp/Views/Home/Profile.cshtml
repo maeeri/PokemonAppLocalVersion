@@ -96,69 +96,69 @@
     <div>
         <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
-        <input type="text" name="searchString" asp-route-searchString="searchString" />
-        <input type="submit" value="Add friend" />
-    </form>
-
-
-                               
+            <input type="text" name="searchString" asp-route-searchString="searchString" />
+            <input type="submit" value="Add friend" />
+        </form>
 
 
 
-    @if (@Model.Users != null)
-    {
 
-        foreach (var item in @Model.Users)
-        {
-            
-            <p>
-                @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
-                <span title="follow friend">
-                    <i class="fa-solid fa-plus" aria-label="follow friend"></i>
-                   
-                </span>
-            </a>
-        </p>
-   }
-}
 
-    <h1>Your friends:</h1>
-    @{
-        var connections = Model.Connections;
-        foreach (var item in connections)
+
+        @if (@Model.Users != null)
         {
 
-            <p>
-               @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
-                <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id">Stop following </a>
-            </p>
+            foreach (var item in @Model.Users)
+            {
+
+                <p>
+                    @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
+                        <span title="follow friend">
+                            <i class="fa-solid fa-plus" aria-label="follow friend"></i>
+
+                        </span>
+                    </a>
+                </p>
+            }
         }
-    }
-    @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
-        <table>
-            <tr>
-                <td>
 
-                        <p id="Friendsearch">
-                        </p>
+        <h1>Your friends:</h1>
+        @{
+            var connections = Model.Connections;
+            foreach (var item in connections)
+            {
 
-                    </td>
-                </tr>
-            </table>*@
+                <p>
+                    @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
+                    <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id">Stop following </a>
+                </p>
+            }
+        }
+        @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+            <table>
+                <tr>
+                    <td>
+
+                            <p id="Friendsearch">
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>*@
     </div>
 
 
     @*-------------XP bar-------------*@
 
-    @{ 
+@{
+    
         var theUser = DbController.GetUser(User.Identity.Name);
 
-        PokemonDBContext uusi = new PokemonDBContext();
-
-        ViewModel tesi = new ViewModel();
-        var jotain = tesi.User;
+        
 
     }
+    
+    @*@DbController.SaveXP(theUser, 30);*@
 
     <div class="progress">
         <div class="progress-done" data-done="0">
@@ -166,7 +166,7 @@
         </div>
     </div>
 
-    <button class="progress-btn" onclick="ProgressBar(10)">Press</button>
+    <button class="progress-btn" onclick="ProgressBar(@theUser.Xp)">Press</button>
 
     <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
     <script src="~/js/korttiliike.js"></script>

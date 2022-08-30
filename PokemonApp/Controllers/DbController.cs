@@ -23,7 +23,8 @@ namespace PokemonApp.Controllers
             {
                 User uusi = new User();
                 uusi.Username = username;
-
+                uusi.Xp = 0;
+                uusi.Cash = 0;
                 _context.Add(uusi);
                 _context.SaveChanges();
             }
@@ -158,11 +159,10 @@ namespace PokemonApp.Controllers
         public static void SaveXP(string username, int xp)
         {
             var user = _context.Users.Where(x => x.Username == username).Single();
+            user.Xp = 10;
             user.Xp += xp;
             _context.Users.Update(user);
             _context.SaveChanges();
-
-
         }
         
     }
