@@ -59,7 +59,7 @@ namespace PokemonApp.Controllers
             _context.SaveChanges();
         }
         //saves cards to database and updates timer for free pack
-        public IActionResult DbSave(ViewModel viewModel)
+        public IActionResult DbSave(ViewModel viewModel, int pack)
         {
             viewModel.User = GetUser(User.Identity.Name);
             

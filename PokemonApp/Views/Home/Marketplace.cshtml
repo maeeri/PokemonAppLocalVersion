@@ -10,11 +10,12 @@
     var randomRare = CardMethods.RarePack();
     var raRe = randomRare.OrderBy(x => rnd.Next()).Take(1);
     var randomLegendary = CardMethods.LegendaryPack();
-    
+
     var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
     string blah = "this is a blah string";
+    var pack = 0;
 }
-
+<script>let jsPack = 0;</script>
 <link rel="stylesheet" href="~/css/market.css" />
 <link rel="stylesheet" href="~/css/modal-style.css" />
 
@@ -61,82 +62,78 @@
         </div>
     </div>
 
+    
+        <div class="wrapper">
 
-    <div class="wrapper">
 
+            <div class="pokepallot">
 
-        <div class="pokepallot">
-
-            <div>
-                @{ if (User.Identity.IsAuthenticated)
-                    {
-
-                        //var user = DbController.GetUser(User.Identity.Name);
-                        //var viimeisin = user.Freeclick.GetValueOrDefault();
-                        if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
+                <div>
+                    @{ if (User.Identity.IsAuthenticated)
                         {
-                            <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
-                                <img src="~/Images/OrangeBall.png" class="liila" />
-                            </button>
+                            if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
+                            {
+                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                </button>
+                            }
+                            else
+                            {
+                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                </button>
+                            }
                         }
                         else
                         {
-                            <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                            <button data-modal-target="#modal" class="startpoint" id="raffleButton">
                                 <img src="~/Images/OrangeBall.png" class="liila" />
                             </button>
-                        }
-                    }
-                    else
-                    {
-                        <button data-modal-target="#modal" class="startpoint" id="raffleButton">
-                            <img src="~/Images/OrangeBall.png" class="liila" />
-                        </button>
-                        <div class=disabledOverlay id="disabledOverlay">
-                            <div>
-                                <h1 id="disabledTitle">Looks like you are not signed in! Can't open packs that way!</h1>
-                                <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
-                                    <button id="disabledSignIn">Sign in</button>>
-                                </form>
+                            <div class=disabledOverlay id="disabledOverlay">
+                                <div>
+                                    <h1 id="disabledTitle">Looks like you are not signed in! Can't open packs that way!</h1>
+                                    <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
+                                        <button id="disabledSignIn">Sign in</button>>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
-                    } }
+                        } }
 
-            </div>
+                </div>
 
-            <div>
-                <button onclick="RareCardShow(this);" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                    <img src="~/Images/YellowBall.png" class="liila" />
-                </button>
-            </div>
+                <div>
+                    <button onclick="RareCardShow(this); jsPack = 1" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/YellowBall.png" class="liila" />
+                    </button>
+                </div>
 
-            <div>
-                <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                    <img src="~/Images/BlueBall.png" class="pinkki" />
-                </button>
-            </div>
+                <div>
+                    <button onclick="RareCardShow(this); jsPack = 2" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/BlueBall.png" class="pinkki" />
+                    </button>
+                </div>
 
-            <div>
-                <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                    <img src="~/Images/OrangeBall.png" class="pinkki" />
-                </button>
+                <div>
+                    <button onclick="RareCardShow(this); jsPack = 3" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/OrangeBall.png" class="pinkki" />
+                    </button>
+                </div>
+
             </div>
 
         </div>
 
-    </div>
+<form>
+
+        <div class="modal rare" id="modal">
+            <div class="modal-header">
+                <div class="title">GOTTA CATCH'EM ALL!</div>
 
 
-
-    <div class="modal rare" id="modal">
-        <div class="modal-header">
-            <div class="title">GOTTA CATCH'EM ALL!</div>
+            </div>
 
 
-        </div>
-
-        <form>
-            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             <div class="modal-body">
                 <table>
                     <tr>
@@ -153,7 +150,6 @@
 
                                                 <input type="hidden" name="PCards[0].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[0].PokemonId" value=@card.id />
-                                                @*<input type="hidden" name="PCards[0].User" value="User.Id" />*@
 
                                             }}
                                     </div>
@@ -172,7 +168,6 @@
 
                                                 <input type="hidden" name="PCards[1].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[1].PokemonId" value=@card.id />
-                                                @*<input type="hidden" name="PCards[1].User" value="User.Id" />*@
                                             }}
                                     </div>
                                 </div>
@@ -190,7 +185,6 @@
 
                                                 <input type="hidden" name="PCards[2].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[2].PokemonId" value=@card.id />
-                                                @*<input type="hidden" name="PCards[2].User" value="User.Id" />*@
                                             }}
                                     </div>
                                 </div>
@@ -208,7 +202,6 @@
 
                                                 <input type="hidden" name="PCards[3].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[3].PokemonId" value=@card.id />
-                                                @*<input type="hidden" name="PCards[3].User" value="User.Id" />*@
                                             }}
                                     </div>
                                 </div>ggg
@@ -226,7 +219,6 @@
 
                                                 <input type="hidden" name="PCards[4].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[4].PokemonId" value=@card.id />
-                                                @*<input type="hidden" name="PCards[4].User" value="User.Id" />*@
 
                                             }}
                                     </div>
@@ -234,30 +226,30 @@
                             </div>
                         </td>
 
-                    <td>
-                        <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
-                            <div class="content">
-                                <div class="front">
-                                </div>
-                                <div class="back">
-                                    @{foreach (var card in randomi)
-                                        {
-                                            <img src=@card.images.small width="400" height="500" />
-                                        }}
+                        <td>
+                            <div class="card rareCard" id="rareCard" onclick="flipCard(this); this.onclick=null">
+                                <div class="content">
+                                    <div class="front">
+                                    </div>
+                                    <div class="back">
+                                        @{foreach (var card in randomi)
+                                            {
+                                                <img src=@card.images.small width="400" height="500" />
+                                            }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="modal-footer">
-            <button data-close-button class="close-button" id="activeButton">Continue</button>
-        </div>
-        </form>
-    </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <input class="close-button" type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="jsPack" />
+            </div>
 
+        </div>
 
+    </form>
 
 
 

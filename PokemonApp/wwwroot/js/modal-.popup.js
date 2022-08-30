@@ -83,20 +83,25 @@ const erikoisPakka = document.querySelectorAll("rarePakka");
 erikoisPakka.addEventListener("click", RareCardShow)
 
 
-function RareCardShow(card) {
-    const testi = document.querySelectorAll(".rareCard");
-    document.getElementById("card5").style.display = "none";
-    testi.classList.add(".rareCard");
-    if (card == null) return
-    card.classList.add('active');
-    document.getElementById("rareCard").style.display = "block";
+function RareCardShow(card, pack) {
+    if (confirm("Really?")) {
+        const testi = document.querySelectorAll(".rareCard");
+        document.getElementById("card5").style.display = "none";
+        testi.classList.add(".rareCard");
+        if (card == null) return
+        card.classList.add('active');
+        document.getElementById("rareCard").style.display = "block";
 
-    closeModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modal = button.closest('.modal')
-            closeModal(modal)
-        })
-    })
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click',
+                () => {
+                    const modal = button.closest('.modal')
+                    closeModal(modal)
+                });
+        });
+        return pack;
+    }
+    
 }
 
 function HideRareCard() {
