@@ -36,6 +36,7 @@ function dragEnter(e) {
 
 function dragLeave() {
     this.className = 'kortti';
+    this.append(empties)
 }
 
 function dragDrop() {
