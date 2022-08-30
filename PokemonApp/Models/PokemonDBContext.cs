@@ -106,6 +106,10 @@ namespace PokemonApp.Models
 
                 entity.Property(e => e.Cash).HasColumnName("cash");
 
+                entity.Property(e => e.Freeclick)
+                    .HasColumnType("datetime")
+                    .HasColumnName("freeclick");
+
                 entity.Property(e => e.Username)
                     .IsRequired()
                     .HasMaxLength(50)

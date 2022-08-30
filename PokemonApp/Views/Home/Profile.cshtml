@@ -90,7 +90,33 @@
 
 
     </div>
+<h1>Friends</h1>
+<div>
+    <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
+        <input type="text" name="searchString" asp-route-searchString="searchString" />
+        <input type="submit" value="Add friend" />
+    </form>
+    @if (@Model.Users != null)
+    {
+        foreach (var item in @Model.Users)
+        {
+            <p>@item.Username</p>
+        }
+    }
 
+    @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+        <table>
+            <tr>
+                <td>
 
+                    <p id="Friendsearch">
+                    </p>
+
+                </td>
+            </tr>
+        </table>*@
+</div>
+<script src="~/js/korttiliike.js"></script>
+<script src="~/js/FriendSearch.js"></script>
 </body>
