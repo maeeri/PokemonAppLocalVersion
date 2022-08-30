@@ -57,6 +57,7 @@ namespace PokemonApp.Controllers
             var con = _context.Connections.FirstOrDefault(x => x.Id == id);
             _context.Connections.Remove(con);
             _context.SaveChanges();
+            Response.Redirect("/Home/Profile");
         }
         //saves cards to database and updates timer for free pack
         public IActionResult DbSave(ViewModel viewModel)
@@ -87,6 +88,7 @@ namespace PokemonApp.Controllers
             _context.SaveChanges();
 
         }
+
         //Remove cash by treating yourself to a pack
         public static void UseCash(ViewModel viewModel, int amount)
         {
@@ -108,7 +110,16 @@ namespace PokemonApp.Controllers
             }
 
         }
-        
+
+        //Add XP to user
+        public static void AddXp(ViewModel viewModel, int amount)
+        {
+            viewModel.User.Xp = viewModel.User.Xp + amount;
+            _context.Update(viewModel.User);
+            _context.SaveChanges();
+
+        }
+
         //Finds a list of users and takes a search string as parameter
         public static List<User> SearchFriend(string searchString)
         {
@@ -130,6 +141,7 @@ namespace PokemonApp.Controllers
                 if (connection.OtherUser == followId)
                 {
                     notFound = false;
+                    
                 }
             }
 
@@ -140,8 +152,19 @@ namespace PokemonApp.Controllers
                 _context.Add(viewModel.Connection);
                 _context.SaveChanges();
             }
-            
+            Response.Redirect("/Home/Profile");
         }
+
+        public static void SaveXP(string username, int xp)
+        {
+            var user = _context.Users.Where(x => x.Username == username).Single();
+            user.Xp += xp;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
+
+        }
+        
     }
 
 }
