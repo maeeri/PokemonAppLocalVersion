@@ -83,8 +83,9 @@ const erikoisPakka = document.querySelectorAll("rarePakka");
 erikoisPakka.addEventListener("click", RareCardShow)
 
 
-function RareCardShow(card, pack) {
-    if (confirm("Really?")) {
+function RareCardShow(card, price) {
+
+    if (confirm(`This will cost you ${price} coins. Do you still want the cards?`)) {
         const testi = document.querySelectorAll(".rareCard");
         document.getElementById("card5").style.display = "none";
         testi.classList.add(".rareCard");
@@ -99,9 +100,20 @@ function RareCardShow(card, pack) {
                     closeModal(modal)
                 });
         });
-        return pack;
+
     }
     
+}
+
+function SetPack(value) {
+    document.getElementById("set-pack").value = value;
+    console.log(value);
+    console.log("setpack");
+}
+
+function ButtonEvent(card, value, price) {
+    SetPack(value);
+    RareCardShow(card, price);
 }
 
 function HideRareCard() {

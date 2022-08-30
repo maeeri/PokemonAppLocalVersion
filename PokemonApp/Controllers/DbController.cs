@@ -9,7 +9,9 @@ using PokemonApp.Models;
 using Azure;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Principal;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace PokemonApp.Controllers
 {
@@ -74,26 +76,48 @@ namespace PokemonApp.Controllers
                 _context.Update(viewModel.User);
 
             }
+
+            if (pack == 1)
+            {
+                UseCash(viewModel, 10);
+            }
+            else if (pack == 2)
+            {
+                UseCash(viewModel, 20);
+            }
+            else if (pack == 3)
+            {
+                UseCash(viewModel, 30);
+            }
+            else
+            {
+                UseCash(viewModel, 0);
+            }
+
             _context.PokemonCards.AddRange(viewModel.PCards);
             _context.SaveChanges();
 
             return RedirectToAction("Marketplace", "Home", viewModel);
         }
         //Add cash to user profile to be used in purchasing packs
-        public static void AddCash(ViewModel viewModel, int amount)
+        public void AddCash(ViewModel viewModel, int amount)
         {
-            viewModel.User.Cash = viewModel.User.Cash + amount;
+            if (viewModel.User.Cash == null)
+                viewModel.User.Cash = amount;
+            else
+                viewModel.User.Cash += amount;
             _context.Update(viewModel.User);
             _context.SaveChanges();
 
         }
         //Remove cash by treating yourself to a pack
-        public static void UseCash(ViewModel viewModel, int amount)
+        public void UseCash(ViewModel viewModel, int amount)
         {
-            viewModel.User.Cash = viewModel.User.Cash - amount;
+            viewModel.User.Cash -= amount;
             _context.Update(viewModel.User);
             _context.SaveChanges();
         }
+
         public bool Countdown()
         {
             var user = GetUser(User.Identity.Name);
@@ -141,6 +165,13 @@ namespace PokemonApp.Controllers
                 _context.SaveChanges();
             }
             
+        }
+
+         
+        public static string Test()
+        {
+            JavaScriptTestEncoder js = new JavaScriptTestEncoder();
+            return js.Encode("Test");
         }
     }
 

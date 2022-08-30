@@ -1,4 +1,5 @@
 @using PokemonApp.Controllers
+@using Microsoft.CodeAnalysis
 @model ViewModel
 @{
     ViewData["Title"] = "MarketPlace";
@@ -20,11 +21,13 @@
 <link rel="stylesheet" href="~/css/modal-style.css" />
 
 
-
 <br />
 <h1 style="text-align: center">
     These rewards are waiting for you.
 </h1>
+
+<script>let test = @DbController.Test()
+    console.log.test</script>
 
 <body>
     <div class="slider">
@@ -65,7 +68,6 @@
     
         <div class="wrapper">
 
-
             <div class="pokepallot">
 
                 <div>
@@ -103,19 +105,19 @@
                 </div>
 
                 <div>
-                    <button onclick="RareCardShow(this); jsPack = 1" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <button onclick="ButtonEvent(this, 1, 10)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
                         <img src="~/Images/YellowBall.png" class="liila" />
                     </button>
                 </div>
 
                 <div>
-                    <button onclick="RareCardShow(this); jsPack = 2" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <button onclick="ButtonEvent(this, 2, 20)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
                         <img src="~/Images/BlueBall.png" class="pinkki" />
                     </button>
                 </div>
 
                 <div>
-                    <button onclick="RareCardShow(this); jsPack = 3" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <button onclick="ButtonEvent(this, 3, 30)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
                         <img src="~/Images/OrangeBall.png" class="pinkki" />
                     </button>
                 </div>
@@ -244,7 +246,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <input class="close-button" type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="jsPack" />
+                <input id="set-pack" type="hidden" value="" name="pack" />
+                <input class="close-button" type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="pack"/>
             </div>
 
         </div>
