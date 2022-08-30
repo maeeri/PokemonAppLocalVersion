@@ -12,8 +12,7 @@
     var randomLegendary = CardMethods.LegendaryPack();
     
     var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
-
-    
+    string blah = "this is a blah string";
 }
 
 <link rel="stylesheet" href="~/css/market.css" />
@@ -64,16 +63,28 @@
     </div>
 
 
-
     <div class="wrapper">
 
 
         <div class="pokepallot">
 
             <div>
-                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
-                    <img src="~/Images/OrangeBall.png" class="liila" />
-                </button>
+                @{ var user = DbController.GetUser(User.Identity.Name);
+                    var viimeisin = user.Freeclick.GetValueOrDefault();
+                    if (viimeisin.AddDays(1) < DateTime.Now || viimeisin == null)
+                    {
+                        <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                            <img src="~/Images/OrangeBall.png" class="liila" />
+                        </button>
+                    }
+                    else
+                    {
+            <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="disabledButton">
+                <img src="~/Images/OrangeBall.png" class="liila" />
+            </button>
+
+                    }}
+
             </div>
 
             <div>
@@ -241,4 +252,5 @@
     <div id="overlay"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="~/js/modal-.popup.js"></script>
+    
 </body>

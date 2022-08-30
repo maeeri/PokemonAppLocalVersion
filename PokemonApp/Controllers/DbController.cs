@@ -5,6 +5,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using PokemonApp.Models;
+using Azure;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PokemonApp.Controllers
 {
@@ -32,19 +34,44 @@ namespace PokemonApp.Controllers
             return user;
         }
 
-        //saves cards to database
+        //saves cards to database and updates timer for free pack
         public IActionResult DbSave(ViewModel viewModel)
         {
             viewModel.User = GetUser(User.Identity.Name);
+            
             foreach (var card in viewModel.PCards)
             {
                 card.User = viewModel.User.Id;
+            }
+            var viimeisin = viewModel.User.Freeclick.GetValueOrDefault();
+            if (viimeisin.AddDays(1) < DateTime.Now || viimeisin == null)
+            {
+                viewModel.User.Freeclick = DateTime.Now;
+                _context.Update(viewModel.User);
+
             }
             _context.PokemonCards.AddRange(viewModel.PCards);
             _context.SaveChanges();
 
             return RedirectToAction("Marketplace", "Home", viewModel);
         }
+
+        public bool Countdown()
+        {
+            var user = GetUser(User.Identity.Name);
+            var viimeisin = user.Freeclick.GetValueOrDefault();
+            if (viimeisin.AddDays(1) < DateTime.Now || viimeisin == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+       
+
 
         //public IActionResult SearchFriend(string searchString)
         //{
