@@ -12,7 +12,10 @@ for details on configuring this project to bundle and minify static web assets. 
     color: black; 
 }
 
+
+
 body {
+   
     background: linear-gradient(#FFE600, #FFAB00);
     background-attachment: fixed;
 }
@@ -70,6 +73,13 @@ header {
     top: 0;
 
 }
+.navbar-btn {
+    position: absolute;
+    margin: 5px;
+    background: #FFE600;
+    font-family: 'DM Sans', sans-serif;
+}
+
 
     .nav img {
         width: 125px;
@@ -126,5 +136,147 @@ header {
 
 .pokemon-image {
     width: 140px;
-    margin-left: 60px;
+    margin-left: 100px;
 }
+.ownedCards {
+    width: 65%;
+    margin-bottom:130px;
+    margin-left: 10px;
+}
+
+.ownedCards img {
+    margin-left:10px;
+}
+
+.battleCards {
+    width: 65%;
+    height: 200px;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    background-image: linear-gradient(to left, #FFE600, #FFAB00);
+    padding: 20px;
+}
+
+    .battleCards button {
+        height: 50px;
+        width: 200px;
+        position: absolute;
+        right: 10%;
+        margin-top: 70px;
+        background-color: #FFE600;
+        padding-bottom: 3px;
+        border: solid 2px black;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: bold;
+        font-size:18px;
+    }
+
+
+.profileFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    background: #FFE600;
+    padding-left:20px;
+    padding-top: 10px;
+ 
+}
+
+.profile {
+    position: absolute;
+    display: flex;
+    right: 0;
+    margin-right: 15px;
+    margin-top: 15px;
+
+}
+
+.profile p {
+    margin-right: 70px;
+}
+
+.profilePic {
+    margin-right: 70px;
+}
+
+.button {
+    border-radius: 4px;
+    background-color: #FFE600;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.Bbutton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+
+}
+
+        .Bbutton span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+
+        }
+
+.Bbutton:hover {
+    background-image: linear-gradient(to left, #FFE600, #FFAB00)
+}
+.Bbutton:hover span {
+    padding-right: 25px;
+ 
+}
+
+    .Bbutton:hover span:after {
+        opacity: 1;
+        right: 0;
+
+    }
+
+
+.search {
+    background-color: #FFAB00;
+    border: solid 2px black;
+    font-family: 'DM Sans', sans-serif;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+}
+
+    .search:hover {
+        background-image: linear-gradient(to left, #FFE600, #FFAB00)
+    }
+
+
+
+#selected {
+    overflow: hidden;
+}
+#selected img {
+    margin-left: 20px;
+}
+
+.redtext{
+    color: red;
+}
+
+.friend {
+    margin-top:-40px;
+    margin-left: 250px;
+}
+
