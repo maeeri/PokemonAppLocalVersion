@@ -52,14 +52,18 @@ namespace PokemonApp.Controllers
 
         }
         [AllowAnonymous]
-        public IActionResult Profile(ViewModel viewModel)
+        public IActionResult Profile(string searchString, ViewModel viewModel)
         {
-            if (viewModel.Users == null)
+            if (searchString == null)
             {
                 var viewModelEmpty = new ViewModel();
                 viewModelEmpty.User = DbController.GetUser(User.Identity.Name);
+                viewModelEmpty.Connections = DbController.GetConnections(viewModelEmpty.User.Id);
                 return View(viewModelEmpty);
             }
+            viewModel.User = DbController.GetUser(User.Identity.Name);
+            viewModel.Connections = DbController.GetConnections(viewModel.User.Id);
+            viewModel.Users = DbController.SearchFriend(searchString);
             return View(viewModel);
         }
 

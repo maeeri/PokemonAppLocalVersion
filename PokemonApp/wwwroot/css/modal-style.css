@@ -154,6 +154,7 @@
     width: 200px;
     margin-left: 80px;
     float: right;
+    
 }
 
 .pokepallot {
@@ -169,7 +170,7 @@
 }
    
 .liila {
-    background-color: white;
+
     padding-top: 80px;
     padding-bottom: 80px;
     padding-left: 30px;
@@ -179,7 +180,7 @@
 }
 
 .pinkki {
-    background-color: white;
+  
     padding-top: 80px;
     padding-bottom: 80px;
     padding-left: 30px;
@@ -217,6 +218,7 @@
 
 
 
+
 .black-band {
     position: relative;
     top: -105px;
@@ -224,8 +226,6 @@
     height: 14px;
     background-color: black;
 }
-
-
 
 .outer-button {
     position: relative;
@@ -242,16 +242,17 @@
 }
 
 
-
 .inner-button {
     height: 40px;
     width: 40px;
     border-radius: 50%;
     border: 1px solid black
 }
+
 #raffleButton {
-    height: 40px;
-    width: 40px;
+    height: -0px;
+    width: -0px;
     border-radius: 50%;
-    border: 1px solid black
+    border: 1px solid black;
+    
 }
