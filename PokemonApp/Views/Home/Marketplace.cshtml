@@ -1,4 +1,4 @@
-﻿@using PokemonApp.Controllers
+@using PokemonApp.Controllers
 @model ViewModel
 @{
     ViewData["Title"] = "MarketPlace";
@@ -12,11 +12,11 @@
     var randomLegendary = CardMethods.LegendaryPack();
     
     var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
-
-    
+    string blah = "this is a blah string";
 }
 
-<link rel="stylesheet" href="~/css/market.css" /><link rel="stylesheet" href="~/css/modal-style.css" />
+<link rel="stylesheet" href="~/css/market.css" />
+<link rel="stylesheet" href="~/css/modal-style.css" />
 
 
 
@@ -58,43 +58,71 @@
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
                     }}
             </div>
-
         </div>
-        </div>
-  
+    </div>
 
 
     <div class="wrapper">
-       
+
 
         <div class="pokepallot">
-            
-                <div>
-                    <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint pack1" id="raffleButton">
-                        <img src="~/Images/OrangeBall.png" class="liila" />
-                    </button>
-                </div>
 
-                <div>
-                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka pack2" id="raffleButton">
-                        <img src="~/Images/YellowBall.png" class="liila" />
-                    </button>
-                </div>
+            <div>
+                @{ if (User.Identity.IsAuthenticated)
+                    {
 
-                <div>
-                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka pack3" id="raffleButton">
-                        <img src="~/Images/BlueBall.png" class="pinkki" />
-                    </button>
-                </div>
+                        //var user = DbController.GetUser(User.Identity.Name);
+                        //var viimeisin = user.Freeclick.GetValueOrDefault();
+                        if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
+                        {
+                            <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <img src="~/Images/OrangeBall.png" class="liila" />
+                            </button>
+                        }
+                        else
+                        {
+                            <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <img src="~/Images/OrangeBall.png" class="liila" />
+                            </button>
+                        }
+                    }
+                    else
+                    {
+                        <button data-modal-target="#modal" class="startpoint" id="raffleButton">
+                            <img src="~/Images/OrangeBall.png" class="liila" />
+                        </button>
+                        <div class=disabledOverlay id="disabledOverlay">
+                            <div>
+                                <h1 id="disabledTitle">Looks like you are not signed in! Can't open packs that way!</h1>
+                                <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
+                                    <button id="disabledSignIn">Sign in</button>>
+                                </form>
+                            </div>
+                        </div>
 
-                <div>
-                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka pack4" id="raffleButton">
-                        <img src="~/Images/OrangeBall.png" class="pinkki" />
-                    </button>
-                </div>
+                    } }
 
             </div>
 
+            <div>
+                <button onclick="RareCardShow(this);" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <img src="~/Images/YellowBall.png" class="liila" />
+                </button>
+            </div>
+
+            <div>
+                <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <img src="~/Images/BlueBall.png" class="pinkki" />
+                </button>
+            </div>
+
+            <div>
+                <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <img src="~/Images/OrangeBall.png" class="pinkki" />
+                </button>
+            </div>
+
+        </div>
 
     </div>
 
@@ -235,9 +263,10 @@
 
 
 
-   
+
     <div id="overlay2"></div>
     <div id="overlay"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="~/js/modal-.popup.js"></script>
+
 </body>
