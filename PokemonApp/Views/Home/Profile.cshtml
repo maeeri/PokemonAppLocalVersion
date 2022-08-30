@@ -32,7 +32,7 @@
         <div id="selected">
         </div>
 
-        <button onclick="battleComigSoon()"class="button"><span>START BATTLE!</span></button>
+        <button onclick="battleComigSoon()"class="Bbutton"><span>START BATTLE!</span></button>
         <script>
             function battleComigSoon() {
                 alert("coming soon...");
@@ -80,59 +80,64 @@
 
 
     <footer class="profileFooter">
-        <p>Search friends</p>
-        <div>
+        <div class="profile">
+            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+            <p>@User.Identity.Name</p>
+            <p>Coins: 15</p>
+            <p>XP</p>
+        </div>
+
+
+            <p>Search friends</p>
             <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
-        <input type="text" name="searchString" asp-route-searchString="searchString" />
-        <input type="submit" value="Add friend" />
-    </form>
+                <input type="text" class="search" name="searchString" asp-route-searchString="searchString" />
+                <input type="submit" class="search" value="Search" />
+            </form>
 
+            @if (@Model.Users != null)
+            {
 
-                               
+                foreach (var item in @Model.Users)
+                {
 
+                    <p>
+                        @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
+                            <span title="follow friend">
+                                <i class="fa-solid fa-plus" style="color:limegreen;" title="Add friend"></i>
 
+                            </span>
+                        </a>
+                    </p>
+                }
+            }
 
-    @if (@Model.Users != null)
-    {
+        
+        <div class="friend">
+            <p>Your friends:</p>
+            @{
+                var connections = Model.Connections;
+                foreach (var item in connections)
+                {
 
-        foreach (var item in @Model.Users)
-        {
-            
-            <p>
-                @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
-                <span title="follow friend">
-                    <i class="fa-solid fa-plus" aria-label="follow friend"></i>
-                   
-                </span>
-            </a>
-        </p>
-   }
-}
+                    <p>
+                        @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
+                        <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
+                    </p>
+                }
+            }
+            @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+            <table>
+                <tr>
+                    <td>
 
-    <h1>Your friends:</h1>
-    @{
-        var connections = Model.Connections;
-        foreach (var item in connections)
-        {
+                            <p id="Friendsearch">
+                            </p>
 
-            <p>
-               @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
-                <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id">Stop following </a>
-            </p>
-        }
-    }
-    @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
-        <table>
-            <tr>
-                <td>
+                        </td>
+                    </tr>
+                </table>*@
 
-                        <p id="Friendsearch">
-                        </p>
-
-                    </td>
-                </tr>
-            </table>*@
         </div>
     </footer>
 <script src="~/js/korttiliike.js"></script>

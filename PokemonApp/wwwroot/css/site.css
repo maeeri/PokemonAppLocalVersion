@@ -166,6 +166,8 @@ header {
         right: 10%;
         margin-top: 70px;
         background-color: #FFE600;
+        padding-bottom: 3px;
+        border: solid 2px black;
         font-family: 'DM Sans', sans-serif;
         font-weight: bold;
         font-size:18px;
@@ -176,8 +178,10 @@ header {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 80px;
+    height: 120px;
     background: #FFE600;
+    padding-left:20px;
+    padding-top: 10px;
  
 }
 
@@ -186,6 +190,7 @@ header {
     display: flex;
     right: 0;
     margin-right: 15px;
+    margin-top: 15px;
 
 }
 
@@ -197,8 +202,6 @@ header {
     margin-right: 70px;
 }
 
-
-///
 .button {
     border-radius: 4px;
     background-color: #FFE600;
@@ -213,29 +216,50 @@ header {
     margin: 5px;
 }
 
-.button span {
+.Bbutton span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
+
 }
 
-    .button span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-    }
+        .Bbutton span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
 
-.button:hover span {
+        }
+
+.Bbutton:hover {
+    background-image: linear-gradient(to left, #FFE600, #FFAB00)
+}
+.Bbutton:hover span {
     padding-right: 25px;
+ 
 }
 
-    .button:hover span:after {
+    .Bbutton:hover span:after {
         opacity: 1;
         right: 0;
+
+    }
+
+
+.search {
+    background-color: #FFAB00;
+    border: solid 2px black;
+    font-family: 'DM Sans', sans-serif;
+    padding: 5px;
+    border-radius: 7%;
+    cursor: pointer;
+}
+
+    .search:hover {
+        background-image: linear-gradient(to left, #FFE600, #FFAB00)
     }
 
 
@@ -250,3 +274,9 @@ header {
 .redtext{
     color: red;
 }
+
+.friend {
+    margin-top:-40px;
+    margin-left: 250px;
+}
+
