@@ -84,49 +84,48 @@
         <div>
             <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
-                <input type="text" name="searchString" asp-route-searchString="searchString" />
-                <input type="submit" value="Add friend" />
-            </form>
-            @if (@Model.Users != null)
-            {
-                foreach (var item in @Model.Users)
-                {
-                    <p>
-                        @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
-                        <span title="follow friend">
-                            <i class="fa-solid fa-plus" aria-label="follow friend"></i>
-                        </span>
-                    </a>
-                </p>
-            }
+        <input type="text" name="searchString" asp-route-searchString="searchString" />
+        <input type="submit" value="Add friend" />
+    </form>
+
+
+                               
+
+
+
+    @if (@Model.Users != null)
+    {
+
+        foreach (var item in @Model.Users)
+        {
+            
+            <p>
+                @item.Username <a asp-controller="Db" asp-action="FollowFriend" asp-route-userId="@Model.User.Id" asp-route-followId="@item.Id">
+                <span title="follow friend">
+                    <i class="fa-solid fa-plus" aria-label="follow friend"></i>
+                   
+                </span>
+            </a>
+        </p>
+   }
+}
+
+    <h1>Your friends:</h1>
+    @{
+        var connections = Model.Connections;
+        foreach (var item in connections)
+        {
+
+            <p>
+               @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
+                <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id">Stop following </a>
+            </p>
         }
-
-            <div class="profile">
-                <img src="~/Images/Charmander.png" height="50" class="profilePic" />
-                <p>@User.Identity.Name</p>
-
-                <p>Coins: 15</p>
-                <p>XP</p>
-
-            </div>
-
-
-            <p>Your friends:</p>
-            @{
-                var connections = Model.Connections;
-                foreach (var item in connections)
-                {
-
-                    <p>
-                        @DbController.GetUserById(item.OtherUser).Username @DbController.GetUserById(item.OtherUser).Cash @DbController.GetUserById(item.OtherUser).Xp
-                        <a asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id">stop following</a>
-                    </p>
-                }
-            }
-            @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
-            <table>
-                <tr>
-                    <td>
+    }
+    @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+        <table>
+            <tr>
+                <td>
 
                         <p id="Friendsearch">
                         </p>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 #nullable disable
 
 namespace PokemonApp.Models
@@ -14,4 +15,5 @@ namespace PokemonApp.Models
 
         public virtual User UserNavigation { get; set; }
     }
+    
 }
