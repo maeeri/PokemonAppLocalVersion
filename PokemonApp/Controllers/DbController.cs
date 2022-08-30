@@ -79,7 +79,21 @@ namespace PokemonApp.Controllers
 
             return RedirectToAction("Marketplace", "Home", viewModel);
         }
+        //Add cash to user profile to be used in purchasing packs
+        public static void AddCash(ViewModel viewModel, int amount)
+        {
+            viewModel.User.Cash = viewModel.User.Cash + amount;
+            _context.Update(viewModel.User);
+            _context.SaveChanges();
 
+        }
+        //Remove cash by treating yourself to a pack
+        public static void UseCash(ViewModel viewModel, int amount)
+        {
+            viewModel.User.Cash = viewModel.User.Cash - amount;
+            _context.Update(viewModel.User);
+            _context.SaveChanges();
+        }
         public bool Countdown()
         {
             var user = GetUser(User.Identity.Name);
