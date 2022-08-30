@@ -178,7 +178,6 @@ namespace PokemonApp.Controllers
             }
             Response.Redirect("/Home/Profile");
         }
-        
     }
 
 }
