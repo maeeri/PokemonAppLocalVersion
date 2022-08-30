@@ -87,6 +87,7 @@ namespace PokemonApp.Controllers
             _context.SaveChanges();
 
         }
+
         //Remove cash by treating yourself to a pack
         public static void UseCash(ViewModel viewModel, int amount)
         {
@@ -108,7 +109,16 @@ namespace PokemonApp.Controllers
             }
 
         }
-        
+
+        //Add XP to user
+        public static void AddXp(ViewModel viewModel, int amount)
+        {
+            viewModel.User.Xp = viewModel.User.Xp + amount;
+            _context.Update(viewModel.User);
+            _context.SaveChanges();
+
+        }
+
         //Finds a list of users and takes a search string as parameter
         public static List<User> SearchFriend(string searchString)
         {
