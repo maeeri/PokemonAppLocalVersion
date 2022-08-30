@@ -58,7 +58,44 @@
     border-radius: 10px;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
-
+.close-button {
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    margin-bottom: 20px;
+    font-size: large;
+    text-align: center;
+    color: white;
+    background-color: greenyellow;
+    border-color: greenyellow;
+    border-radius: 10px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+#disabledTitle{
+    color: white;
+}
+#disabledSignIn {
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    margin-bottom: 20px;
+    font-size: large;
+    text-align: center;
+    color: white;
+    background-color: greenyellow;
+    border-color: greenyellow;
+    border-radius: 10px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+.disabledOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    pointer-events: all;
+}
 
 #overlay {
     position: fixed;
