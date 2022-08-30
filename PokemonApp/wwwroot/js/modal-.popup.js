@@ -83,26 +83,28 @@ const erikoisPakka = document.querySelectorAll("rarePakka");
 erikoisPakka.addEventListener("click", RareCardShow)
 
 
-function RareCardShow(card, price) {
+function RareCardShow(card) {
+    const testi = document.querySelectorAll(".rareCard");
+    document.getElementById("card5").style.display = "none";
+    testi.classList.add(".rareCard");
+    if (card == null) return
+    card.classList.add('active');
+    document.getElementById("rareCard").style.display = "block";
 
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click',
+            () => {
+                const modal = button.closest('.modal')
+                closeModal(modal)
+            });
+    });
+
+}
+
+function ConfirmOpenPack(card, price) {
     if (confirm(`This will cost you ${price} coins. Do you still want the cards?`)) {
-        const testi = document.querySelectorAll(".rareCard");
-        document.getElementById("card5").style.display = "none";
-        testi.classList.add(".rareCard");
-        if (card == null) return
-        card.classList.add('active');
-        document.getElementById("rareCard").style.display = "block";
-
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click',
-                () => {
-                    const modal = button.closest('.modal')
-                    closeModal(modal)
-                });
-        });
-
+        RareCardShow(card);
     }
-    
 }
 
 function SetPack(value) {
