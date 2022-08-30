@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/profiili.css" />
     <script src="~/js/Navbar.js" defer></script>
+    <script src="~/js/Profiili.js" defer></script>
 </head>
 
 <body>
@@ -75,25 +76,25 @@
             //var pokke = keijo.PokemonCards;
             var pokemonIDs = (from x in userDB.PokemonCards where x.User == getUser.Id select x.PokemonId).ToList();
             List<Datum> pokemonList = new List<Datum>();
-            foreach(var i in pokemonIDs)
+            foreach (var i in pokemonIDs)
             {
                 pokemonList.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
             }
 
-            foreach (var o in pokemonList) //JSON POKEMONKORTIT 
+            foreach (var o in pokemonList) //JSON POKEMONKORTIT
             {
-                    string url = o.images.small;
-                        <img src=@url class="fill" draggable="true" width="150" height="185" />
-                
+                string url = o.images.small;
+                <img src=@url class="fill" draggable="true" width="150" height="185" />
+
             }
-  
+
         }
 
 
     </div>
-<h1>Friends</h1>
-<div>
-    <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
+    <h1>Friends</h1>
+    <div>
+        <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
         <input type="text" name="searchString" asp-route-searchString="searchString" />
         <input type="submit" value="Add friend" />
@@ -138,13 +139,36 @@
             <tr>
                 <td>
 
-                    <p id="Friendsearch">
-                    </p>
+                        <p id="Friendsearch">
+                        </p>
 
-                </td>
-            </tr>
-        </table>*@
-</div>
-<script src="~/js/korttiliike.js"></script>
-<script src="~/js/FriendSearch.js"></script>
+                    </td>
+                </tr>
+            </table>*@
+    </div>
+
+
+    @*-------------XP bar-------------*@
+
+    @{ 
+        var theUser = DbController.GetUser(User.Identity.Name);
+
+        PokemonDBContext uusi = new PokemonDBContext();
+
+        ViewModel tesi = new ViewModel();
+        var jotain = tesi.User;
+
+    }
+
+    <div class="progress">
+        <div class="progress-done" data-done="0">
+            <span class="progress-text"></span>
+        </div>
+    </div>
+
+    <button class="progress-btn" onclick="ProgressBar(10)">Press</button>
+
+    <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
+    <script src="~/js/korttiliike.js"></script>
+    <script src="~/js/FriendSearch.js"></script>
 </body>
