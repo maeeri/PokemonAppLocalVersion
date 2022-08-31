@@ -78,14 +78,17 @@
                             }
                             else
                             {
-                                <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
-                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                var time = Model.User.Freeclick.GetValueOrDefault().AddDays(1) - DateTime.Now;
+                                string timeleft = string.Format($"{time.Hours}H {time.Minutes}M").Replace('-', ' ');
+                                <button class="startpoint disableForDay" id="raffleButton">
+                                    <p>DISABLED FOR @timeleft</p>
+                                    <img src="~/Images/OrangeBall.png" class="NoFreeClick" />
                                 </button>
                             }
                         }
                         else
                         {
-                            <button  class="startpoint" id="raffleButton">
+                            <button class="startpoint" id="raffleButton">
                                 <img src="~/Images/OrangeBall.png" class="liila" />
                             </button>
                             <div class=disabledOverlay id="disabledOverlay">
