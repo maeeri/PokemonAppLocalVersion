@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/profiili.css" />
     <script src="~/js/Navbar.js" defer></script>
-
+    <script src="~/js/Profiili.js" defer></script>
     <script src="https://code.jquery.com/jquery-git.js"></script>
 </head>
 
@@ -33,7 +33,7 @@
         <div id="selected">
         </div>
 
-        <button onclick="battleComigSoon()"class="Bbutton"><span>START BATTLE!</span></button>
+        <button onclick="battleComigSoon()" class="Bbutton"><span>START BATTLE!</span></button>
         <script>
             function battleComigSoon() {
                 alert("coming soon...");
@@ -70,8 +70,8 @@
                 @foreach (var o in pokemonList) //JSON POKEMONKORTIT
                 {
 
-                        string url = o.images.small;
-                        <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
+                    string url = o.images.small;
+                    <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
 
                 }
 
@@ -80,12 +80,12 @@
         </div>
     </div>
     <h1>Friends</h1>
-    
-        <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
-            <input type="text" name="searchString" asp-route-searchString="searchString" />
-            <input type="submit" value="Add friend" />
-        </form>
+    <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
+
+        <input type="text" name="searchString" asp-route-searchString="searchString" />
+        <input type="submit" value="Add friend" />
+    </form>
 
 
     <footer class="profileFooter">
@@ -130,16 +130,16 @@
                     }
                 }
                 @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
-            <table>
-                <tr>
-                    <td>
+                    <table>
+                        <tr>
+                            <td>
 
-                            <p id="Friendsearch">
-                            </p>
+                                    <p id="Friendsearch">
+                                    </p>
 
-                        </td>
-                    </tr>
-                </table>*@
+                                </td>
+                            </tr>
+                        </table>*@
             </div>
 
 
@@ -174,7 +174,7 @@
             @*@DbController.SaveXP("Suvi", 700);*@
 
             <div class="progress">
-                <div class="progress-done" data-done="50">
+                <div class="progress-done" data-done=@xp>
                     <span class="progress-text">@xpBarXp</span>
                 </div>
             </div>
@@ -186,5 +186,6 @@
 
             <script src="~/js/korttiliike.js"></script>
             <script src="~/js/FriendSearch.js"></script>
-        </div></footer>
+        </div>
+    </footer>
 </body>
