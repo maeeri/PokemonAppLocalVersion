@@ -81,6 +81,14 @@ namespace PokemonApp.Controllers
             }
         }
 
+        //deletes all of user's pokemon cards. To be used for punishment
+        public static void DeleteAllPcards(ViewModel viewModel)
+        {
+            viewModel.PCards = _context.PokemonCards.Where(x => x.User.Equals(viewModel.User.Id)).ToList();
+            _context.PokemonCards.RemoveRange(viewModel.PCards);
+            _context.SaveChanges();
+        }
+
         //saves cards to database and updates timer for free pack
         public IActionResult DbSave(ViewModel viewModel, int? pack)
         {
