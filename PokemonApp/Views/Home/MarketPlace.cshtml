@@ -72,13 +72,13 @@
                         {
                             if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
                             {
-                                <button onclick="ButtonEventCommon(0, 0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
                                     <img src="~/Images/OrangeBall.png" class="liila" />
                                 </button>
                             }
                             else
                             {
-                                <button onclick="ButtonEventCommon(0, 0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
                                     <img src="~/Images/OrangeBall.png" class="liila" />
                                 </button>
                             }
@@ -233,7 +233,7 @@
                                     <div class="back">
                                         @{foreach (var card in randomi)
                                             {
-                                                <img src=@card.images.small width="400" height="500" />
+                                                <img src=@card.images.small width="200" height="300" />
 
                                                 <input id="rare-card-name" type="hidden" name="" value=@card.name />
                                                 <input id="rare-card-id" type="hidden" name="" value=@card.id />
