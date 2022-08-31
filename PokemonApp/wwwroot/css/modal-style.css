@@ -303,13 +303,14 @@
 #raffleButton {
     width: 270px;
     height: 350px;
-    background-color: Highlight;
-    border: solid 10px blue;
+    background-image: url(../Images/kortti2.jpeg);
+    border: outset 10px #292EBD;
     border-radius: 5%;
 }
 
-#raffleButton:hover {
-    background-color: blue;
-    
-}
+    #raffleButton:hover {
+        
+        background-image: url(../Images/kortti11.jpeg);
+        transform: scale(1.2);
+    }
 

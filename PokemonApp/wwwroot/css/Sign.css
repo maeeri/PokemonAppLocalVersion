@@ -10,7 +10,8 @@
 
 
 .Sign{
-    top: 5px;
+    top:0px;
+
     font-family: 'Fugaz One', cursive;
     font-size: 18px;
     color: black;
@@ -22,6 +23,7 @@
     font-variant: small-caps;
     border: 5px ridge rgba( 255,215,0, .7);
     border-radius: 10px;
+    
 }
 
   .Sign:hover {
