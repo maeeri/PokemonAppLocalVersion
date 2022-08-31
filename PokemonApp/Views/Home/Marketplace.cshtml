@@ -72,13 +72,13 @@
                         {
                             if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
                             {
-                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <button onclick="ButtonEventCommon(0, 0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
                                     <img src="~/Images/OrangeBall.png" class="liila" />
                                 </button>
                             }
                             else
                             {
-                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <button onclick="ButtonEventCommon(0, 0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
                                     <img src="~/Images/OrangeBall.png" class="liila" />
                                 </button>
                             }
@@ -247,7 +247,8 @@
             </div>
             <div class="modal-footer">
                 <input id="set-pack" type="hidden" value="" name="pack" />
-                <input class="close-button" type="submit" value="COLLECT" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="pack"/>
+                <input id="set-amount" type="hidden" value="" name="amount" />
+                <input class="close-button" type="submit" value="COLLECT" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="pack" asp-route-amount="amount" />
             </div>
 
         </div>

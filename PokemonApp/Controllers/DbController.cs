@@ -68,13 +68,19 @@ namespace PokemonApp.Controllers
         {
             switch (pack)
             {
+                case 0:
+                    AddXp(viewModel, 5);
+                    break;
                 case 1:
+                    AddXp(viewModel, 10);
                     UseCash(viewModel, 10);
                     break;
                 case 2:
+                    AddXp(viewModel, 20);
                     UseCash(viewModel, 20);
                     break;
                 case 3:
+                    AddXp(viewModel, 30);
                     UseCash(viewModel, 30);
                     break;
                 default:
@@ -91,7 +97,7 @@ namespace PokemonApp.Controllers
         }
 
         //saves cards to database and updates timer for free pack
-        public IActionResult DbSave(ViewModel viewModel, int? pack)
+        public IActionResult DbSave(ViewModel viewModel, int? pack, int? amount)
         {
             viewModel.User = GetUser(User.Identity.Name);
             
@@ -108,10 +114,12 @@ namespace PokemonApp.Controllers
 
             }
 
-            if (pack != null)
+            if (pack != null && viewModel.User.Cash >= amount)
+            {
                 BuyPack(viewModel, pack);
+                _context.PokemonCards.AddRange(viewModel.PCards);
+            }
 
-            _context.PokemonCards.AddRange(viewModel.PCards);
             _context.SaveChanges();
 
             return RedirectToAction("Marketplace", "Home", viewModel);
@@ -155,18 +163,28 @@ namespace PokemonApp.Controllers
         //Add XP to user
         public static void AddXp(ViewModel viewModel, int amount)
         {
-            viewModel.User.Xp = viewModel.User.Xp + amount;
+            if (viewModel.User.Xp == 0)
+                SaveXP(viewModel.User.Username, amount);
+            else
+                viewModel.User.Xp = viewModel.User.Xp + amount;
             _context.Update(viewModel.User);
             _context.SaveChanges();
 
         }
 
         //Finds a list of users and takes a search string as parameter
-        public static List<User> SearchFriend(string searchString)
+        public static List<User> SearchFriend(ViewModel viewModel, string searchString)
         {
             var userQ = _context.Users.Where(x => x.Username.ToLower().Contains(searchString.ToLower()));
             var userList = userQ.ToList();
-            return userList;
+            var otherList = new List<User>();
+            foreach (var user in userList)
+            {
+                if(viewModel.Connections.Any(x => x.User == viewModel.User.Id && x.OtherUser == user.Id))
+                    continue;
+                otherList.Add(user);
+            }
+            return otherList;
         }
 
         //User follows another user, if not already followed
