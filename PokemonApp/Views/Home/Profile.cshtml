@@ -43,6 +43,7 @@
     <div class="ownedCards">
 
         <script>
+
             function moveButton(elem) {
                 if ($(elem).parent().attr("id") == "nonSelected") {
                     $(elem).detach().appendTo('#selected');
@@ -78,7 +79,7 @@
         </div>
     </div>
     <h1>Friends</h1>
-    <div>
+    
         <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
         <input type="text" name="searchString" asp-route-searchString="searchString" />
@@ -170,4 +171,5 @@
     <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
     <script src="~/js/korttiliike.js"></script>
     <script src="~/js/FriendSearch.js"></script>
+        </footer>
 </body>
