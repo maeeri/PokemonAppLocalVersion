@@ -114,7 +114,7 @@ namespace PokemonApp.Controllers
 
             }
 
-            if (pack != null && viewModel.User.Cash >= amount)
+            if (pack != null && (viewModel.User.Cash >= amount || viewModel.User.Cash == null))
             {
                 BuyPack(viewModel, pack);
                 _context.PokemonCards.AddRange(viewModel.PCards);
