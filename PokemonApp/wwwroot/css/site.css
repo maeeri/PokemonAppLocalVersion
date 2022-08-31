@@ -261,9 +261,10 @@ header {
     cursor: pointer;
 }
 
-    .search:hover {
-        background-image: linear-gradient(to left, #FFE600, #FFAB00)
-    }
+ .search:hover {
+     background-image: linear-gradient(to left, #FFE600, #FFAB00;
+
+ }
 
 
 
