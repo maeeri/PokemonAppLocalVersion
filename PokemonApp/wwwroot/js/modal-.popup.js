@@ -110,11 +110,29 @@ function RareCardShow(card) {
     document.getElementById("rareCard").style.display = "block";
 
     closeModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modal = button.closest('.modal')
-            closeModal(modal)
-        })
-    })
+        button.addEventListener('click',
+            () => {
+                const modal = button.closest('.modal')
+                closeModal(modal)
+            });
+    });
+
+}
+
+
+
+function SetPack(value) {
+    document.getElementById("set-pack").value = value;
+    console.log(value);
+    console.log("setpack");
+}
+
+function ButtonEvent(card, value, price) {
+    const choice = confirm(`This will cost you ${price} coins. Do you still want the cards?`);
+    if (choice) {
+        RareCardShow(card);
+        SetPack(value);
+    }
 }
 
 function HideRareCard() {
