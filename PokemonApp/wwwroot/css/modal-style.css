@@ -1,4 +1,6 @@
-﻿.modal {
+﻿@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+.modal {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -11,6 +13,10 @@
 /*.rareCard{
     display: none;
 }*/
+.rewards {
+    font-family: 'Fugaz One', cursive;
+    font-variant: small-caps;
+}
 
 .modal.active {
     transform: translate(-50%, -50%) scale(1);
@@ -39,6 +45,11 @@
 }
 
 
+.title {
+    font-family: 'Fugaz One', cursive;
+    color: black;
+}
+
 
 
 .modal-footer {
@@ -66,14 +77,19 @@
     font-size: large;
     text-align: center;
     color: white;
-    background-color: greenyellow;
-    border-color: greenyellow;
+    border-color: darkorange;
     border-radius: 10px;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    font-family: 'Fugaz One', cursive;
+    background-color: darkorange;
 }
-#disabledTitle{
-    color: white;
-}
+
+    .close-button:hover {
+        background-image: linear-gradient(red, yellow);
+    }
+    #disabledTitle {
+        color: white;
+    }
 #disabledSignIn {
     cursor: pointer;
     height: 50px;
@@ -287,13 +303,14 @@
 #raffleButton {
     width: 270px;
     height: 350px;
-    background-color: Highlight;
-    border: solid 10px blue;
+    background-image: url(../Images/kortti2.jpeg);
+    border: outset 10px #292EBD;
     border-radius: 5%;
 }
 
-#raffleButton:hover {
-    background-color: blue;
-    
-}
+    #raffleButton:hover {
+        
+        background-image: url(../Images/kortti11.jpeg);
+        transform: scale(1.2);
+    }
 
