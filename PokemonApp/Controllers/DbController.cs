@@ -198,10 +198,11 @@ namespace PokemonApp.Controllers
         public static void SaveXP(string username, int xp)
         {
             var user = _context.Users.Where(x => x.Username == username).Single();
-            user.Xp += xp;
+            user.Cash = 100;
+            user.Cash += xp;
             _context.Users.Update(user);
             _context.SaveChanges();
-            
+
         }
         
     }
