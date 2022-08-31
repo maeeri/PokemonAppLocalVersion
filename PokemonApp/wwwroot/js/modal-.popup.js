@@ -128,11 +128,8 @@ function SetPack(value) {
 }
 
 function ButtonEvent(card, value, price) {
-    const choice = confirm(`This will cost you ${price} coins. Do you still want the cards?`);
-    if (choice) {
-        RareCardShow(card);
-        SetPack(value);
-    }
+    RareCardShow(card);
+    SetPack(value);
 }
 
 function HideRareCard() {
