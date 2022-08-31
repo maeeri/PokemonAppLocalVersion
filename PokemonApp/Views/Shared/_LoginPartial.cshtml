@@ -1,4 +1,5 @@
 ﻿@using System.Security.Principal
+<link rel="stylesheet" href="~/css/Sign.css" />
 @if (User.Identity.IsAuthenticated)
 {
 
@@ -10,15 +11,18 @@
         <button type="submit" class="btn btn-primary" style="margin-right:5px">Edit Profile</button>
     </form>
 </li>-->
-    <li class="navbar-btn">
+    
+    
         <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">
             <button type="submit" class="btn btn-primary">Sign Out</button>
         </form>
-    </li>
+    
 }
 else
 {
-    <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
+    
+        <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
         <button type="submit" class="btn btn-primary">Sign Up/In</button>
-    </form>
+        </form>
+   
 }
