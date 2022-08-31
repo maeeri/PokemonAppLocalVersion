@@ -26,7 +26,7 @@ namespace PokemonApp.Controllers
                 User uusi = new User();
                 uusi.Username = username;
                 uusi.Xp = 0;
-                uusi.Cash = 0;
+                uusi.Cash = 50;
                 _context.Add(uusi);
                 _context.SaveChanges();
             }
