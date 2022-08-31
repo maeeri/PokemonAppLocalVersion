@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/profiili.css" />
-    <script src="~/js/Navbar.js" defer></script>
+    <script src="~/js/Profiili.js" defer></script>
 
     <script src="https://code.jquery.com/jquery-git.js"></script>
 </head>
@@ -147,17 +147,18 @@
             <img src="~/Images/Charmander.png" height="50" class="profilePic" />
             <p>@User.Identity.Name</p>
             <p>Coins: 15</p>
-            <p>XP</p>
+
 
 
             @{
 
                 var theUser = DbController.GetUser(User.Identity.Name);
                 int xp;
+                int level = 0;
                 string xpBarXp;
                 if (theUser.Xp > 100)
                 {
-                    var level = theUser.Xp / 100;
+                    level = Convert.ToInt32(theUser.Xp / 100);
                     xp = Convert.ToInt32(theUser.Xp % 100);
                     xpBarXp = $"{xp * 10} XP";
                 }
@@ -167,11 +168,11 @@
                     xp = Convert.ToInt32(theUser.Xp);
                     xpBarXp = $"{xp * 10} XP";
                 }
-
+                <p>Level: @level</p>
 
             }
 
-            @*@DbController.SaveXP("Suvi", 700);*@
+            @*@DbController.SaveXP("Suvi", 30);*@
 
             <div class="progress">
                 <div class="progress-done" data-done="@xp">
