@@ -93,6 +93,25 @@
             <p>@User.Identity.Name</p>
             <p>Coins: 15</p>
             <p>XP</p>
+            @{
+                var theUser = DbController.GetUser(User.Identity.Name);
+
+                PokemonDBContext uusi = new PokemonDBContext();
+
+                ViewModel tesi = new ViewModel();
+                var jotain = tesi.User;
+
+            }
+
+            <div class="progress">
+                <div class="progress-done" data-done="0">
+                    <span class="progress-text"></span>
+                </div>
+            </div>
+
+            <button class="progress-btn" onclick="ProgressBar(10)">Press</button>
+
+            <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
         </div>
 
 
@@ -150,25 +169,7 @@
 
     @*-------------XP bar-------------*@
 
-    @{ 
-        var theUser = DbController.GetUser(User.Identity.Name);
 
-        PokemonDBContext uusi = new PokemonDBContext();
-
-        ViewModel tesi = new ViewModel();
-        var jotain = tesi.User;
-
-    }
-
-    <div class="progress">
-        <div class="progress-done" data-done="0">
-            <span class="progress-text"></span>
-        </div>
-    </div>
-
-    <button class="progress-btn" onclick="ProgressBar(10)">Press</button>
-
-    <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
     <script src="~/js/korttiliike.js"></script>
     <script src="~/js/FriendSearch.js"></script>
         </footer>
