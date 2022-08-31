@@ -90,20 +90,7 @@
 
     <footer class="profileFooter">
         <div class="profile">
-            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
-            <p>@User.Identity.Name</p>
-            <p>Coins: 15</p>
-            <p>XP</p>
             
-
-            <div class="progress">
-                <div class="progress-done" data-done="0">
-                    <span class="progress-text"></span>
-                </div>
-            </div>
-
-            
-
             <p>Search friends</p>
             <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
@@ -157,35 +144,44 @@
 
 
     @*-------------XP bar-------------*@
+            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+            <p>@User.Identity.Name</p>
+            <p>Coins: 15</p>
+            <p>XP</p>
+            
 
-@{
+            @{
 
-    var theUser = DbController.GetUser(User.Identity.Name);
-    int xp;
-    string xpBarXp;
-    if (theUser.Xp > 100)
-    {
-        var level = theUser.Xp / 100;
-        xp = Convert.ToInt32(theUser.Xp % 100);
-        xpBarXp = $"{xp * 10} XP";
-    }
+                var theUser = DbController.GetUser(User.Identity.Name);
+                int xp;
+                string xpBarXp;
+                if (theUser.Xp > 100)
+                {
+                    var level = theUser.Xp / 100;
+                    xp = Convert.ToInt32(theUser.Xp % 100);
+                    xpBarXp = $"{xp * 10} XP";
+                }
 
-    else
-    {
-        xp = Convert.ToInt32(theUser.Xp);
-        xpBarXp = $"{xp * 10} XP";
-    }
+                else
+                {
+                    xp = Convert.ToInt32(theUser.Xp);
+                    xpBarXp = $"{xp * 10} XP";
+                }
 
 
-    }
+            }
     
-    @*@DbController.SaveXP("Suvi", 700);*@
+            @*@DbController.SaveXP("Suvi", 700);*@
 
-    <div class="progress">
-        <div class="progress-done" data-done=@xp>
-            <span class="progress-text">@xpBarXp</span>
-        </div>
-    </div>
+            <div class="progress">
+                <div class="progress-done" data-done="@xp">
+                    <span class="progress-text">@xpBarXp</span>
+                </div>
+            </div>
+
+
+
+
 
 
     <script src="~/js/korttiliike.js"></script>
