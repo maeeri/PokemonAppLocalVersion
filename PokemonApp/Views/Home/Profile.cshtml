@@ -70,7 +70,7 @@
                 @foreach (var o in pokemonList) //JSON POKEMONKORTIT
                 {
 
-                        string url = o.images.small;
+                    string url = o.images.small;
                         <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
 
                 }
@@ -143,49 +143,50 @@
             </div>
 
 
-            @*-------------XP bar-------------*@
-            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
-            <p>@User.Identity.Name</p>
-            <p>Coins: 15</p>
+            @{var tUser = DbController.GetUser(User.Identity.Name); }
+                @*-------------XP bar-------------*@
+                <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+                <p>@tUser.Username</p>
+                <p>Coins:@tUser.Cash £</p>
+                
 
 
+                @{
 
-            @{
+                    var theUser = DbController.GetUser(User.Identity.Name);
+                    int xp;
+                    int level = 0;
+                    string xpBarXp;
+                    if (theUser.Xp > 100)
+                    {
+                        level = Convert.ToInt32(theUser.Xp / 100);
+                        xp = Convert.ToInt32(theUser.Xp % 100);
+                        xpBarXp = $"{xp * 10} XP";
+                    }
 
-                var theUser = DbController.GetUser(User.Identity.Name);
-                int xp;
-                int level = 0;
-                string xpBarXp;
-                if (theUser.Xp > 100)
-                {
-                    level = Convert.ToInt32(theUser.Xp / 100);
-                    xp = Convert.ToInt32(theUser.Xp % 100);
-                    xpBarXp = $"{xp * 10} XP";
+                    else
+                    {
+                        xp = Convert.ToInt32(theUser.Xp);
+                        xpBarXp = $"{xp * 10} XP";
+                    }
+                    <p>Level: @level</p>
+
                 }
 
-                else
-                {
-                    xp = Convert.ToInt32(theUser.Xp);
-                    xpBarXp = $"{xp * 10} XP";
-                }
-                <p>Level: @level</p>
+                @*@DbController.SaveXP("Suvi", 30);*@
 
-            }
-
-            @*@DbController.SaveXP("Suvi", 30);*@
-
-            <div class="progress">
-                <div class="progress-done" data-done="50">
-                    <span class="progress-text">@xpBarXp</span>
+                <div class="progress">
+                    <div class="progress-done" data-done="50">
+                        <span class="progress-text">@xpBarXp</span>
+                    </div>
                 </div>
-            </div>
 
 
 
 
 
 
-            <script src="~/js/korttiliike.js"></script>
-            <script src="~/js/FriendSearch.js"></script>
-        </div></footer>
+                <script src="~/js/korttiliike.js"></script>
+                <script src="~/js/FriendSearch.js"></script>
+            </div></footer>
 </body>
