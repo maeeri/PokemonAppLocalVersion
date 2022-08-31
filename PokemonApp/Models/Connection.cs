@@ -7,6 +7,9 @@ namespace PokemonApp.Models
 {
     public partial class Connection
     {
+
+
+
         public int Id { get; set; }
         public int User { get; set; }
         public int OtherUser { get; set; }

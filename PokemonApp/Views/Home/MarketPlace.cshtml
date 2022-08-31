@@ -72,22 +72,22 @@
                         {
                             if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
                             {
-                                <h3>FREE</h3>
-                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
                                     <img src="~/Images/OrangeBall.png" class="liila" />
                                 </button>
                             }
                             else
                             {
-                                <h3>FREE</h3>
-                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
-                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                var time = Model.User.Freeclick.GetValueOrDefault().AddDays(1) - DateTime.Now;
+                                string timeleft = string.Format($"{time.Hours}H {time.Minutes}M").Replace('-', ' ');
+                                <button class="startpoint disableForDay" id="raffleButton">
+                                    <p>DISABLED FOR @timeleft</p>
+                                    <img src="~/Images/OrangeBall.png" class="NoFreeClick" />
                                 </button>
                             }
                         }
                         else
                         {
-                            <h3>FREE</h3>
                             <button class="startpoint" id="raffleButton">
                                 <img src="~/Images/OrangeBall.png" class="liila" />
                             </button>
@@ -222,8 +222,8 @@
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
-                                                <input type="hidden" name="PCards[4].Name" value=@card.name />
-                                                <input type="hidden" name="PCards[4].PokemonId" value=@card.id />
+                                                <input id="ord-card-name" type="hidden" name="" value=@card.name />
+                                                <input id="ord-card-id" type="hidden" name="" value=@card.id />
 
                                             }}
                                     </div>
@@ -239,7 +239,10 @@
                                     <div class="back">
                                         @{foreach (var card in randomi)
                                             {
-                                                <img src=@card.images.small width="400" height="500" />
+                                                <img src=@card.images.small width="200" height="300" />
+
+                                                <input id="rare-card-name" type="hidden" name="" value=@card.name />
+                                                <input id="rare-card-id" type="hidden" name="" value=@card.id />
                                             }}
                                     </div>
                                 </div>
@@ -250,7 +253,8 @@
             </div>
             <div class="modal-footer">
                 <input id="set-pack" type="hidden" value="" name="pack" />
-                <input class="close-button" type="submit" value="COLLECT" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="pack"/>
+                <input id="set-amount" type="hidden" value="" name="amount" />
+                <input class="close-button" type="submit" value="COLLECT" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="pack" asp-route-amount="amount" />
             </div>
 
         </div>

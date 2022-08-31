@@ -62,7 +62,7 @@ namespace PokemonApp.Controllers
             }
             viewModel.User = DbController.GetUser(User.Identity.Name);
             viewModel.Connections = DbController.GetConnections(viewModel.User.Id);
-            viewModel.Users = DbController.SearchFriend(searchString);
+            viewModel.Users = DbController.SearchFriend(viewModel, searchString);
             return View(viewModel);
         }
 

@@ -1,14 +1,14 @@
-﻿const progress = document.querySelector('.progress-done');
+﻿var progress = document.querySelector('.progress-done');
 
 
-function ProgressBar(value) {
 
-    progress.style.width = progress.getAttribute('data-done') + `${value}` + '%';
+
+    progress.style.width = progress.getAttribute('data-done') + '%';
     progress.style.opacity = 1;
 
     document.querySelectorAll('.progress-text').textcontent = `${value}`
     
-}
+
 
 function ProgressBar2(value) {
 

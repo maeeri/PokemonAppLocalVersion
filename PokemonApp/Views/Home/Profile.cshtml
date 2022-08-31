@@ -1,5 +1,6 @@
 @using System.Security.Claims;
 @using System.Security.Principal;
+@using System.Xml.XPath
 @using PokemonApp.Controllers;
 @model ViewModel;
 @{ 
@@ -21,7 +22,7 @@
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/profiili.css" />
-    <script src="~/js/Navbar.js" defer></script>
+    <script src="~/js/Profiili.js" defer></script>
 
     <script src="https://code.jquery.com/jquery-git.js"></script>
 </head>
@@ -69,7 +70,7 @@
                 @foreach (var o in pokemonList) //JSON POKEMONKORTIT
                 {
 
-                        string url = o.images.small;
+                    string url = o.images.small;
                         <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
 
                 }
@@ -82,38 +83,13 @@
     
         <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
-        <input type="text" name="searchString" asp-route-searchString="searchString" />
-        <input type="submit" value="Add friend" />
-    </form>
+            <input type="text" name="searchString" asp-route-searchString="searchString" />
+            <input type="submit" value="Add friend" />
+        </form>
 
 
     <footer class="profileFooter">
         <div class="profile">
-            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
-            <p>@User.Identity.Name</p>
-            <p>Coins: 15</p>
-            <p>XP</p>
-            @{
-                var theUser = DbController.GetUser(User.Identity.Name);
-
-                PokemonDBContext uusi = new PokemonDBContext();
-
-                ViewModel tesi = new ViewModel();
-                var jotain = tesi.User;
-
-            }
-
-            <div class="progress">
-                <div class="progress-done" data-done="0">
-                    <span class="progress-text"></span>
-                </div>
-            </div>
-
-            <button class="progress-btn" onclick="ProgressBar(10)">Press</button>
-
-            <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
-        </div>
-
 
             <p>Search friends</p>
             <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
@@ -139,39 +115,78 @@
                 }
             }
 
-        
-        <div class="friend">
-            <p>Your friends:</p>
-            @{
-                var connections = Model.Connections;
-                foreach (var item in connections)
-                {
 
-                    <p>
-                        @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
-                        <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
-                    </p>
+            <div class="friend">
+                <p>Your friends:</p>
+                @{
+                    var connections = Model.Connections;
+                    foreach (var item in connections)
+                    {
+                        int userlevel = Convert.ToInt32(DbController.GetUserById(item.OtherUser).Xp) / 100;
+                                <p>
+                                    @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash Level: @userlevel
+                                    <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
+                                </p>
+                    }
                 }
-            }
-            @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+                @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
             <table>
                 <tr>
                     <td>
 
-                        <p id="Friendsearch">
-                        </p>
+                            <p id="Friendsearch">
+                            </p>
 
-                    </td>
-                </tr>
-            </table>*@
-    </div>
-
-
-    @*-------------XP bar-------------*@
+                        </td>
+                    </tr>
+                </table>*@
+            </div>
 
 
-    <script src="~/js/korttiliike.js"></script>
-    <script src="~/js/FriendSearch.js"></script>
-        <script src="~/js/Profiili.js"></script>
-        </footer>
+            @{var tUser = DbController.GetUser(User.Identity.Name); }
+                @*-------------XP bar-------------*@
+                <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+                <p>@tUser.Username</p>
+                <p>Coins: @tUser.Cash £</p>
+                
+
+
+                @{
+
+                    var theUser = DbController.GetUser(User.Identity.Name);
+                    int xp;
+                    int level = 0;
+                    string xpBarXp;
+                    if (theUser.Xp > 100)
+                    {
+                        level = Convert.ToInt32(theUser.Xp / 100);
+                        xp = Convert.ToInt32(theUser.Xp % 100);
+                        xpBarXp = $"{xp * 10} XP";
+                    }
+
+                    else
+                    {
+                        xp = Convert.ToInt32(theUser.Xp);
+                        xpBarXp = $"{xp * 10} XP";
+                    }
+                    <p>Level: @level</p>
+
+                }
+
+                @*@DbController.SaveXP("Suvi", 30);*@
+
+                <div class="progress">
+                    <div class="progress-done" data-done="50">
+                        <span class="progress-text">@xpBarXp</span>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <script src="~/js/korttiliike.js"></script>
+                <script src="~/js/FriendSearch.js"></script>
+            </div></footer>
 </body>

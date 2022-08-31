@@ -1,7 +1,10 @@
 ﻿const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
-
+const ordinaryName = document.getElementById("ord-card-name");
+const ordinaryId = document.getElementById("ord-card-id");
+const rareName = document.getElementById("rare-card-name");
+const rareId = document.getElementById("rare-card-id");
 
 //const pakka1 = document.querySelectorAll('.pack1');
 //const closeBtn = document.querySelectorAll('.close-button')
@@ -98,13 +101,16 @@ function flipCard(card) {
 
 
 const erikoisPakka = document.querySelectorAll("rarePakka");
-erikoisPakka.addEventListener("click", RareCardShow)
+erikoisPakka.addEventListener("click", RareCardShow());
 
 
 function RareCardShow(card) {
     const testi = document.querySelectorAll(".rareCard");
     document.getElementById("card5").style.display = "none";
-    testi.classList.add(".rareCard");
+    rareName.name = "PCards[4].Name";
+    rareId.name = "PCards[4].PokemonId";
+
+    testi.classList.add('rareCard');
     if (card == null) return
     card.classList.add('active');
     document.getElementById("rareCard").style.display = "block";
@@ -123,22 +129,30 @@ function RareCardShow(card) {
 
 function SetPack(value) {
     document.getElementById("set-pack").value = value;
-    console.log(value);
-    console.log("setpack");
+    console.log(value + "setpack");
+
+}
+
+function SetAmount(value) {
+    document.getElementById("set-amount").value = value;
+    console.log(value + "setamount");
 }
 
 function ButtonEvent(card, value, price) {
-    const choice = confirm(`This will cost you ${price} coins. Do you still want the cards?`);
-    if (choice) {
-        RareCardShow(card);
-        SetPack(value);
-    }
+    SetPack(value);
+    SetAmount(price);
+    RareCardShow(card);
+}
+function ButtonEventCommon(value, price) {
+    SetPack(value);
+    SetAmount(price);
 }
 
 function HideRareCard() {
 
     document.getElementById("rareCard").style.display = "none";
-
+    ordinaryName.name = "PCards[4].Name";
+    ordinaryId.name = "PCards[4].PokemonId";
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal')

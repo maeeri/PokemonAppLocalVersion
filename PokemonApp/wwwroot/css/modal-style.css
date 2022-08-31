@@ -314,9 +314,15 @@
         transform: scale(1.2);
     }
 
-h3 {
-    font-family: 'Fugaz One', cursive;
-    margin-bottom: 70px;
-    font-size: 25px;
-    background-image: linear-gradient(to right, yellow, darkorange, yellow); 
+.disableForDay {
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 36px;
+}
+
+.NoFreeClick {
+    filter: brightness(50%);
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
 }
