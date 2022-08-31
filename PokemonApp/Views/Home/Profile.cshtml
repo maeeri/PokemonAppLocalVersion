@@ -122,11 +122,11 @@
                     var connections = Model.Connections;
                     foreach (var item in connections)
                     {
-
-                        <p>
-                            @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
-                            <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
-                        </p>
+                        int userlevel = Convert.ToInt32(DbController.GetUserById(item.OtherUser).Xp) / 100;
+                                <p>
+                                    @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash Level: @userlevel
+                                    <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
+                                </p>
                     }
                 }
                 @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
@@ -147,7 +147,7 @@
                 @*-------------XP bar-------------*@
                 <img src="~/Images/Charmander.png" height="50" class="profilePic" />
                 <p>@tUser.Username</p>
-                <p>Coins:@tUser.Cash £</p>
+                <p>Coins: @tUser.Cash £</p>
                 
 
 
