@@ -1,12 +1,20 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-@using System.Security.Principal
+
+
 @using PokemonApp.Controllers
+@model ViewModel
+@*@{
+    if (User.Identity.IsAuthenticated && Model.User == null)
+    {
+        Model.User = DbController.GetUser(User.Identity.Name);
+    }
+}*@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] Pokemon</title>
-
+    <script src="https://kit.fontawesome.com/aea8f7eccc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/js/Navbar.js" defer></script>
 </head>
@@ -16,28 +24,23 @@
             <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CardTest">Card Test</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MarketPlace" asp-route-username="@User.Identity.Name">MarketPlace</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item log">
+                            <partial name="_LoginPartial" />
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Claims">Claims</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MarketPlace" asp-route-viewModel="@DbController.GetUser(User.Identity.Name)">MarketPlace</a>
                         </li>
 
                         <li class="nav-item">
-                            <partial name="_LoginPartial" />
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Profile">Profile</a>
                         </li>
+
+
+
+
                     </ul>
 
                 </div>

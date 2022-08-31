@@ -69,3 +69,4 @@ gsap.set('.scrollDist2', { width: '150%', height: '200%' })
 gsap.timeline({ scrollTrigger: { trigger: '.scrollDist2', start: 'top top', end: 'bottom bottom', scrub: 2 } })
 
     .fromTo('.cloud9', { y: 230 }, { y: 200 }, 0)
+

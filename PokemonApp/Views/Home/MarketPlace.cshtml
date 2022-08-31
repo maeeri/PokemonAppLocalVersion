@@ -1,4 +1,5 @@
-﻿@using PokemonApp.Controllers
+@using PokemonApp.Controllers
+@using Microsoft.CodeAnalysis
 @model ViewModel
 @{
     ViewData["Title"] = "MarketPlace";
@@ -10,18 +11,19 @@
     var randomRare = CardMethods.RarePack();
     var raRe = randomRare.OrderBy(x => rnd.Next()).Take(1);
     var randomLegendary = CardMethods.LegendaryPack();
-    
-   var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
 
+    var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
+    string blah = "this is a blah string";
+    
 }
 
-<link rel="stylesheet" href="~/css/market.css" /><link rel="stylesheet" href="~/css/modal-style.css" />
-
+<link rel="stylesheet" href="~/css/market.css" />
+<link rel="stylesheet" href="~/css/modal-style.css" />
 
 
 <br />
-<h1 style="text-align: center">
-    These rewards are waiting for you.
+<h1 class="rewards"style="text-align: center">
+    THESE REWARDS ARE WAITING FOR YOU!
 </h1>
 
 <body>
@@ -57,60 +59,85 @@
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
                     }}
             </div>
-
         </div>
-        </div>
-  
+    </div>
 
+    
+        <div class="wrapper">
 
-    <div class="wrapper">
-       
+            <div class="pokepallot">
 
-        <div class="pokepallot">
-            
                 <div>
-                    <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
-                        <img src="~/Images/OrangeBall.png" class="liila" />
-                    </button>
+                    @{ if (User.Identity.IsAuthenticated)
+                        {
+                            if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
+                            {
+                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                </button>
+                            }
+                            else
+                            {
+                                <button onclick="HideRareCard()" data-modal-target="#modal" class="startpoint" id="raffleButton">
+                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                </button>
+                            }
+                        }
+                        else
+                        {
+                            <button  class="startpoint" id="raffleButton">
+                                <img src="~/Images/OrangeBall.png" class="liila" />
+                            </button>
+                            <div class=disabledOverlay id="disabledOverlay">
+                                <div>
+                                    <h1 id="disabledTitle">Looks like you are not signed in! Can't open packs that way!</h1>
+                                    <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
+                                        <button id="disabledSignIn">Sign in</button>>
+                                    </form>
+                                </div>
+                            </div>
+
+                        } }
+
                 </div>
 
                 <div>
-                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <button onclick="ButtonEvent(this, 1, 10)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
                         <img src="~/Images/YellowBall.png" class="liila" />
                     </button>
                 </div>
 
                 <div>
-                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                    <button onclick="ButtonEvent(this, 2, 20)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
                         <img src="~/Images/BlueBall.png" class="pinkki" />
                     </button>
                 </div>
 
                 <div>
-                    <button onclick="RareCardShow(this)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                        <img src="~/Images/OrangeBall.png" class="pinkki" />
+                    <button onclick="ButtonEvent(this, 3, 30)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        <img src="~/Images/BlackBall.png" class="pinkki" />
                     </button>
                 </div>
 
             </div>
 
-
-    </div>
-
-
-
-    <div class="modal rare" id="modal">
-        <div class="modal-header">
-            <div class="title">GOTTA CATCH'EM ALL!</div>
-
-
         </div>
-        <form>
+
+<form>
+
+        <div class="modal rare" id="modal">
+            <div class="modal-header">
+                <div class="title">GOTTA CATCH 'EM ALL!</div>
+
+
+            </div>
+
+
             <div class="modal-body">
                 <table>
                     <tr>
                         <td>
-                            <div class="card" id="card1" onclick="flipCard(this); this.onclick=null">
+                            <div class="card" id="card1" onclick="flipCard(this);this.onclick = null">
                                 <div class="content">
                                     <div class="front">
                                     </div>
@@ -119,12 +146,9 @@
                                             foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
-                                                //Model.PokemonCard.PokemonId = card.id;
-                                                //Model.PokemonCard.Name = card.name;
-                                                //Model.PCards.Add(Model.PokemonCard);
+
                                                 <input type="hidden" name="PCards[0].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[0].PokemonId" value=@card.id />
-                                                <input type="hidden" name="PCards[0].User" value="@Model.User.Id" />
 
                                             }}
                                     </div>
@@ -132,7 +156,7 @@
                             </div>
                         </td>
                         <td>
-                            <div class="card" id="card2" onclick="flipCard(this); this.onclick=null">
+                            <div class="card" id="card2" onclick="flipCard(this);this.onclick = null">
                                 <div class="content">
                                     <div class="front">
                                     </div>
@@ -140,16 +164,16 @@
                                         @{foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
-                                                //Model.PokemonCard.PokemonId = card.id;
-                                                //Model.PokemonCard.Name = card.name;
-                                                //Model.PCards.Add(Model.PokemonCard);
+
+                                                <input type="hidden" name="PCards[1].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[1].PokemonId" value=@card.id />
                                             }}
                                     </div>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div class="card" id="card3" onclick="flipCard(this); this.onclick=null">
+                            <div class="card" id="card3" onclick="flipCard(this);this.onclick = null">
                                 <div class="content">
                                     <div class="front">
                                     </div>
@@ -157,16 +181,16 @@
                                         @{foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
-                                                //Model.PokemonCard.PokemonId = card.id;
-                                                //Model.PokemonCard.Name = card.name;
-                                                //Model.PCards.Add(Model.PokemonCard);
+
+                                                <input type="hidden" name="PCards[2].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[2].PokemonId" value=@card.id />
                                             }}
                                     </div>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <div class="card" id="card4" onclick="flipCard(this); this.onclick=null">
+                            <div class="card" id="card4" onclick="flipCard(this);this.onclick = null">
                                 <div class="content">
                                     <div class="front">
                                     </div>
@@ -174,16 +198,16 @@
                                         @{foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
-                                                //Model.PokemonCard.PokemonId = card.id;
-                                                //Model.PokemonCard.Name = card.name;
-                                                //Model.PCards.Add(Model.PokemonCard);
+
+                                                <input type="hidden" name="PCards[3].Name" value=@card.name />
+                                                <input type="hidden" name="PCards[3].PokemonId" value=@card.id />
                                             }}
                                     </div>
-                                </div>ggg
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <div class="card" id="card5" onclick="flipCard(this); this.onclick=null">
+                            <div class="card" id="card5" onclick="flipCard(this);this.onclick = null">
                                 <div class="content">
                                     <div class="front">
                                     </div>
@@ -191,9 +215,10 @@
                                         @{foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
-                                                //Model.PokemonCard.PokemonId = card.id;
-                                                //Model.PokemonCard.Name = card.name;
-                                                //Model.PCards.Add(Model.PokemonCard);
+
+                                                <input id="ord-card-name" type="hidden" name="" value=@card.name />
+                                                <input id="ord-card-id" type="hidden" name="" value=@card.id />
+
                                             }}
                                     </div>
                                 </div>
@@ -206,9 +231,12 @@
                                     <div class="front">
                                     </div>
                                     <div class="back">
-                                        @{foreach (var card in legendary)
+                                        @{foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="400" height="500" />
+
+                                                <input id="rare-card-name" type="hidden" name="" value=@card.name />
+                                                <input id="rare-card-id" type="hidden" name="" value=@card.id />
                                             }}
                                     </div>
                                 </div>
@@ -218,22 +246,21 @@
                 </table>
             </div>
             <div class="modal-footer">
-
-                <input type="hidden" name="User" value="@Model.User"/>
-                <input type="submit" value="Collect" asp-controller="Db" asp-action="DbSave" asp-route-id="@Model" />
-                @*<button data-close-button class="close-button">Continue</button>*@
+                <input id="set-pack" type="hidden" value="" name="pack" />
+                <input class="close-button" type="submit" value="COLLECT" asp-controller="Db" asp-action="DbSave" asp-route-viewModel="@Model" asp-route-pack="pack"/>
             </div>
-        </form>
-    </div>
+
+        </div>
+
+    </form>
 
 
 
 
 
-
-   
     <div id="overlay2"></div>
     <div id="overlay"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <script src="~/js/modal-.popup.js"></script>
+
 </body>
