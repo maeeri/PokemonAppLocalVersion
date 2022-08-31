@@ -50,7 +50,7 @@ namespace PokemonApp.Controllers
             return View();
 
         }
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult Profile(string searchString, ViewModel viewModel)
         {
             if (searchString == null)
