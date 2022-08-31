@@ -1,7 +1,10 @@
 ﻿const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
-
+const ordinaryName = document.getElementById("ord-card-name");
+const ordinaryId = document.getElementById("ord-card-id");
+const rareName = document.getElementById("rare-card-name");
+const rareId = document.getElementById("rare-card-id");
 
 //const pakka1 = document.querySelectorAll('.pack1');
 //const closeBtn = document.querySelectorAll('.close-button')
@@ -104,6 +107,9 @@ erikoisPakka.addEventListener("click", RareCardShow)
 function RareCardShow(card) {
     const testi = document.querySelectorAll(".rareCard");
     document.getElementById("card5").style.display = "none";
+    rareName.name = "PCards[4].Name";
+    rareId.name = "PCards[4].PokemonId";
+
     testi.classList.add(".rareCard");
     if (card == null) return
     card.classList.add('active');
@@ -128,17 +134,15 @@ function SetPack(value) {
 }
 
 function ButtonEvent(card, value, price) {
-    const choice = confirm(`This will cost you ${price} coins. Do you still want the cards?`);
-    if (choice) {
-        RareCardShow(card);
-        SetPack(value);
-    }
+    RareCardShow(card);
+    SetPack(value);
 }
 
 function HideRareCard() {
 
     document.getElementById("rareCard").style.display = "none";
-
+    ordinaryName.name = "PCards[4].Name";
+    ordinaryId.name = "PCards[4].PokemonId";
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal')
