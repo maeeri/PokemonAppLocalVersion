@@ -2,7 +2,7 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
 
 * {
     text-decoration: none;
@@ -91,15 +91,18 @@ header {
 }
 
 .nav-item {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Fugaz One', cursive;
+    font-variant: small-caps;
+    font-size:20px;
     margin-left: 10px;
     margin-top: 30px;
     margin-bottom: 15px;
     margin-right: 30px;
     color: black;
     float: right;
-    
 }
+
+
 .listItems {
     float: right;
     margin-right: 100px;
@@ -168,9 +171,9 @@ header {
         background-color: #FFE600;
         padding-bottom: 3px;
         border: solid 2px black;
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'Fugaz One', cursive;
         font-weight: bold;
-        font-size:18px;
+        font-size: 18px;
     }
 
 
