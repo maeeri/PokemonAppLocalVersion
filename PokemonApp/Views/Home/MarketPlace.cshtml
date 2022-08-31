@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="~/css/modal-style.css" />
 
 
+
 <br />
 <h1 class="rewards"style="text-align: center">
     THESE REWARDS ARE WAITING FOR YOU!
@@ -72,27 +73,33 @@
                         {
                             if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
                             {
+                                <h3 class="cardName">FREE</h3>
                                 <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
+
                                     <img src="~/Images/OrangeBall.png" class="liila" />
                                 </button>
                             }
                             else
                             {
-                                <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
-                                    <img src="~/Images/OrangeBall.png" class="liila" />
+                                var time = Model.User.Freeclick.GetValueOrDefault().AddDays(1) - DateTime.Now;
+                                string timeleft = string.Format($"{time.Hours}H {time.Minutes}M").Replace('-', ' ');
+                                <button class="startpoint disableForDay" id="raffleButton">
+                                    <h1 class="disable">DISABLED FOR @timeleft</h1>
+                                    <img src="~/Images/OrangeBall.png" class="NoFreeClick" />
                                 </button>
                             }
                         }
                         else
                         {
-                            <button  class="startpoint" id="raffleButton">
+                            <button class="startpoint" id="raffleButton">
                                 <img src="~/Images/OrangeBall.png" class="liila" />
+
                             </button>
                             <div class=disabledOverlay id="disabledOverlay">
                                 <div>
-                                    <h1 id="disabledTitle">Looks like you are not signed in! Can't open packs that way!</h1>
+                                    <h1 id="disabledTitle">LOOKS LIKE YOU ARE NOT SIGNED IN! CAN'T OPEN PACKS THAT WAY'!</h1>
                                     <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
-                                        <button id="disabledSignIn">Sign in</button>>
+                                        <button id="disabledSignIn">SIGN IN</button>>
                                     </form>
                                 </div>
                             </div>
@@ -102,19 +109,25 @@
                 </div>
 
                 <div>
+                    <h3 class="cardName">RARE: <span style="font-size:16px;">10 COINS</span></h3>
                     <button onclick="ButtonEvent(this, 1, 10)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        
                         <img src="~/Images/YellowBall.png" class="liila" />
                     </button>
                 </div>
 
                 <div>
+                    <h3 class="cardName">LEGENDARY: <span style="font-size:16px;">20 COINS</span></h3>
                     <button onclick="ButtonEvent(this, 2, 20)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        
                         <img src="~/Images/BlueBall.png" class="pinkki" />
                     </button>
                 </div>
 
                 <div>
+                    <h3 class="cardName">MEGA: <span style="font-size:16px;">30 COINS</span></h3>
                     <button onclick="ButtonEvent(this, 3, 30)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+                        
                         <img src="~/Images/BlackBall.png" class="pinkki" />
                     </button>
                 </div>
