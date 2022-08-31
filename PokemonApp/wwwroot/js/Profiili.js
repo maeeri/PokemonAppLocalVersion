@@ -1,4 +1,4 @@
-﻿const progress = document.querySelector('.progress-done');
+﻿var progress = document.querySelector('.progress-done');
 
 
 

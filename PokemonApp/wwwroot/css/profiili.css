@@ -18,14 +18,13 @@
     height: 200px;
     width: 160px;
     margin: 10px;
-    border: solid 4px blue;
+    border: solid 2px yellow;
     border-radius: 2%;
     background: white;
 }
 
-.hovered {
-    background: #f4f4f4;
-    border-style: dashed;
+.taistelu {
+    height: 100px;
 }
 
 .progress {

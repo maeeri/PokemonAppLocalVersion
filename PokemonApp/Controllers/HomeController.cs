@@ -38,7 +38,6 @@ namespace PokemonApp.Controllers
         [AllowAnonymous]
         public IActionResult Marketplace(ViewModel viewModel)
         {
-            //ViewModel viewModel = new ViewModel();
             viewModel.User = DbController.GetUser(User.Identity.Name);
             viewModel.PCards = new List<PokemonCard>();
             return View(viewModel);

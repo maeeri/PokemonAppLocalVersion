@@ -9,7 +9,9 @@ using PokemonApp.Models;
 using Azure;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Principal;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.WebEncoders.Testing;
 
 namespace PokemonApp.Controllers
 {
@@ -23,7 +25,8 @@ namespace PokemonApp.Controllers
             {
                 User uusi = new User();
                 uusi.Username = username;
-
+                uusi.Xp = 0;
+                uusi.Cash = 0;
                 _context.Add(uusi);
                 _context.SaveChanges();
             }
@@ -59,8 +62,36 @@ namespace PokemonApp.Controllers
             _context.SaveChanges();
             Response.Redirect("/Home/Profile");
         }
+
+        //buy pack of cards
+        public void BuyPack(ViewModel viewModel, int? pack)
+        {
+            switch (pack)
+            {
+                case 1:
+                    UseCash(viewModel, 10);
+                    break;
+                case 2:
+                    UseCash(viewModel, 20);
+                    break;
+                case 3:
+                    UseCash(viewModel, 30);
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        //deletes all of user's pokemon cards. To be used for punishment (or testing, whatever is most convenient)
+        public static void DeleteAllPcards(ViewModel viewModel)
+        {
+            viewModel.PCards = _context.PokemonCards.Where(x => x.User.Equals(viewModel.User.Id)).ToList();
+            _context.PokemonCards.RemoveRange(viewModel.PCards);
+            _context.SaveChanges();
+        }
+
         //saves cards to database and updates timer for free pack
-        public IActionResult DbSave(ViewModel viewModel)
+        public IActionResult DbSave(ViewModel viewModel, int? pack)
         {
             viewModel.User = GetUser(User.Identity.Name);
             
@@ -68,6 +99,7 @@ namespace PokemonApp.Controllers
             {
                 card.User = viewModel.User.Id;
             }
+
             var viimeisin = viewModel.User.Freeclick.GetValueOrDefault();
             if (viimeisin.AddDays(1) < DateTime.Now || viimeisin == null)
             {
@@ -75,27 +107,36 @@ namespace PokemonApp.Controllers
                 _context.Update(viewModel.User);
 
             }
+
+            if (pack != null)
+                BuyPack(viewModel, pack);
+
             _context.PokemonCards.AddRange(viewModel.PCards);
             _context.SaveChanges();
 
             return RedirectToAction("Marketplace", "Home", viewModel);
         }
+
         //Add cash to user profile to be used in purchasing packs
-        public static void AddCash(ViewModel viewModel, int amount)
+        public void AddCash(ViewModel viewModel, int amount)
         {
-            viewModel.User.Cash = viewModel.User.Cash + amount;
+            if (viewModel.User.Cash == null)
+                viewModel.User.Cash = amount;
+            else
+                viewModel.User.Cash += amount;
             _context.Update(viewModel.User);
             _context.SaveChanges();
 
         }
 
         //Remove cash by treating yourself to a pack
-        public static void UseCash(ViewModel viewModel, int amount)
+        public void UseCash(ViewModel viewModel, int amount)
         {
-            viewModel.User.Cash = viewModel.User.Cash - amount;
+            viewModel.User.Cash -= amount;
             _context.Update(viewModel.User);
             _context.SaveChanges();
         }
+
         public bool Countdown()
         {
             var user = GetUser(User.Identity.Name);
@@ -141,7 +182,6 @@ namespace PokemonApp.Controllers
                 if (connection.OtherUser == followId)
                 {
                     notFound = false;
-                    
                 }
             }
 
@@ -153,6 +193,15 @@ namespace PokemonApp.Controllers
                 _context.SaveChanges();
             }
             Response.Redirect("/Home/Profile");
+        }
+
+        public static void SaveXP(string username, int xp)
+        {
+            var user = _context.Users.Where(x => x.Username == username).Single();
+            user.Xp += xp;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            
         }
         
     }
