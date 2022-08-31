@@ -216,8 +216,8 @@
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
-                                                <input type="hidden" name="PCards[4].Name" value=@card.name />
-                                                <input type="hidden" name="PCards[4].PokemonId" value=@card.id />
+                                                <input id="ord-card-name" type="hidden" name="" value=@card.name />
+                                                <input id="ord-card-id" type="hidden" name="" value=@card.id />
 
                                             }}
                                     </div>
@@ -234,6 +234,9 @@
                                         @{foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="400" height="500" />
+
+                                                <input id="rare-card-name" type="hidden" name="" value=@card.name />
+                                                <input id="rare-card-id" type="hidden" name="" value=@card.id />
                                             }}
                                     </div>
                                 </div>
