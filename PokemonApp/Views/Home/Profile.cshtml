@@ -1,5 +1,6 @@
 @using System.Security.Claims;
 @using System.Security.Principal;
+@using System.Xml.XPath
 @using PokemonApp.Controllers;
 @model ViewModel;
 @{ 
@@ -151,24 +152,35 @@
     @*-------------XP bar-------------*@
 
 @{
-    
-        var theUser = DbController.GetUser(User.Identity.Name);
 
-        
+    var theUser = DbController.GetUser(User.Identity.Name);
+    int xp;
+    string xpBarXp;
+    if (theUser.Xp > 100)
+    {
+        var level = theUser.Xp / 100;
+        xp = Convert.ToInt32(theUser.Xp % 100);
+        xpBarXp = $"{xp * 10} XP";
+    }
+
+    else
+    {
+        xp = Convert.ToInt32(theUser.Xp);
+        xpBarXp = $"{xp * 10} XP";
+    }
+
 
     }
     
-    @*@DbController.SaveXP(theUser, 30);*@
+    @*@DbController.SaveXP("Suvi", 700);*@
 
     <div class="progress">
-        <div class="progress-done" data-done="50">
-            <span class="progress-text"></span>
+        <div class="progress-done" data-done=@xp>
+            <span class="progress-text">@xpBarXp</span>
         </div>
     </div>
 
-    <button class="progress-btn" onclick="ProgressBar(@theUser.Xp)">Press</button>
 
-    <button class="progress-btn2" onclick="ProgressBar2(30)">Press</button>
     <script src="~/js/korttiliike.js"></script>
     <script src="~/js/FriendSearch.js"></script>
 </body>

@@ -159,10 +159,10 @@ namespace PokemonApp.Controllers
         public static void SaveXP(string username, int xp)
         {
             var user = _context.Users.Where(x => x.Username == username).Single();
-            user.Xp = 10;
             user.Xp += xp;
             _context.Users.Update(user);
             _context.SaveChanges();
+            
         }
         
     }
