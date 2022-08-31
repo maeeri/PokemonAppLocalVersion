@@ -93,15 +93,7 @@
             <p>@User.Identity.Name</p>
             <p>Coins: 15</p>
             <p>XP</p>
-            @{
-                var theUser = DbController.GetUser(User.Identity.Name);
-
-                PokemonDBContext uusi = new PokemonDBContext();
-
-                ViewModel tesi = new ViewModel();
-                var jotain = tesi.User;
-
-            }
+            
 
             <div class="progress">
                 <div class="progress-done" data-done="0">
@@ -109,9 +101,7 @@
                 </div>
             </div>
 
-            <button class="progress-btn" onclick="ProgressBar(10)">Press</button>
-
-
+            
 
             <p>Search friends</p>
             <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
@@ -183,9 +173,9 @@
         </div>
     </div>
 
-    <button class="progress-btn" onclick="ProgressBar(@theUser.Xp)">Press</button>
 
     <script src="~/js/korttiliike.js"></script>
     <script src="~/js/FriendSearch.js"></script>
+        </div>
         </footer>
 </body>
