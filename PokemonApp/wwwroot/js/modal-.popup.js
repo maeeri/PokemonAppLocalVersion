@@ -101,7 +101,7 @@ function flipCard(card) {
 
 
 const erikoisPakka = document.querySelectorAll("rarePakka");
-erikoisPakka.addEventListener("click", RareCardShow)
+erikoisPakka.addEventListener("click", RareCardShow());
 
 
 function RareCardShow(card) {
@@ -110,7 +110,7 @@ function RareCardShow(card) {
     rareName.name = "PCards[4].Name";
     rareId.name = "PCards[4].PokemonId";
 
-    testi.classList.add(".rareCard");
+    testi.classList.add('rareCard');
     if (card == null) return
     card.classList.add('active');
     document.getElementById("rareCard").style.display = "block";
@@ -129,19 +129,21 @@ function RareCardShow(card) {
 
 function SetPack(value) {
     document.getElementById("set-pack").value = value;
+    console.log(value + "setpack");
+
 }
 
-function SetAmount(amount) {
+function SetAmount(value) {
     document.getElementById("set-amount").value = value;
+    console.log(value + "setamount");
 }
 
 function ButtonEvent(card, value, price) {
-    RareCardShow(card);
     SetPack(value);
     SetAmount(price);
+    RareCardShow(card);
 }
 function ButtonEventCommon(value, price) {
-    HideRareCard();
     SetPack(value);
     SetAmount(price);
 }
