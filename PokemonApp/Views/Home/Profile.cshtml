@@ -90,7 +90,7 @@
 
     <footer class="profileFooter">
         <div class="profile">
-            
+
             <p>Search friends</p>
             <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
 
@@ -115,21 +115,21 @@
                 }
             }
 
-        
-        <div class="friend">
-            <p>Your friends:</p>
-            @{
-                var connections = Model.Connections;
-                foreach (var item in connections)
-                {
 
-                    <p>
-                        @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
-                        <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
-                    </p>
+            <div class="friend">
+                <p>Your friends:</p>
+                @{
+                    var connections = Model.Connections;
+                    foreach (var item in connections)
+                    {
+
+                        <p>
+                            @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
+                            <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
+                        </p>
+                    }
                 }
-            }
-            @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
+                @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
             <table>
                 <tr>
                     <td>
@@ -140,15 +140,15 @@
                         </td>
                     </tr>
                 </table>*@
-    </div>
+            </div>
 
 
-    @*-------------XP bar-------------*@
+            @*-------------XP bar-------------*@
             <img src="~/Images/Charmander.png" height="50" class="profilePic" />
             <p>@User.Identity.Name</p>
             <p>Coins: 15</p>
             <p>XP</p>
-            
+
 
             @{
 
@@ -170,7 +170,7 @@
 
 
             }
-    
+
             @*@DbController.SaveXP("Suvi", 700);*@
 
             <div class="progress">
@@ -184,7 +184,7 @@
 
 
 
-    <script src="~/js/korttiliike.js"></script>
-    <script src="~/js/FriendSearch.js"></script>
-        </footer></div>
+            <script src="~/js/korttiliike.js"></script>
+            <script src="~/js/FriendSearch.js"></script>
+        </div></footer>
 </body>
