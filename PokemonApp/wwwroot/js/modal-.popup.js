@@ -119,11 +119,7 @@ function RareCardShow(card) {
 
 }
 
-function ConfirmOpenPack(card, price) {
-    if (confirm(`This will cost you ${price} coins. Do you still want the cards?`)) {
-        RareCardShow(card);
-    }
-}
+
 
 function SetPack(value) {
     document.getElementById("set-pack").value = value;
@@ -132,8 +128,11 @@ function SetPack(value) {
 }
 
 function ButtonEvent(card, value, price) {
-    SetPack(value);
-    RareCardShow(card, price);
+    const choice = confirm(`This will cost you ${price} coins. Do you still want the cards?`);
+    if (choice) {
+        RareCardShow(card);
+        SetPack(value);
+    }
 }
 
 function HideRareCard() {
