@@ -151,6 +151,7 @@ function ButtonEventCommon(value, price) {
 function HideRareCard() {
 
     document.getElementById("rareCard").style.display = "none";
+    document.getElementById("card5").style.display = "block";
     ordinaryName.name = "PCards[4].Name";
     ordinaryId.name = "PCards[4].PokemonId";
     closeModalButtons.forEach(button => {
