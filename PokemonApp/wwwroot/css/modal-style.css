@@ -56,8 +56,23 @@
     text-align: center;
 }
 
-
 .close-button {
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    margin-bottom: 20px;
+    font-size: large;
+    text-align: center;
+    color: white;
+    border-color: grey;
+    border-radius: 10px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    font-family: 'Fugaz One', cursive;
+    background-color: grey;
+    pointer-events: none;
+}
+
+.close-button.active {
     cursor: pointer;
     height: 50px;
     width: 100px;
@@ -70,9 +85,10 @@
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     font-family: 'Fugaz One', cursive;
     background-color: darkorange;
+    pointer-events: all;
 }
 
-    .close-button:hover {
+    .close-button.active:hover {
         background-image: linear-gradient(red, yellow);
     }
     #disabledTitle {
