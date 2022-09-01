@@ -219,7 +219,7 @@ namespace PokemonApp.Controllers
             user.Xp += xp;
             _context.Users.Update(user);
             _context.SaveChanges();
-           
+
         }
         
     }
