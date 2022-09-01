@@ -195,7 +195,7 @@ h3 {
     z-index: 2;
 }
 
-.darkSide {
+/*.darkSide {
     background: linear-gradient(180deg, rgba(154,80,190,0) 0%, rgba(90,47,111,0.8242647400757178) 30%, rgba(0,0,0,1) 70%);
     height: 200vh;
     z-index: -2;
@@ -332,7 +332,7 @@ h3 {
     .battleZone img {
         width: 200px;
         margin-left: 70%;
-    }
+    }*/
 
 
 
