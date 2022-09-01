@@ -50,7 +50,7 @@ namespace PokemonApp.Controllers
             return View();
 
         }
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult Profile(string searchString, ViewModel viewModel)
         {
             if (searchString == null)
@@ -62,7 +62,7 @@ namespace PokemonApp.Controllers
             }
             viewModel.User = DbController.GetUser(User.Identity.Name);
             viewModel.Connections = DbController.GetConnections(viewModel.User.Id);
-            viewModel.Users = DbController.SearchFriend(searchString);
+            viewModel.Users = DbController.SearchFriend(viewModel, searchString);
             return View(viewModel);
         }
 

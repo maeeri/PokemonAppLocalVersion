@@ -56,19 +56,7 @@
     text-align: center;
 }
 
-.close-button {
-    cursor: pointer;
-    height: 50px;
-    width: 100px;
-    margin-bottom: 20px;
-    font-size: large;
-    text-align: center;
-    color: white;
-    background-color: greenyellow;
-    border-color: greenyellow;
-    border-radius: 10px;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
+
 .close-button {
     cursor: pointer;
     height: 50px;
@@ -90,19 +78,7 @@
     #disabledTitle {
         color: white;
     }
-#disabledSignIn {
-    cursor: pointer;
-    height: 50px;
-    width: 100px;
-    margin-bottom: 20px;
-    font-size: large;
-    text-align: center;
-    color: white;
-    background-color: greenyellow;
-    border-color: greenyellow;
-    border-radius: 10px;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
+
 .disabledOverlay {
     position: fixed;
     top: 0;
@@ -214,6 +190,7 @@
 
 .pokepallot {
     text-align:center;
+    margin-bottom:150px;
 
 }
 
@@ -314,3 +291,60 @@
         transform: scale(1.2);
     }
 
+.disableForDay {
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 36px;
+    margin-top: 80px;
+}
+
+#disabledSignIn {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    font-size: large;
+    text-align: center;
+    color: white;
+    border-color: darkorange;
+    border-radius: 10px;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    font-family: 'Fugaz One', cursive;
+    background-color: darkorange;
+}
+    #disabledSignIn:hover {
+            background-image: linear-gradient(red, yellow);
+    }
+
+
+
+    #disabledTitle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'DM Sans', sans-serif;
+        font-variant: small-caps;
+    }
+.NoFreeClick {
+    filter: brightness(50%);
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 8px;
+}
+
+.disable {
+    font-family: 'Fugaz One', cursive;
+    font-size: 20px;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.cardName {
+    font-family: 'Fugaz One', cursive;
+    margin-bottom: 40px;
+    font-size: 25px;
+    background: linear-gradient(90deg, rgba(255,209,0,1) 0%, rgba(190,7,7,1) 48%, rgba(255,209,0,1) 100%);
+}

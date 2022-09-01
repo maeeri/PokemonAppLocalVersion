@@ -22,8 +22,8 @@
 
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/profiili.css" />
-    <script src="~/js/Navbar.js" defer></script>
     <script src="~/js/Profiili.js" defer></script>
+
     <script src="https://code.jquery.com/jquery-git.js"></script>
 </head>
 
@@ -71,7 +71,7 @@
                 {
 
                     string url = o.images.small;
-                    <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
+                        <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
 
                 }
 
@@ -122,11 +122,11 @@
                     var connections = Model.Connections;
                     foreach (var item in connections)
                     {
-
-                        <p>
-                            @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash XP: @DbController.GetUserById(item.OtherUser).Xp
-                            <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
-                        </p>
+                        int userlevel = Convert.ToInt32(DbController.GetUserById(item.OtherUser).Xp) / 100;
+                                <p>
+                                    @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash Level: @userlevel
+                                    <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
+                                </p>
                     }
                 }
                 @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
@@ -143,49 +143,45 @@
             </div>
 
 
-            @*-------------XP bar-------------*@
-            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
-            <p>@User.Identity.Name</p>
-            <p>Coins: 15</p>
-            <p>XP</p>
+            @{var tUser = DbController.GetUser(User.Identity.Name); }
+                @*-------------XP bar-------------*@
+                <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+                <p>@tUser.Username</p>
+                <p>Coins: @tUser.Cash £</p>
+                
 
 
-            @{
+                @{
 
-                var theUser = DbController.GetUser(User.Identity.Name);
-                int xp;
-                string xpBarXp;
-                if (theUser.Xp > 100)
-                {
-                    var level = theUser.Xp / 100;
-                    xp = Convert.ToInt32(theUser.Xp % 100);
-                    xpBarXp = $"{xp * 10} XP";
+                    var theUser = DbController.GetUser(User.Identity.Name);
+                    int xp;
+                    int level = 0;
+                    string xpBarXp;
+                    if (theUser.Xp > 100)
+                    {
+                        level = Convert.ToInt32(theUser.Xp / 100);
+                        xp = Convert.ToInt32(theUser.Xp % 100);
+                        xpBarXp = $"{xp * 10} XP";
+                    }
+
+                    else
+                    {
+                        xp = Convert.ToInt32(theUser.Xp);
+                        xpBarXp = $"{xp * 10} XP";
+                    }
+                    <p>Level: @level</p>
+
                 }
 
-                else
-                {
-                    xp = Convert.ToInt32(theUser.Xp);
-                    xpBarXp = $"{xp * 10} XP";
-                }
+                @*@DbController.SaveXP("Christian Keihäs", 0);*@
 
-
-            }
-
-            @*@DbController.SaveXP("Suvi", 700);*@
-
-            <div class="progress">
-                <div class="progress-done" data-done=@xp>
-                    <span class="progress-text">@xpBarXp</span>
+                <div class="progress">
+                    <div class="progress-done" data-done="50">
+                        <span class="progress-text">@xpBarXp</span>
+                    </div>
                 </div>
-            </div>
 
-
-
-
-
-
-            <script src="~/js/korttiliike.js"></script>
-            <script src="~/js/FriendSearch.js"></script>
-        </div>
-    </footer>
+                <script src="~/js/korttiliike.js"></script>
+                <script src="~/js/FriendSearch.js"></script>
+            </div></footer>
 </body>

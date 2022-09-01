@@ -16,10 +16,10 @@
     <title>@ViewData["Title"] Pokemon</title>
     <script src="https://kit.fontawesome.com/aea8f7eccc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" />
-    <script src="~/js/Navbar.js" defer></script>
 </head>
 <body>
     <header>
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -46,6 +46,8 @@
                 </div>
                 <img src="~/Images/Pokemon.png" class="pokemon-image" />
             </div>
+
+
         </nav>
     </header>
 
@@ -61,7 +63,6 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
