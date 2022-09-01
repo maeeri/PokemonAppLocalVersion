@@ -180,7 +180,7 @@ namespace PokemonApp.Controllers
             var otherList = new List<User>();
             foreach (var user in userList)
             {
-                if(viewModel.Connections.Any(x => x.User == viewModel.User.Id && x.OtherUser == user.Id))
+                if (viewModel.Connections.Any(x => x.User == viewModel.User.Id && x.OtherUser == user.Id) || user == viewModel.User)
                     continue;
                 otherList.Add(user);
             }
