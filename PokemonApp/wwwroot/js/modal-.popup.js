@@ -95,6 +95,7 @@ function closeModal(modal) {
 function flipCard(card) {
     if (card == null) return
     card.classList.add('active')
+    document.getElementById('close-button').classList.add('active')
 
 }
 
