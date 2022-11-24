@@ -1,4 +1,4 @@
-# PokeApp
+# PokemonApp
 
 Final project for AW Academy Azure C# Full Stack Program, summer 2022
 Modified for local usage
