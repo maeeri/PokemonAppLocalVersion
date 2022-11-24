@@ -1,5 +1,7 @@
-@using PokemonApp.Controllers
+﻿@using PokemonApp.Controllers
 @using Microsoft.CodeAnalysis
+@using PokemonApp.Methods
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ViewModel
 @{
     ViewData["Title"] = "MarketPlace";
@@ -13,8 +15,7 @@
     var randomLegendary = CardMethods.LegendaryPack();
 
     var legendary = randomLegendary.OrderBy(x => rnd.Next()).Take(1);
-    string blah = "this is a blah string";
-    
+
 }
 
 <link rel="stylesheet" href="~/css/market.css" />
@@ -23,7 +24,7 @@
 
 
 <br />
-<h1 class="rewards"style="text-align: center">
+<h1 class="rewards" style="text-align: center">
     THESE REWARDS ARE WAITING FOR YOU!
 </h1>
 
@@ -31,113 +32,125 @@
     <div class="slider">
         <div class="slider-wrap">
             <div class="slide">
-                @{foreach (var card in randomSlider)
+                @{
+                    foreach (var card in randomSlider)
                     {
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
-                    }}
+                    }
+                }
             </div>
             <div class="slide">
-                @{foreach (var card in randomSlider)
+                @{
+                    foreach (var card in randomSlider)
                     {
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
-                    }}
+                    }
+                }
             </div>
             <div class="slide">
-                @{foreach (var card in randomSlider)
+                @{
+                    foreach (var card in randomSlider)
                     {
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
-                    }}
+                    }
+                }
             </div>
             <div class="slide">
-                @{foreach (var card in randomSlider)
+                @{
+                    foreach (var card in randomSlider)
                     {
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
-                    }}
+                    }
+                }
             </div>
             <div class="slide">
-                @{foreach (var card in randomSlider)
+                @{
+                    foreach (var card in randomSlider)
                     {
                         <img src=@card.images.small class="slide-image" width="120" height="170" />
-                    }}
+                    }
+                }
             </div>
         </div>
     </div>
 
-    
-        <div class="wrapper">
 
-            <div class="pokepallot">
+    <div class="wrapper">
 
-                <div>
-                    @{ if (User.Identity.IsAuthenticated)
-                        {
-                            if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
-                            {
-                                <h3 class="cardName">FREE</h3>
-                                <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
+        <div class="pokepallot">
 
-                                    <img src="~/Images/OrangeBall.png" class="liila" />
-                                </button>
-                            }
-                            else
-                            {
-                                var time = Model.User.Freeclick.GetValueOrDefault().AddDays(1) - DateTime.Now;
-                                string timeleft = string.Format($"{time.Hours}H {time.Minutes}M").Replace('-', ' ');
-                                <button class="startpoint disableForDay" id="raffleButton">
-                                    <h1 class="disable">DISABLED FOR @timeleft</h1>
-                                    <img src="~/Images/OrangeBall.png" class="NoFreeClick" />
-                                </button>
-                            }
-                        }
-                        else
+            <div>
+                @{
+                    //if (User.Identity.IsAuthenticated)
+                    //{
+                        if (Model.User.Freeclick.GetValueOrDefault().AddDays(1) < DateTime.Now || Model.User.Freeclick.GetValueOrDefault() == null)
                         {
                             <h3 class="cardName">FREE</h3>
-                            <button class="startpoint" id="raffleButton">
+                            <button onclick="HideRareCard(), ButtonEventCommon(0, 0)" data-modal-target="#modal" class="startpoint" id="raffleButton">
 
                                 <img src="~/Images/OrangeBall.png" class="liila" />
                             </button>
-                            <div class=disabledOverlay id="disabledOverlay">
-                                <div>
-                                    <h1 id="disabledTitle">LOOKS LIKE YOU ARE NOT SIGNED IN! CAN'T OPEN PACKS THAT WAY'!</h1>
-                                    <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
-                                        <button id="disabledSignIn">SIGN IN</button>>
-                                    </form>
-                                </div>
-                            </div>
+                        }
+                        else
+                        {
+                            var time = Model.User.Freeclick.GetValueOrDefault().AddDays(1) - DateTime.Now;
+                            string timeleft = string.Format($"{time.Hours}H {time.Minutes}M").Replace('-', ' ');
+                            <button class="startpoint disableForDay" id="raffleButton">
+                                <h1 class="disable">DISABLED FOR @timeleft</h1>
+                                <img src="~/Images/OrangeBall.png" class="NoFreeClick" />
+                            </button>
+                        }
+                    //}
+                    //else
+                    //{
+                    //    <h3 class="cardName">FREE</h3>
+                    //    <button class="startpoint" id="raffleButton">
 
-                        } }
+                    //        <img src="~/Images/OrangeBall.png" class="liila" />
+                    //    </button>
+                    //    <div class=disabledOverlay id="disabledOverlay">
+                    //        <div>
+                    //            <h1 id="disabledTitle">LOOKS LIKE YOU ARE NOT SIGNED IN! CAN'T OPEN PACKS THAT WAY'!</h1>
+                    //            <form method="get" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">
+                    //                <button id="disabledSignIn">SIGN IN</button>>
+                    //            </form>
+                    //        </div>
+                    //    </div>
 
-                </div>
+                    //}
+                }
 
-                <div>
-                    <h3 class="cardName">RARE: <span style="font-size:16px;">10 COINS</span></h3>
-                    <button onclick="ButtonEvent(this, 1, 10)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                        
-                        <img src="~/Images/YellowBall.png" class="liila" />
-                    </button>
-                </div>
+            </div>
 
-                <div>
-                    <h3 class="cardName">LEGENDARY: <span style="font-size:16px;">20 COINS</span></h3>
-                    <button onclick="ButtonEvent(this, 2, 20)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                        
-                        <img src="~/Images/BlueBall.png" class="pinkki" />
-                    </button>
-                </div>
+            <div>
+                <h3 class="cardName">RARE: <span style="font-size:16px;">10 COINS</span></h3>
+                <button onclick="ButtonEvent(this, 1, 10)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
 
-                <div>
-                    <h3 class="cardName">MEGA: <span style="font-size:16px;">30 COINS</span></h3>
-                    <button onclick="ButtonEvent(this, 3, 30)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
-                        
-                        <img src="~/Images/BlackBall.png" class="pinkki" />
-                    </button>
-                </div>
+                    <img src="~/Images/YellowBall.png" class="liila" />
+                </button>
+            </div>
 
+            <div>
+                <h3 class="cardName">LEGENDARY: <span style="font-size:16px;">20 COINS</span></h3>
+                <button onclick="ButtonEvent(this, 2, 20)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+
+                    <img src="~/Images/BlueBall.png" class="pinkki" />
+                </button>
+            </div>
+
+            <div>
+                <h3 class="cardName">MEGA: <span style="font-size:16px;">30 COINS</span></h3>
+                <button onclick="ButtonEvent(this, 3, 30)" data-modal-target="#modal" class="startpoint rarePakka" id="raffleButton">
+
+                    <img src="~/Images/BlackBall.png" class="pinkki" />
+                </button>
             </div>
 
         </div>
 
-<form>
+    </div>
+
+    <form>
 
         <div class="modal rare" id="modal">
             <div class="modal-header">
@@ -164,7 +177,8 @@
                                                 <input type="hidden" name="PCards[0].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[0].PokemonId" value=@card.id />
 
-                                            }}
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -175,13 +189,15 @@
                                     <div class="front">
                                     </div>
                                     <div class="back">
-                                        @{foreach (var card in randomi)
+                                        @{
+                                            foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
                                                 <input type="hidden" name="PCards[1].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[1].PokemonId" value=@card.id />
-                                            }}
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -192,13 +208,15 @@
                                     <div class="front">
                                     </div>
                                     <div class="back">
-                                        @{foreach (var card in randomi)
+                                        @{
+                                            foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
                                                 <input type="hidden" name="PCards[2].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[2].PokemonId" value=@card.id />
-                                            }}
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -209,13 +227,15 @@
                                     <div class="front">
                                     </div>
                                     <div class="back">
-                                        @{foreach (var card in randomi)
+                                        @{
+                                            foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
                                                 <input type="hidden" name="PCards[3].Name" value=@card.name />
                                                 <input type="hidden" name="PCards[3].PokemonId" value=@card.id />
-                                            }}
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -226,14 +246,16 @@
                                     <div class="front">
                                     </div>
                                     <div class="back">
-                                        @{foreach (var card in randomi)
+                                        @{
+                                            foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
                                                 <input id="ord-card-name" type="hidden" name="" value=@card.name />
                                                 <input id="ord-card-id" type="hidden" name="" value=@card.id />
 
-                                            }}
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -245,13 +267,15 @@
                                     <div class="front">
                                     </div>
                                     <div class="back">
-                                        @{foreach (var card in randomi)
+                                        @{
+                                            foreach (var card in randomi)
                                             {
                                                 <img src=@card.images.small width="200" height="300" />
 
                                                 <input id="rare-card-name" type="hidden" name="" value=@card.name />
                                                 <input id="rare-card-id" type="hidden" name="" value=@card.id />
-                                            }}
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>

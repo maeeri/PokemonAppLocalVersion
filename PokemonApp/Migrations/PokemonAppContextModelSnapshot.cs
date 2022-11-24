@@ -4,18 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PokemonApp.Models;
+using PokemonApp.Data;
 
 namespace PokemonApp.Migrations
 {
-    [DbContext(typeof(PokemonDBContext))]
-    partial class PokemonDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PokemonAppContext))]
+    partial class PokemonAppContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -25,24 +24,27 @@ namespace PokemonApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("OtherUser")
-                        .HasColumnType("int")
-                        .HasColumnName("other_user");
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OtherUserNavigationId")
+                        .HasColumnType("int");
 
                     b.Property<int>("User")
-                        .HasColumnType("int")
-                        .HasColumnName("user");
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserNavigationId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OtherUser");
+                    b.HasIndex("OtherUserNavigationId");
 
-                    b.HasIndex("User");
+                    b.HasIndex("UserNavigationId");
 
-                    b.ToTable("Connections");
+                    b.ToTable("Connection");
                 });
 
             modelBuilder.Entity("PokemonApp.Models.Highscore", b =>
@@ -50,26 +52,25 @@ namespace PokemonApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("Losses")
-                        .HasColumnType("int")
-                        .HasColumnName("losses");
+                        .HasColumnType("int");
 
                     b.Property<int>("User")
-                        .HasColumnType("int")
-                        .HasColumnName("user");
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserNavigationId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Victories")
-                        .HasColumnType("int")
-                        .HasColumnName("victories");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("User");
+                    b.HasIndex("UserNavigationId");
 
-                    b.ToTable("Highscores");
+                    b.ToTable("Highscore");
                 });
 
             modelBuilder.Entity("PokemonApp.Models.PokemonCard", b =>
@@ -77,32 +78,25 @@ namespace PokemonApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("name");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PokemonId")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("pokemon_id");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("User")
-                        .HasColumnType("int")
-                        .HasColumnName("user");
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserNavigationId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("User");
+                    b.HasIndex("UserNavigationId");
 
-                    b.ToTable("PokemonCards");
+                    b.ToTable("PokemonCard");
                 });
 
             modelBuilder.Entity("PokemonApp.Models.User", b =>
@@ -110,26 +104,19 @@ namespace PokemonApp.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("Cash")
-                        .HasColumnType("int")
-                        .HasColumnName("cash");
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Freeclick")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("username");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Xp")
-                        .HasColumnType("int")
-                        .HasColumnName("xp");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -139,16 +126,12 @@ namespace PokemonApp.Migrations
             modelBuilder.Entity("PokemonApp.Models.Connection", b =>
                 {
                     b.HasOne("PokemonApp.Models.User", "OtherUserNavigation")
-                        .WithMany("ConnectionOtherUserNavigations")
-                        .HasForeignKey("OtherUser")
-                        .HasConstraintName("FK_Connections_User1")
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("OtherUserNavigationId");
 
                     b.HasOne("PokemonApp.Models.User", "UserNavigation")
-                        .WithMany("ConnectionUserNavigations")
-                        .HasForeignKey("User")
-                        .HasConstraintName("FK_Connections_User")
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserNavigationId");
 
                     b.Navigation("OtherUserNavigation");
 
@@ -158,10 +141,8 @@ namespace PokemonApp.Migrations
             modelBuilder.Entity("PokemonApp.Models.Highscore", b =>
                 {
                     b.HasOne("PokemonApp.Models.User", "UserNavigation")
-                        .WithMany("Highscores")
-                        .HasForeignKey("User")
-                        .HasConstraintName("FK_Highscores_User")
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserNavigationId");
 
                     b.Navigation("UserNavigation");
                 });
@@ -169,23 +150,10 @@ namespace PokemonApp.Migrations
             modelBuilder.Entity("PokemonApp.Models.PokemonCard", b =>
                 {
                     b.HasOne("PokemonApp.Models.User", "UserNavigation")
-                        .WithMany("PokemonCards")
-                        .HasForeignKey("User")
-                        .HasConstraintName("FK_PokemonCards_User")
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserNavigationId");
 
                     b.Navigation("UserNavigation");
-                });
-
-            modelBuilder.Entity("PokemonApp.Models.User", b =>
-                {
-                    b.Navigation("ConnectionOtherUserNavigations");
-
-                    b.Navigation("ConnectionUserNavigations");
-
-                    b.Navigation("Highscores");
-
-                    b.Navigation("PokemonCards");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace PokemonApp.Models
 {
-    public partial class Highscore
+    public class Highscore
     {
         public int Id { get; set; }
         public int User { get; set; }

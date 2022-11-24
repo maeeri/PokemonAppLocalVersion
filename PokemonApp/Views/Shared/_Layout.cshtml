@@ -3,7 +3,9 @@
 
 
 @using PokemonApp.Controllers
-@model ViewModel
+@model PokemonApp.Models.ViewModel;
+@{
+}
 @*@{
     if (User.Identity.IsAuthenticated && Model.User == null)
     {
@@ -24,14 +26,11 @@
             <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item log">
-                            <partial name="_LoginPartial" />
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MarketPlace" asp-route-viewModel="@DbController.GetUser(User.Identity.Name)">MarketPlace</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Marketplace">Marketplace</a>
                         </li>
 
                         <li class="nav-item">
@@ -51,7 +50,7 @@
         </nav>
     </header>
 
-    <div class="container">
+    @*<div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
             @if (User.Identity.IsAuthenticated)
@@ -59,10 +58,11 @@
                 DbController.SaveUser(User.Identity.Name);
             }
         </main>
-    </div>
+    </div>*@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @RenderSection("Scripts", required: false)
+@RenderBody()
 </body>
 </html>

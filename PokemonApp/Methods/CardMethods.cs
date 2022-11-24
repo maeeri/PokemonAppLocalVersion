@@ -5,8 +5,9 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Text.Json;
+using PokemonApp.Models;
 
-namespace PokemonApp.Models
+namespace PokemonApp.Methods
 {
     public class CardMethods
     {

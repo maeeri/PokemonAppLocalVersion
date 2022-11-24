@@ -5,10 +5,8 @@ using System.Collections.Generic;
 
 namespace PokemonApp.Models
 {
-    public partial class Connection
+    public class Connection
     {
-
-
 
         public int Id { get; set; }
         public int User { get; set; }

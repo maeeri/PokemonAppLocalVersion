@@ -24,4 +24,9 @@
     <PackageReference Include="PokemonTcgSdk" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Methods\" />
+    <Folder Include="Properties\ServiceDependencies\" />
+  </ItemGroup>
+
 </Project>

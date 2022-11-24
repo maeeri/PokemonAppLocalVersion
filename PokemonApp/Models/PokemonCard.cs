@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PokemonApp.Models
 {
-    public partial class PokemonCard
+    public class PokemonCard
     {
         public int Id { get; set; }
         public int User { get; set; }

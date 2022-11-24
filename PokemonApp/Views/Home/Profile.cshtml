@@ -1,17 +1,18 @@
-@using System.Security.Claims;
+﻿@using System.Security.Claims;
 @using System.Security.Principal;
 @using System.Xml.XPath
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using PokemonApp.Controllers;
+@using PokemonApp.Data
+@using PokemonApp.Methods
 @model ViewModel;
-@{ 
+@{
 
-    ViewData["Title"] = "MarketPlace";
+    ViewData["Title"] = "Profile";
     Random rnd = new Random();
     var pokemons = CardMethods.GetPokemonCards();
     var random = pokemons.OrderBy(x => rnd.Next()).Take(1);
-    PokemonDBContext userDB = new PokemonDBContext();
-
-
+    PokemonAppContext userDB = new PokemonAppContext();
 }
 ﻿
 
@@ -59,19 +60,21 @@
         <div id="nonSelected">
 
             @{
-                var getUser = DbController.GetUser(User.Identity.Name);
-                var pokemonIDs = (from x in userDB.PokemonCards where x.User == getUser.Id select x.PokemonId).ToList();
-                List<Datum> pokemonList = new List<Datum>();
-                foreach (var i in pokemonIDs)
+                if (Model.PCards.Count > 0)
                 {
-                    pokemonList.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
-                }
+                    List<string> pokemonids = (from x in Model.PCards select x.PokemonId).ToList();
+                    List<Datum> pokemonlist = new List<Datum>();
 
-                @foreach (var o in pokemonList) //JSON POKEMONKORTIT
-                {
+                    foreach (var i in pokemonids)
+                    {
+                        pokemonlist.Add(pokemons.Where(x => x.id == i).FirstOrDefault());
+                    }
 
-                    string url = o.images.small;
-                        <img src=@url id="btnDefault" title=@o.name onclick="moveButton(this)" draggable="true" width="160" height="195" />
+                    @foreach (var o in pokemonlist) //json pokemonkortit
+                    {
+                        string url = o.images.small;
+                        <img src=@url id="btndefault" title=@o.name onclick="movebutton(this)" draggable="true" width="160" height="195" />
+                    }
 
                 }
 
@@ -79,16 +82,7 @@
             }
         </div>
     </div>
-    <h1>Friends</h1>
-
-    <form asp-controller="Home" asp-action="Profile" asp-route-viewModel="@Model">
-
-        <input type="text" name="searchString" asp-route-searchString="searchString" />
-        <input type="submit" value="Add friend" />
-    </form>
-
-
-    <footer class="profileFooter">
+<footer class="profileFooter">
         <div class="profile">
 
             <p>Search friends</p>
@@ -116,72 +110,62 @@
             }
 
 
-            <div class="friend">
+            @*<div class="friend">
                 <p>Your friends:</p>
                 @{
                     var connections = Model.Connections;
                     foreach (var item in connections)
                     {
                         int userlevel = Convert.ToInt32(DbController.GetUserById(item.OtherUser).Xp) / 100;
-                                <p>
-                                    @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash Level: @userlevel
-                                    <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
-                                </p>
+                        <p>
+                            @DbController.GetUserById(item.OtherUser).Username      Cash: @DbController.GetUserById(item.OtherUser).Cash Level: @userlevel
+                            <a class="redtext" asp-controller="Db" asp-action="StopFollowing" asp-route-id="@item.Id" title="Stop following"> X </a>
+                        </p>
                     }
                 }
-                @*<button type="button"  onclick="FriendSearch()"> Search for friends</button>
-                    <table>
-                        <tr>
-                            <td>
-
-                                    <p id="Friendsearch">
-                                    </p>
-
-                                </td>
-                            </tr>
-                        </table>*@
-            </div>
+            </div>*@
 
 
-            @{var tUser = DbController.GetUser(User.Identity.Name); }
-                @*-------------XP bar-------------*@
-                <img src="~/Images/Charmander.png" height="50" class="profilePic" />
-                <p>@tUser.Username</p>
-                <p>Coins: @tUser.Cash £</p>
-                
+            @{
+                var tUser = Model.User;
+            }
+            @*-------------XP bar-------------*@
+            <img src="~/Images/Charmander.png" height="50" class="profilePic" />
+            <p>@tUser.Username</p>
+            <p>Coins: @tUser.Cash £</p>
 
 
-                @{
 
-                    var theUser = DbController.GetUser(User.Identity.Name);
-                    int xp;
-                    int level = 0;
-                    string xpBarXp;
-                    if (theUser.Xp > 100)
-                    {
-                        level = Convert.ToInt32(theUser.Xp / 100);
-                        xp = Convert.ToInt32(theUser.Xp % 100);
-                        xpBarXp = $"{xp * 10} XP";
-                    }
+            @{
 
-                    else
-                    {
-                        xp = Convert.ToInt32(theUser.Xp);
-                        xpBarXp = $"{xp * 10} XP";
-                    }
-                    <p>Level: @level</p>
-
+                var theUser = Model.User;
+                int xp;
+                int level = 0;
+                string xpBarXp;
+                if (theUser.Xp > 100)
+                {
+                    level = Convert.ToInt32(theUser.Xp / 100);
+                    xp = Convert.ToInt32(theUser.Xp % 100);
+                    xpBarXp = $"{xp * 10} XP";
                 }
 
-            @*@DbController.SaveXP("Christian Keihäs", 0);*@
+                else
+                {
+                    xp = Convert.ToInt32(theUser.Xp);
+                    xpBarXp = $"{xp * 10} XP";
+                }
+                <p>Level: @level</p>
+
+            }
 
             <div class="progress">
-                    <div class="progress-done" data-done="@xp">
-                        <span class="progress-text">@xpBarXp</span>
-                    </div>
+                <div class="progress-done" data-done="@xp">
+                    <span class="progress-text">@xpBarXp</span>
                 </div>
+            </div>
 
-                <script src="~/js/korttiliike.js"></script>
-                <script src="~/js/FriendSearch.js"></script>
-            </div></footer>
+            <script src="~/js/korttiliike.js"></script>
+            <script src="~/js/FriendSearch.js"></script>
+        </div>
+    </footer>
 </body>

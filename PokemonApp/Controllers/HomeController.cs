@@ -10,18 +10,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Principal;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using PokemonApp.Data;
 
 
 namespace PokemonApp.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly PokemonAppContext _context;
+
+        public HomeController(ILogger<HomeController> logger, PokemonAppContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [AllowAnonymous] //näyttää myös rekisteröitymättömälle käyttäjälle tämän osion
@@ -38,10 +41,19 @@ namespace PokemonApp.Controllers
         [AllowAnonymous]
         public IActionResult Marketplace(ViewModel viewModel)
         {
-            viewModel.User = DbController.GetUser(User.Identity.Name);
+            //if (viewModel.User.Username == null)
+            //{
+                
+            //}
+            //else
+            //{
+            //    viewModel.User = DbController.GetUser("", _context);
+            //}
+            viewModel.User = _context.User.FirstOrDefault();
             viewModel.PCards = new List<PokemonCard>();
+
             return View(viewModel);
-            
+
         }
 
         [AllowAnonymous]
@@ -50,19 +62,22 @@ namespace PokemonApp.Controllers
             return View();
 
         }
-        [Authorize]
+
         public IActionResult Profile(string searchString, ViewModel viewModel)
         {
             if (searchString == null)
             {
                 var viewModelEmpty = new ViewModel();
-                viewModelEmpty.User = DbController.GetUser(User.Identity.Name);
-                viewModelEmpty.Connections = DbController.GetConnections(viewModelEmpty.User.Id);
+                viewModelEmpty.User = _context.User.FirstOrDefault();
+                viewModelEmpty.Connections = new List<Connection>();
+                viewModelEmpty.PCards = _context.PokemonCard.Where(x => x.User == viewModelEmpty.User.Id).ToList();
                 return View(viewModelEmpty);
             }
-            viewModel.User = DbController.GetUser(User.Identity.Name);
-            viewModel.Connections = DbController.GetConnections(viewModel.User.Id);
-            viewModel.Users = DbController.SearchFriend(viewModel, searchString);
+            viewModel.User = DbController.GetUser("mae", _context);
+            viewModel.Connections = DbController.GetConnections(viewModel.User.Id, _context);
+            viewModel.Users = DbController.SearchFriend(viewModel, searchString, _context);
+            viewModel.PCards = _context.PokemonCard.Where(p => p.User == viewModel.User.Id).ToList();
+            
             return View(viewModel);
         }
 
@@ -78,6 +93,6 @@ namespace PokemonApp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        
+
     }
 }

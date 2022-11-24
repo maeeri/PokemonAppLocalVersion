@@ -1,3 +1,4 @@
+﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using PokemonApp.Data;
 
 
 namespace PokemonApp
@@ -33,17 +36,19 @@ namespace PokemonApp
                 options.HandleSameSiteCookieCompatibility();
             });
 
-            // Configuration to sign-in users with Azure AD B2C
-            services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAdB2C");
 
-            services.AddControllersWithViews()
-                .AddMicrosoftIdentityUI();
+            services.AddDbContext<PokemonAppContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("PokemonAppContext"));
+            });
+
+            services.AddControllersWithViews();
 
             services.AddRazorPages();
 
             //Configuring appsettings section AzureAdB2C, into IOptions
-            services.AddOptions();
-            services.Configure<OpenIdConnectOptions>(Configuration.GetSection("AzureAdB2C"));
+            //services.AddOptions();
+            //services.Configure<OpenIdConnectOptions>(Configuration.GetSection("AzureAdB2C"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +74,7 @@ namespace PokemonApp
             // Add the ASP.NET Core authentication service
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
